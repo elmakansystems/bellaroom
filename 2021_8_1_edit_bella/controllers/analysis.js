@@ -1,13 +1,19 @@
-const invoice = require("../models/invoice")
-const Expenses = require("../models/Expenses")
-    // أيمن
 const Addition = require("../models/Addition")
-
-const Product = require("../models/product")
+const Attend = require("../models/Attend")
 const Bill = require("../models/Bill")
+const Day = require("../models/Day")
+const Dealer = require("../models/dealer")
 const EBill = require("../models/EBill")
-const Loan = require("../models/Loan")
+const Employee = require("../models/Employee")
+const Expenses = require("../models/Expenses")
+const invoice = require("../models/invoice")
 const InvProduct = require("../models/InvProduct")
+const Loan = require("../models/Loan")
+const Material = require("../models/Material")
+const Order = require("../models/orders")
+const Product = require("../models/product")
+    // أيمن
+
 
 exports.current_month_data = async(req, res) => {
 
@@ -18,33 +24,31 @@ exports.current_month_data = async(req, res) => {
         let end = new Date(new Date(new Date(d.getFullYear(), d.getMonth() + 1, 0)).setHours(23, 59, 59, 999))
 
 
-        // عدد الفواتير في الشهر الحالي
-        const inv_count = await invoice.find({ date_added: { $gte: start, $lte: end } }).countDocuments() || 0
-        console.log(inv_count)
-
-        // بيانات الفواتير خلال الشهر
-        const inv = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid change')
-        console.log(inv)
-
-        // عدد المنتجات في الشهر الحالي
-        const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).countDocuments()
-        console.log(sold_products)
-        const products_count = await Product.find({ date_added: { $gte: start, $lte: end }  }).select('p_type price name').sort('-_id').countDocuments()
-        console.log(products_count)
-
-
-
-
-
-
-        const invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid change').sort('-_id')
-
-        const expenses = await Expenses.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
-          
-        const addition = await Addition.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
-        // const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end } }).select('_id')
-        const products = await Product.find({ date_added: { $gte: start, $lte: end } }).select('price name').sort('-_id')
         
+        
+        
+        // بيانات الفواتير خلال الشهر
+        // اسأل عن الـــ receive
+        const invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid change name dealer date_added')
+        
+        
+        // عدد المنتجات في الشهر الحالي
+        
+        const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).select('inv_total product_id date_added')
+        // منتحات الشهر الحالي
+        const products = await Product.find({ date_added: { $gte: start, $lte: end } }).select('p_type price name date_added').sort('-_id')
+        
+
+        
+        
+        
+
+        // المصاريف و الاضافات
+        
+        const expenses = await Expenses.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
+        const addition = await Addition.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
+      
+                // فلوس الموظفين
         const bills = await Bill.find({ date: { $gte: start, $lte: end } }).select("name total dealer_id").sort('-_id')
         const ebills = await EBill.find({ date: { $gte: start, $lte: end } }).select("name total emp_id").sort('-_id')
 
@@ -64,7 +68,7 @@ exports.current_month_data = async(req, res) => {
             price: invoices.map(elm => elm.total_price ? elm.total_price : 0).reduce((a, b) => a + b, 0),
         }
 
-        res.render('safe/safe_view', {
+        res.render('analysis/analysis_view', {
             invoices,
             totals,
             expenses,
@@ -77,6 +81,7 @@ exports.current_month_data = async(req, res) => {
             total_bills,
             total_loans,
             loans,
+            sold_products,
             start: start || '',
             end: end || ''
         })

@@ -1,0 +1,113 @@
+<div class="last-days-container" dir="rtl">
+    <div class="profile-card">
+        <h4 class="text-center mb-0 py-2" style="font-weight: 300;">
+            يتم عرض البيانات من تاريخ
+        </h4>
+
+        <h4 class="text-center mb-0 py-2" style="font-weight: 300;">
+            <span class="alert alert-primary py-1 mx-2 pd12" role="alert"><%= start.toLocaleDateString('ar-EG') %></span> الى
+            <span class="mx-2 alert alert-warning py-1 pd12" role="alert"><%= end.toLocaleDateString('ar-EG') %></span>
+        </h4>
+    </div>
+
+    <form id='attendance-form' action="/safe/get" method="POST" class="profile-card">
+        <div class="row justify-content-betwen  px-5 mb-3">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 ">
+                <p>
+                    اختر اليوم
+                </p>
+                <select class="form-select" name="from_day" id="day-attend-select">
+                    <% for( let index = 1; index < 32; index++ ) { %>
+                        <option value="<%= index %>"><%= index %></option>
+                    <% } %>
+                  </select>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4">
+                <p>
+                    اختر الشهر
+                </p>
+                <select class="form-select" name="from_month" id="from-safe-month">
+                <option value="0">يناير</option>
+                <option value="1">فبراير</option>
+                <option value="2">مارس</option>
+                <option value="3">ابريل</option>
+                <option value="4">مايو</option>
+                <option value="5">يوتنيو</option>
+                <option value="6">يوليو</option>
+                <option value="7">اغسطس</option>
+                <option value="8">سبتمبر</option>
+                <option value="9">أكتوبر</option>
+                <option value="10">نوفمبر</option>
+                <option value="11">ديسمبر</option>
+            </select>
+            </div>
+            <div class=" col-12 col-sm-4 col-md-4 col-lg-4 ">
+                <p>
+                    اختر العام
+                </p>
+                <select class="form-select" name="from_year" id="from-safe-year">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-betwen px-5 ">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4 ">
+                <p>
+                    اختر اليوم
+                </p>
+                <select class="form-select" name="to_day" id="day-attend-select">
+  
+                    <% for( let index = 1; index < 32; index++ ) { %>
+                        <option value="<%= index %>"><%= index %></option>
+                    <% } %>
+                  </select>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4">
+                <p>
+                    اختر الشهر
+                </p>
+                <select class="form-select" name="to_month" id="to-safe-month">
+                <option value="0">يناير</option>
+                <option value="1">فبراير</option>
+                <option value="2">مارس</option>
+                <option value="3">ابريل</option>
+                <option value="4">مايو</option>
+                <option value="5">يوتنيو</option>
+                <option value="6">يوليو</option>
+                <option value="7">اغسطس</option>
+                <option value="8">سبتمبر</option>
+                <option value="9">أكتوبر</option>
+                <option value="10">نوفمبر</option>
+                <option value="11">ديسمبر</option>
+            </select>
+            </div>
+            <div class=" col-12 col-sm-4 col-md-4 col-lg-4 ">
+                <p>
+                    اختر العام
+                </p>
+                <select class="form-select" name="to_year" id="to-safe-year">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3 ">
+            <div class="col-12 col-sm-4 col-md-4 col-lg-4 d-grid">
+                <button class="btn btn-warning" id="atten-btn">عرض</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+<script>
+    document.getElementById("from-safe-month").value = new Date().getMonth()
+    document.getElementById("to-safe-month").value = new Date().getMonth()
+    document.getElementById("from-safe-year").value = new Date().getFullYear()
+    document.getElementById("to-safe-year").value = new Date().getFullYear()
+</script>

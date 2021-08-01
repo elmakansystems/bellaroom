@@ -1,0 +1,90 @@
+<%- include('../components/head' , {title : 'الخزنة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            الخزنة
+        </h3>
+    </div>
+    <div class="container-lg" id="attend-table" dir="rtl">
+        <%- include('./date') %>
+
+            <div id="e-bill" dir="rtl">
+                <div class="container-lg">
+                    <div class="row jc2">
+                        <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                            <div class="bill-card attendance-row">
+                               
+                                <div class="projects">
+
+
+                                    <div class="row">
+                          <div class="four col-md-3">
+                              <div class="counter-box colored"> <i class="fa fa-thumbs-o-up"></i> <span class="counter">100</span>
+                                  <p>غرف النوم</p>
+                              </div>
+                          </div>
+                          <div class="four col-md-3">
+                              <div class="counter-box "> <i class="fa fa-group"></i> <span class="counter">150</span>
+                                  <p>الانتريه</p>
+                              </div>
+                          </div>
+                          <div class="four col-md-3">
+                              <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <span class="counter"><%= invoices[0].total_price %> </span>
+                                  <p>صالون</p>
+                              </div>
+                          </div>
+                          <div class="four col-md-3">
+                              <div class="counter-box "> <i class="fa fa-user"></i> <span class="counter">60</span>
+                                  <p>السفره</p>
+                              </div>
+                          </div>
+                      
+                      </div> 
+                      </div>
+
+
+                            </div>
+                            <%- include('./workers') %>
+                                <%- include('./loans') %>
+
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                            <%- include('./invoices') %>
+
+                                <%- include('./expenses') %>
+                                    <%- include('./addition') %>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        
+        $('.counter').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+             }, {
+        duration: 2000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+         }
+     });
+    });
+    
+    });
+</script>
+
+
+            <%- include('../components/footer') %>
