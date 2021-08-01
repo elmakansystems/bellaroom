@@ -1,0 +1,68 @@
+<%- include('../components/head' , {title : 'عرض السلف'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            عرض السلف
+        </h3>
+    </div>
+    <div id="l-view" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-between my-3 botn ">
+                <div class="col-md-3 col-lg-3 col-sm-3 col-5 d-grid ctc w100">
+                    <a href="/loan/create" class="btn btn-success">تسجيل سلفة جديدة</a>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-6 d-grid ctc w100">
+                    <a href="/loan/" class="btn btn-primary">العودة لصفحة السلفة</a>
+                </div>
+            </div>
+            <div class="row table-row">
+                <div class="cell  col-5 col-sm-5 col-md-5 col-lg-5 wsm">
+                    العامل
+                </div>
+                <div class="cell  col-2 col-sm-2 col-md-2 col-lg-2 value">
+                    قيمة السلفة
+                </div>
+                <div class="cell col-2 col-sm-2 col-md-2 col-lg-2 wss">
+                    الباقي
+                </div>
+                <div class="cell col-3 col-sm-2 col-md-2 col-lg-2 value">
+                    تاريخ الاضافة
+                </div>
+                <div class="cell col-1 col-sm-1 col-md-1 col-lg-1 wss">
+                    الاعدادت
+                </div>
+            </div>
+            <% loans.forEach(e => { %>
+                <div class="row table-row">
+                    <div class="cell  col-5 col-sm-5 col-md-5 col-lg-5 wsm">
+                        <%= e.name %>
+                    </div>
+                    <div class="cell  col-2 col-sm-2 col-md-2 col-lg-2 value">
+                        <%= e.amount %>
+                    </div>
+                    <div class="cell col-2 col-sm-2 col-md-2 col-lg-2 wss">
+                        <%= e.change %>
+                    </div>
+                    <div class="cell col-3 col-sm-2 col-md-2 col-lg-2 value">
+                        <%=e.date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                    </div>
+                    <div class="cell col-2 col-sm-1 col-md-1 col-lg-1 px-2 wss">
+                        <div class="row">
+                            <div class="col-6 mr-3 ctc">
+                                <a href="/loan/edit/<%= e._id%>"><img src="/images/editicon.svg" class="img-fluid" alt="delete icon"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+    <%- include('../components/footer') %>

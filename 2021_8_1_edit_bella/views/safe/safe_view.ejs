@@ -1,0 +1,81 @@
+<%- include('../components/head' , {title : 'الخزنة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            الخزنة
+        </h3>
+    </div>
+    <div class="container-lg" id="attend-table" dir="rtl">
+        <%- include('./date') %>
+
+
+
+
+            <div id="e-bill" dir="rtl">
+                <div class="container-lg">
+                    <div class="row jc2">
+                        <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                            <div class="bill-card attendance-row">
+                                <header class="text-center">
+                                    <img src="/images/safe1.png" class="bill-img" alt="الفاتورة" title="الفاتورة">
+                                </header>
+                                <h5 class="text-center">
+                                    الخزنة
+                                </h5>
+
+                                <div class="row jc2">
+                                    <div class="col-md-6 col-lg-6 col-sm-10 col-10 py-2 mb-3 bg-e">
+                                        الدخل الاجمالي خلال الفترة
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-10 col-10 bg-success text-white py-2 mb-3">
+                                        <!-- أيمن -->
+                                        <%= totals.paid + total_add %>
+                                    </div>
+                                </div>
+                                <div class="row jc2">
+                                    <div class="col-md-6 col-lg-6 col-sm-10 col-10 py-2 mb-3 bg-e">
+                                        الخرج الاجمالي خلال الفترة
+
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-10 col-10 bg-danger text-white py-2 mb-3">
+                                        <%= total_exps+ total_bills+ total_loans %>
+                                    </div>
+                                </div>
+
+
+                                <!-- ايمن -->
+                                <div class="row justify-content-between">
+                                    <div class="col-5 col-sm-5 col-md-5 d-grid">
+                                        <a href="/purchases/p/new" class="btn btn-outline-danger" id="atten-btn">خصم مبلغ</a>
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-5 d-grid">
+                                        <a href="/purchases/a/new" class="btn btn-outline-success btn-block " id="atten-btn">إضافة مبلغ</a>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <%- include('./workers') %>
+                                <%- include('./loans') %>
+
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                            <%- include('./invoices') %>
+
+                                <%- include('./expenses') %>
+                                    <%- include('./addition') %>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+</div>
+
+
+
+            <%- include('../components/footer') %>

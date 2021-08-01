@@ -1,0 +1,28 @@
+<%- include('./components/head', {title : 'اوامر الشغل'})%>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+    <div class="m100">
+        <div class="container home ">
+            <div class="row ">
+                <a href="/orders/create" class="home-link ">
+                    <img src="/images/create.svg ">
+                    <p>
+                        انشاء امر شغل
+                    </p>
+                </a>
+
+                <% if (user.isAdmin) { %>
+                    <a href="/orders/view" class="home-link ">
+                        <img src="/images/bill.svg ">
+                        <p>
+                            اوامر الشغل السابقة
+                        </p>
+                    </a>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('./components/footer') %>

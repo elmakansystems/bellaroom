@@ -1,0 +1,45 @@
+<%- include('./components/head' , {title : 'المشتريات'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            المشتريات
+        </h3>
+    </div>
+    <div id="purchases">
+        <div class="container home">
+            <div class="row">
+                <a href="/purchases/m/new" class="home-link">
+                    <img src="/images/create.svg">
+                    <p> تسجيل خامة جديده</p>
+                </a>
+                <a href="/purchases/m/view" class="home-link">
+                    <img src="/images/list.svg">
+                    <p>عرض الخامات السابقة</p>
+
+                    <a href="/purchases/p/new" class="home-link">
+                        <img src="/images/create.svg">
+                        <p> تسجيل مصروفات جديده</p>
+                    </a>
+                    <a href="/purchases/p/view" class="home-link">
+                        <img src="/images/list.svg">
+                        <p>عرض المصروفات السابقة</p>
+                    </a>
+                    <a href="/purchases/a/new" class="home-link">
+                        <img src="/images/create.svg">
+                        <p> تسجيل اضافة جديده</p>
+                    </a>
+                    <a href="/purchases/a/view" class="home-link">
+                        <img src="/images/list.svg">
+                        <p>عرض اضافة السابقة</p>
+                    </a>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+
+
+    <%- include('./components/footer') %>

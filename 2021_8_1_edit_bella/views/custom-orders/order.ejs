@@ -1,0 +1,96 @@
+<%- include('../components/head' , {title : order.name}) %>
+<div class="m100">
+    
+    <div id="order">
+        <div class="order-form-container container-lg">
+            <div class="row inv_head py-2">
+                <div class="col">
+                    <img src="/images/logo.png" alt="logo">
+                </div>
+                <div class="col">
+                    <h3>بيلا رووم</h3>
+                    <p>
+                        الدور الثالث مول فرنتشر تاون اما النادي الاهلي / القاهرة
+                    </p>
+    
+                </div>
+            </div>
+            <center class="my-3">
+                <h2>
+                 امر شغل
+                </h2>
+            </center>
+            <div dir="rtl" class="custom-order-form">
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">اسم العميل</label>
+                        <h5 class="order-view-item">
+                            <%= order.name %>
+                        </h5>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">رقم العميل</label>
+                        <h5 class="order-view-item">
+                            <%= order.phone %>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">تاريخ امر الشغل</label>
+                        <h5 class="order-view-item">
+                            <%= order.date %>
+                        </h5>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">تاريخ التوصيل</label>
+                        <h5 class="order-view-item">
+                            <%= order.deliver %>
+                        </h5>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">العنوان</label>
+                    <h5 class="order-view-item">
+                        <%= order.location %>
+                    </h5>
+                </div>
+                <div class="order-row">
+                    <div class="col-md-1 col-1 col-sm-1 col-lg-1 col-sm-1 order-row-title">
+                        تس
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-3 col-lg-3 order-row-title">
+                        اسم الموديل
+                    </div>
+                    <div class="col-md-7 col-7 col-sm-7 col-lg-7 order-row-title">
+                        الوصف
+                    </div>
+                    <div class="col-md-1 col-1 col-sm-1 col-lg-1 col-sm-1 order-row-title">
+                        كم
+                    </div>
+                </div>
+                <div class="order-rows">
+                    <% order.orders.forEach((o , i) => { %>
+                        <div class="order-row">
+                            <div class="col-md-1 col-1 col-sm-1 col-lg-1 col-sm-1 order-row-title">
+                                <%= i+1 %>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-3 col-lg-3 order-row-title" style="font-size: 20px;">
+                                <%= o.name %>
+                            </div>
+                            <div  class="col-md-7 col-7 col-sm-7 col-lg-7 order-row-title">
+                                <pre style="font-size: 20px;"><div><%= o.desc %></div></pre>
+                            </div>
+                            <div class="col-md-1 col-1 col-sm-1 col-lg-1 col-sm-1 order-row-title" style="font-size: 20px;">
+                                <%= o.quantity %>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+            <%- include('../components/bella-footer') %>
+        </div>
+    </div>
+</div>
+<%- include('../components/print')  %>
+    <%- include('../components/footer') %>

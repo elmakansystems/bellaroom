@@ -1,0 +1,63 @@
+<%- include('../components/head' , {title : 'عرض اضافة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+       <div class="main-header">
+        <h3 class="text-center">
+            عرض اضافة
+        </h3>
+    </div>
+
+    <div id="a-view" dir="rtl">
+        <div class="container-lg">
+            <div class="row table-row">
+                <div class="col-md-2 order-list-item">
+                    رقم البيان
+                </div>
+                <div class="col-md-5 order-list-item">
+                    البيان
+                </div>
+                <div class="col-md-2 order-list-item">
+                    القيمة
+                </div>
+                <div class="col-md-2 order-list-item">
+                    تاريخ الاضافة
+                </div>
+                <div class="col-md-1 order-list-item">
+                    الاعدادت
+                </div>
+
+            </div>
+
+            <% exps.forEach(e => { %>
+                <div class="row table-row">
+                    <div class="col-md-2 order-list-item">
+                        <%= e.serial %>
+                    </div>
+                    <div class="col-md-5 order-list-item">
+                        <%= e.text %>
+                    </div>
+                    <div class="col-md-2 order-list-item">
+                        <%= e.amount %>
+                    </div>
+                    <div class="col-md-2 order-list-item">
+                        <%= e.date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                    </div>
+                    <div class="col-md-1 order-list-item">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="/purchases/a/edit/<%= e._id%>"><img src="/images/editicon.svg" class="img-fluid" alt="delete icon"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+
+
+        </div>
+    </div>
+
+</div>
+ 
+
+    <%- include('../components/footer') %>

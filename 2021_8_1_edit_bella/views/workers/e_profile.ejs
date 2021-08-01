@@ -1,0 +1,204 @@
+<%- include('../components/head' , {title : emp.name}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            الحساب
+        </h3>
+    </div>
+    <div id="e-profile" dir="rtl">
+        <div class="container-lg">
+            <div class="row jc2">
+                <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                    <div class="profile-card">
+                        <header class="text-center">
+                            <img src="/images/profile.png" class="profile-img" alt="<%= emp.name %>" title="<%= emp.name %>">
+                        </header>
+                        <h5 class="text-center">
+                            <%= emp.name %>
+                        </h5>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                الرقم
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                <%= emp.phone %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                العنوان
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                <%= emp.location %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-10 col-10 mtb">
+                                الرقم القومي
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-10 col-10">
+                                <%= emp.n_id %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                تاريخ التوظيف
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-6 col-6">
+                                <%= emp.date %>
+                            </div>
+                        </div>
+                        <% if (user.isAdmin) { %>
+                            <div class="row my-2 profile-row">
+                                <a href="/workers/e/edit/<%= emp._id %>" class="btn btn-warning">تعديل البيانات</a>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="profile-card salary-row">
+                        <div class="row my-2 ">
+                            <div class="text-center">
+                                <h3>
+                                    تعليقات اضافية
+                                </h3>
+                                <p>
+                                    <%= emp.comment %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card debt-row">
+                        <div class="row my-2 ">
+                            <div class="text-center">
+                                <h3>
+                                    سلفة
+                                </h3>
+                                <h1>
+                                    <%= loan_sum > 0 ? loan_sum : 'لا يوجد حاليا' %>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                    <div class="profile-card salary-row">
+                        <div class="row my-2 ">
+                            <div class="text-center">
+                                <h3>
+                                    الاساسي
+                                </h3>
+                                <h1>
+                                    <%= emp.salary %>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-card attendance-row">
+                        <header class="my-3">
+                            <h6>الحضور</h6>
+                        </header>
+                        <div class="row ">
+                            <div class="col-md-6 col-lg-6 col-sm-10 col-10 py-2 mb-3 bg-e">
+                                اليوم
+                            </div>
+
+                            <% if (isAttend) { %>
+                                <div class="col-md-6 col-lg-6 col-sm-10 col-10 bg-success text-white py-2 mb-3">
+                                    حاضر
+                                </div>
+                                <% } else { %>
+                                    <div class="col-md-6 col-lg-6 col-sm-10 col-10 bg-danger text-white py-2 mb-3">
+                                        غائب
+                                    </div>
+                                    <% } %>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-10 col-10 py-2 mb-3 bg-e">
+                                عدد ايام الغياب
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-10 col-10 bg-warning text-white py-2 mb-3">
+                                <%= absent_days %>
+                            </div>
+
+                        </div>
+                        <% reg_absent_days.forEach(d => { %>
+                            <div class="row table-row ">
+                                <div class=" cell col-md-6 col-lg-6 col-sm-10 col-10 bg-e" style="padding: 5px 10px;">
+                                    التاريخ
+                                </div>
+                                <div class=" cell col-md-6 col-lg-6 col-sm-10 col-10 bg-e" style="padding: 5px 10px;">
+                                    <%= d.date_at %>
+                                </div>
+
+                            </div>
+                            <% }) %>
+
+                    </div>
+
+                    <% if (user.isAdmin) { %>
+                        <div class="profile-card salary-row">
+                            <div class="row my-2">
+                                <header class="mb-3">
+                                    <h3>
+                                        حسابات الشهر
+                                    </h3>
+                                </header>
+                                <a href="/workers/e/calcs/<%= emp._id %>" class="btn btn-secondary">
+                                    الى صفحة الحسابات
+                                </a>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('add-value').addEventListener("click", () => {
+            const more_template = `<div class="row p-form-row ">
+                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-more">
+                                            اضافة
+                                        </div>
+                                        <div class="col-md-8 col-8 col-sm-8 col-lg-8 p-form-col">
+                                            <input type="text" class="form-control more-name"  placeholder="سبب الاضافة">
+                                        </div>
+                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col">
+                                            <input type="text" class="form-control more-value" placeholder="500">
+                                        </div>
+                                    </div>
+            `
+
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', more_template)
+
+
+
+        })
+        document.getElementById('sub-value').addEventListener("click", () => {
+
+            const sub_template = ` <div class="row p-form-row ">
+                                            <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-less">
+                                                خصم
+                                            </div>
+                                            <div class="col-md-8 col-8 col-sm-8 col-lg-8 p-form-col">
+                                                <input type="text" class="form-control sub-name"  placeholder="سبب الخصم">
+                                            </div>
+                                            <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col">
+                                                <input type="text" class="form-control sub-value" placeholder="500">
+                                            </div>
+                                        </div>
+                `
+
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', sub_template)
+
+
+
+        })
+    </script>
+
+
+    <%- include('../components/footer') %>

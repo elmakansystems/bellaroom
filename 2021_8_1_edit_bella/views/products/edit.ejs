@@ -1,0 +1,48 @@
+<%- include('../components/head' , {title : 'تعديل منتج '}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تعديل منتج 
+        </h3>
+    </div>
+    <div id="products-edit" dir="rtl">
+        <div class="container-lg">
+            <div class="product-forms my-3">
+                <div class="product-form-container bg-e ">
+                    <form action="/products/edit" class="p-3" id="p-form" method="POST">
+                        <input type="hidden" name="id" value="<%= product._id %>">
+                        <div class="form-fields">
+                            <div class="row mb-3">
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="name" class="form-label"> المنتج</label>
+                                    <input type="text" class="form-control" id="name" name="names[]" value="<%=product.name%>" placeholder="<%=product.name%>">
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                                    <label for="d_name" class="form-label">المورد</label>
+                                    <input type="text" class="form-control" id="d_name" name="dealers[]" value="<%=product.dealer%>" placeholder="<%=product.dealer%>">
+                                </div>
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label for="d_phone" class="form-label">رقم المورد</label>
+                                    <input type="number" class="form-control" id="d_phone" name="phones[]" value="<%=product.phone%>" placeholder="<%=product.phone%>">
+                                </div>
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                                    <label for="unit_price" class="form-label"> جملة المنتج</label>
+                                    <input type="number" class="form-control" id="d_unit" name="prices[]" value="<%=product.price%>" placeholder="<%=product.price%>">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white ">تعديل البيانات</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+   
+
+    
+
+    <%- include('../components/footer') %>

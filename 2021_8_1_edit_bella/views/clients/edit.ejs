@@ -1,0 +1,124 @@
+<%- include('../components/head' , {title : ' تعديل الباقي '+name}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="main-header">
+  <h3 class="text-center">تعديل الباقي <%= name %></h3>
+</div>
+<div id="loan-new" dir="rtl">
+  <div class="container-lg">
+    <div class="loan-forms my-3">
+      <div class="loan-form-container bg-e p-4">
+        <form
+          action="/clients/edit"
+          id="p-form"
+          method="POST"
+          data-submit="false"
+        >
+          <input type="hidden" name="id" value="<%= _id %>" />
+          <input type="hidden" name="paid" value="<%= paid %>" />
+          <div class="form-fields my-3">
+            <div class="row mb-3 botn">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                <label for="bill-serial" class="form-label">العميل</label>
+                <input
+                  required
+                  type="text"
+                  readonly
+                  class="form-control"
+                  id="loan-name"
+                  name="name"
+                  value="<%= name %>"
+                  placeholder="احمد"
+                />
+              </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                <label for="bill-amount" class="form-label">الباقي</label>
+                <input
+                  required
+                  type="number"
+                  class="form-control"
+                  id="change-amount"
+                  name="change"
+                  readonly
+                  value="<%= change %>"
+                  placeholder="500 جنية"
+                />
+              </div>
+            </div>
+            <div class="row botn">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-4 ctc">
+                <div id="form-fields">
+                  <div class="form-value-rows">
+                    <div class="row p-form-row p-form-title bg-light">
+                      <div
+                        class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col ctc"
+                      >
+                        الحالة
+                      </div>
+                      <div
+                        class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col ctc"
+                      >
+                        القيمة
+                      </div>
+                    </div>
+                  </div>
+                  <% sub.forEach(a => { %>
+                  <div class="row p-form-row">
+                    <div
+                      class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col bg-more calc_row"
+                    >
+                      مسترد
+                    </div>
+                    <div
+                      class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col loan-calc"
+                    >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="rest"
+                        name="sub[]"
+                        value="<%= a %>"
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                  <% }) %>
+                </div>
+                <div class="row justify-content-between mt-5">
+                  <button
+                    class="btn btn-warning col-md-3 col-3 col-sm-3 col-lg-3"
+                  >
+                    تعديل
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let _change = document.getElementById(`change-amount`).value;
+  let _rest = document.getElementById(`rest`);
+
+  document.getElementById("p-form").addEventListener("submit", (event) => {
+    if (event.target.getAttribute("data-submit") == "false")
+      event.preventDefault();
+    else return;
+  });
+
+  _rest.addEventListener("keyup", (e) => {
+    if (parseInt(e.target.value) > parseInt(_change)) {
+      _rest.style.background = "#fd8b93";
+      document.getElementById("p-form").setAttribute("data-submit", false);
+    } else {
+      _rest.style.background = "#fff";
+      document.getElementById("p-form").setAttribute("data-submit", true);
+    }
+  });
+</script>
+
+<%- include('../components/footer') %>

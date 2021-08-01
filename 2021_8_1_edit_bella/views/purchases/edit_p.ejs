@@ -1,0 +1,44 @@
+<%- include('../components/head' , {title : 'تعديل المصروفات'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+      <div class="main-header">
+        <h3 class="text-center">
+            تعديل المصروفات
+        </h3>
+    </div>
+    <div id="purchases-new" dir="rtl">
+        <div class="container-lg">
+            <div class="purchase-forms my-3">
+                <div class="purchase-form-container bg-e p-4">
+                    <form action="/purchases/p/edit" id="p-form" method="POST">
+                        <input type="hidden" name="_id" value="<%= exp._id %>">
+                        <div class="form-fields my-3">
+                            <div class="row mb-3">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="bill-serial" class="form-label">رقم الفاتورة</label>
+                                    <input required type="number" class="form-control" id="bill-serial" value="<%= exp.serial %>" name="serial" placeholder="001">
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="bill-amount" class="form-label">قيمة البيان</label>
+                                    <input required type="number" class="form-control" id="bill-amount" value="<%= exp.amount %>" name="amount" placeholder="500 جنية">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="name" class="form-label">البيان</label>
+                                    <textarea name="text" id="text" cols="30" class="form-control" placeholder="-مصروفات تجهيز الحملة الاعلانية" rows="5"><%= exp.text %></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning text-white my-3">تعديل البيانات</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  
+
+    <%- include('../components/footer') %>

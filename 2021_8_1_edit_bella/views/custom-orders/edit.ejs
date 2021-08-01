@@ -1,0 +1,173 @@
+<%- include('../components/head' , {title : 'تعديل امر شغل'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            تعديل امر شغل
+        </h3>
+    </div>
+    <div class="order-form-container container">
+        <form dir="rtl" id="custom-order-form">
+            <input type="hidden" name="id" value="<%= order._id %>">
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                    <label class="form-label">اسم العميل</label>
+                    <input required type="text" name="client_name" class="form-control" id="client-name"   value=" <%= order.name %>  ">
+                </div>
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                    <label class="form-label">رقم العميل</label>
+                    <input required type="text" name="client_number" class="form-control" id="client-number"   value="<%= order.phone %> ">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                    <label class="form-label">تاريخ امر الشغل</label>
+                    <input required type="text" name="order_date" class="form-control" id="order-date"  value="<%= order.date %> ">
+                </div>
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                    <label class="form-label">تاريخ التوصيل</label>
+                    <input required type="text" name="delivery_date" class="form-control" id="delivery-date"  value="<%= order.deliver %> ">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">العنوان</label>
+                <input required type="text" name="client_location" class="form-control" id="client-location"  value="<%= order.location %> ">
+            </div>
+            <div class="order-row">
+                <div class="col-md-1 col-sm-1 col-1 order-row-title">
+                    م
+                </div>
+                <div class="col-md-3 col-sm-3 col-3 order-row-title">
+                    اسم الموديل
+                </div>
+                <div class="col-md-7 col-sm-7 col-6 order-row-title">
+                    الوصف
+                </div>
+                <div class="col-md-1 col-sm-1 col-2 order-row-title">
+                    كم
+                </div>
+            </div>
+            <div class="order-rows">
+                <% order.orders.forEach((o , i) => { %>
+                 
+                    <div class="order-row">
+                        <div class="col-md-1 col-sm-1 col-1">
+                           <%= i+1 %> 
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-3">
+                            <textarea required class="form-control order-model-name" name="order-name-1" id="order-name-1" rows="5"><%= o.name %></textarea>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-6">
+                            <textarea required class="form-control order-model-desc" name="order-desc-1"  id="order-desc-1" rows="5"><%= o.desc %></textarea>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-2">
+                            <textarea required class="form-control order-model-quan" name="order-quantity-1"  id="order-quantity-1" rows="5"><%= o.quantity %></textarea>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="my-3 ">
+                <span class="btn btn-secondary" id="add-order-row">اضافة صف جديد</span>
+            </div>
+           
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary mb-3 btn-block">تعديل امر الشغل</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+    
+
+    <script>
+       
+        let order_template_row = (index) => `
+        <div class="order-row">
+                <div class="col-md-1  col-sm-1 col-1">
+                    ${index}
+                </div>
+                <div class="col-md-3 col-md-3 col-sm-3 col-3">
+                    <textarea required  class="form-control order-model-name" name="order-name-${index}" id="order-name-${index}" rows="5"></textarea>
+                </div>
+                <div class="col-md-7 col-sm-7 col-7">
+                    <textarea required  class="form-control order-model-desc" name="order-desc-${index}" id="order-desc-${index}" rows="5"></textarea>
+                </div>
+                <div class="col-md-1 col-sm-1 col-1">
+                    <textarea required  class="form-control order-model-quan" name="order-quantity-${index}" id="order-quantity-${index}" rows="5"></textarea>
+                </div>
+            </div>
+        
+        `
+        let index = document.querySelectorAll('.order-row').length - 1;
+        document.querySelector("#add-order-row").addEventListener("click", function() {
+            index++
+            document.querySelector(".order-rows").insertAdjacentHTML('beforeend', order_template_row(index))
+        })
+
+
+
+        document.getElementById('custom-order-form').addEventListener('submit', function(ev) {
+            ev.preventDefault()
+            const {
+                id,
+                client_name,
+                client_location,
+                client_number,
+                order_date,
+                delivery_date,
+                
+            } = ev.target
+            const _model_name = model_data_collector('.order-model-name'),
+                _model_desc = model_data_collector('.order-model-desc'),
+                _model_quan = model_data_collector('.order-model-quan')
+            const data = {
+                id : id.value,
+                name: client_name.value,
+                phone: client_number.value,
+                location: client_location.value,
+                date: order_date.value,
+                deliver: delivery_date.value,
+                
+                orders: orders_collector(_model_name, _model_desc, _model_quan)
+            }
+
+
+            axios.post('/orders/update', data)
+                .then(res => {
+                    if (res.data.link) {
+                        location.pathname = res.data.link
+                    } else {
+                        location.pathname = '/error'
+                    }
+                })
+                .catch(err => {
+                    location.pathname = '/error'
+                })
+
+
+
+
+        })
+
+
+        const model_data_collector = (target) => {
+            let data = []
+            document.querySelectorAll(target).forEach(elm => data.push(elm.value))
+            if (data && data.length > 0) return data
+        }
+        const orders_collector = (names, descs, quans) => {
+            let orders = []
+            names.forEach((e, i) => orders.push({
+                name: names[i],
+                desc: descs[i],
+                quantity: quans[i]
+            }))
+            return orders
+        }
+    </script>
+
+
+
+
+    <%- include('../components/footer') %>

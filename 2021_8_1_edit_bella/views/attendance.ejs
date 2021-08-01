@@ -1,0 +1,32 @@
+<%- include('./components/head' , {title : 'الحضور'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تسجيل الحضور
+        </h3>
+    </div>
+    <div id="attendance">
+        <div class="container-lg home ">
+            <div class="row">
+                <% if (admin ||editor) { %>
+                    <a href="/attendance/today" class="home-link">
+                        <img src="/images/today.svg">
+                        <p>تسجيل حضور اليوم</p>
+                    </a>
+                    <% } %>
+                        <% if (admin) { %>
+                            <a href="/attendance/all" class="home-link">
+                                <img src="/images/days.svg">
+                                <p>الايام السابقة</p>
+                            </a>
+                            <% } %>
+            </div>
+        </div>
+    </div>
+
+</div>
+   
+
+    <%- include('./components/footer') %>

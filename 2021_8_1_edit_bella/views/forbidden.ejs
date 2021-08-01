@@ -1,0 +1,13 @@
+<%- include('./components/head', {title : 'محظور'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+    <p class="alert alert-danger text-center " style="width: fit-content; margin: 50px auto; padding: 10px 100px;">
+        غير مسموح بالدخول هنا
+    </p>
+    <div class="text-center">
+        <a onclick="window.history.go(-1)" class="btn btn-primary">عودة للصفحة السابقة</a>
+    </div>
+</div>
+
+    <%- include('./components/footer') %>

@@ -1,0 +1,71 @@
+<%- include('./components/head' , {title : 'الرئيسية'}) %>
+
+    <div class="m100">
+
+        <div class="main-header">
+            <h3 class="text-center">
+                نظام محاسبة بيلاروم
+            </h3>
+        </div>
+        <div class="container-lg home ">
+            <div class="row">
+                <% if (admin || editor) { %>
+                    <a href="/invoices/create" class="home-link">
+                        <img src="/images/create.svg">
+                        <p>انشاء فاتورة</p>
+                    </a>
+                    <a href="/invoices" class="home-link">
+                        <img src="/images/bill.svg">
+                        <p>الفواتير</p>
+                    </a>
+                    <a href="/receipt" class="home-link">
+                        <img src="/images/receipt.svg">
+                        <p>اذن الاستلام</p>
+                    </a>
+                    <a href="/attendance" class="home-link">
+                        <img src="/images/attendance.svg">
+                        <p>الحضور</p>
+                    </a>
+                    <a href="/orders" class="home-link">
+                        <img src="/images/order.svg">
+                        <p>اوامر الشغل</p>
+                    </a>
+                    <a href="/clients" class="home-link">
+                        <img src="/images/team.svg">
+                        <p>العملاء</p>
+                    </a>
+                    <% } %>
+                        <% if (admin) { %>
+                            <a href="/workers" class="home-link">
+                                <img src="/images/user.svg">
+                                <p>العاملين</p>
+                            </a>
+                            <a href="/products" class="home-link">
+                                <img src="/images/box.svg">
+                                <p>المنتجات</p>
+                            </a>
+                            <a href="/purchases" class="home-link">
+                                <img src="/images/purchases.svg">
+                                <p>المشتريات</p>
+                            </a>
+                            <a href="/safe" class="home-link">
+                                <img src="/images/safe.png">
+                                <p>الخزنة</p>
+                            </a>
+                            <a href="/loan" class="home-link">
+                                <img src="/images/loan.svg">
+                                <p>السلف</p>
+                            </a>
+                            <a href="/settings/" class="home-link">
+                                <img src="/images/settings.svg">
+                                <p>المستخدمين</p>
+                            </a>
+                            <% } %>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('./components/footer') %>

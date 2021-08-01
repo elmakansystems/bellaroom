@@ -1,0 +1,67 @@
+<%- include('../components/head' , {title : dealer.name }) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            تعديل بيانات
+            <%= dealer.name %>
+        </h3>
+    </div>
+    <div id="create-employee" class="create-form" dir="rtl">
+        <div class="container-lg">
+            <form action="/workers/d/edit" method="POST">
+                <input type="hidden" name="id" value="<%= dealer._id %>">
+                <div class="row justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_name" class="form-label">اسم البائع</label>
+                        <input type="text" name="d_name" class="form-control" value="<%= dealer.name %>" id="d_name">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_phone" class="form-label">رقم البائع</label>
+                        <input type="text" name="d_phone" class="form-control" value="<%= dealer.phone %>" id="d_phone">
+                    </div>
+                </div>
+                <div class="row justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_location" class="form-label">عنوان البائع</label>
+                        <input type="text" name="d_location" class="form-control" value="<%= dealer.location %>" id="d_location">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_date" class="form-label">تاريخ التوظيف</label>
+                        <input type="text" name="d_date" class="form-control" value="<%= dealer.date %>" id="d_date">
+                    </div>
+                </div>
+                <div class="row justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_n_id" class="form-label">الرقم القومي</label>
+                        <input type="text" name="d_n_id" class="form-control" value="<%= dealer.n_id %>" id="d_n_id">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="d_salary" class="form-label">الراتب</label>
+                        <input type="text" name="d_salary" class="form-control" value="<%= dealer.salary %>" id="d_salary">
+                    </div>
+                    <div class="mb-3 col-md-12 col-lg-12 col-12 col-sm-10">
+                        <label for="d_comm" class="form-label">العمولة</label>
+                        <input type="text" name="d_comm" class="form-control" value="<%= dealer.comm  %>" id="d_comm">
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-evenly">
+                    <div class=" mb-3 col-md-12 col-lg-12 col-12 col-sm-10">
+                        <label for="d_comment" class="form-label">تعليقات اضافية</label>
+                        <textarea class="form-control" name="d_comment" id="d_comment" rows="3"><%= dealer.comment %></textarea>
+                    </div>
+                </div>
+
+                <div class="row justify-content-evenly">
+                    <div class=" mb-3 col-md-5 col-lg-5 col-12 col-sm-10 d-grid">
+
+                        <button type="submit" class="btn btn-primary px-5">تعديل بيانات البائع</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../components/footer') %>

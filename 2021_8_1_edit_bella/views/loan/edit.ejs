@@ -1,0 +1,126 @@
+<%- include('../components/head' , {title : ' تعديل سلفة '+name}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تعديل سلفة
+            <%= name %>
+        </h3>
+    </div>
+    <div id="loan-new" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-between my-3 botn ">
+                <div class="col-md-3 col-lg-3 col-sm-3 col-3 d-grid ctc">
+                    <a href="/loan/list" class="btn btn-secondary">عرض جميع السلف</a>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-4 d-grid ctc">
+                    <a href="/loan/" class="btn btn-primary">العودة لصفحة السلف الرئيسية</a>
+                </div>
+            </div>
+            <div class="loan-forms my-3">
+                <div class="loan-form-container bg-e p-4">
+                    <form action="/loan/edit" id="p-form" method="POST">
+                        <input type="hidden" name="id" value="<%= _id %>">
+                        <div class="form-fields my-3">
+                            <div class="row mb-3 botn">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                                    <label for="bill-serial" class="form-label">العامل</label>
+                                    <input required type="text" readonly class="form-control" id="loan-name" name="name" value="<%= name %>" placeholder="احمد">
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                                    <label for="bill-amount" class="form-label">قيمة السلفة</label>
+                                    <input required type="number" class="form-control" id="loan-amount" name="amount" readonly value="<%= amount %>" placeholder="500 جنية">
+                                </div>
+                            </div>
+                            <div class="row botn">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                                    <label for="bill-amount" class="form-label">الباقى</label>
+                                    <input required type="number" class="form-control" name="change" readonly value="<%= change %>" placeholder="500 جنية">
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-4 ctc">
+                                    <div id="form-fields">
+                                        <div class="form-value-rows">
+                                            <div class="row p-form-row p-form-title bg-light">
+                                                <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col ctc">
+                                                    الحالة
+                                                </div>
+                                                <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col ctc">
+                                                    القيمة
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% sub.forEach(a => { %>
+                                            <div class="row p-form-row ">
+                                                <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col bg-more calc_row">
+                                                    مسترد
+                                                </div>
+                                                <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col loan-calc">
+                                                    <input type="number" class="form-control" name="sub[]" value="<%= a %>" placeholder="0">
+                                                </div>
+                                            </div>
+                                            <% }) %>
+                                                <% add.forEach(s => { %>
+                                                    <div class="row p-form-row ">
+                                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col bg-less calc_row">
+                                                            جديد
+                                                        </div>
+                                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col loan-calc">
+                                                            <input type="number" class="form-control" name="add[]" value="<%= s %>" placeholder="0">
+                                                        </div>
+                                                    </div>
+                                                    <% }) %>
+
+
+                                    </div>
+                                    <div class="row justify-content-between mt-5">
+                                        <button class="btn btn-warning   col-md-3 col-3 col-sm-3 col-lg-3">تعديل</button>
+                                        <div id="add-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-success text-white">
+                                            مسترد
+                                        </div>
+                                        <div id="sub-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-danger text-white">
+                                            جديد
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+
+    <script>
+        document.getElementById('add-value').addEventListener("click", () => {
+            const more_template = ` <div class="row p-form-row ">
+                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col bg-more calc_row">
+                                            مسترد
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col loan-calc">
+                                            <input type="number" class="form-control" name="sub[]" placeholder="0">
+                                        </div>
+                                    </div>
+            `
+            document.getElementById('form-fields').insertAdjacentHTML('beforeend', more_template)
+        })
+        document.getElementById('sub-value').addEventListener("click", () => {
+            const sub_template = `<div class="row p-form-row ">
+                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col bg-less calc_row">
+                                            جديد
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col loan-calc">
+                                            <input type="number" class="form-control" name="add[]" placeholder="0">
+                                        </div>
+                                    </div>
+                `
+            document.getElementById('form-fields').insertAdjacentHTML('beforeend', sub_template)
+        })
+    </script>
+
+    <%- include('../components/footer') %>

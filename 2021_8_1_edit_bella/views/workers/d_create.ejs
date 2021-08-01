@@ -1,0 +1,72 @@
+<%- include('../components/head' , {title : 'اضافة بائع جديد'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            تسجيل بائع جديد
+        </h3>
+    </div>
+    <div id="create-dealer" class="create-form" dir="rtl">
+        <div class="container-lg">
+            <form action="/workers/d/create" method="POST">
+                <div class="row botn ">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_name" class="form-label">اختر المستخدم</label>
+                        <select class="form-select" id="user-dealer-select" name="user">
+                            <option selected>اختر المستخدم</option>
+                           <% users.forEach(({name , _id}) => { %>
+                            <option value="<%= _id %>"><%= name %></option>
+                           <% }) %>
+                          </select>
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_name" class="form-label">اسم البائع</label>
+                        <input type="text" name="d_name" class="form-control" value="اختر المستخدم" id="d_name">
+                    </div>
+                </div>
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_phone" class="form-label">رقم البائع</label>
+                        <input type="text" name="d_phone" class="form-control" id="d_phone">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_location" class="form-label">عنوان البائع</label>
+                        <input type="text" name="d_location" class="form-control" id="d_location">
+                    </div>
+                </div>
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_n_id" class="form-label">الرقم القومي</label>
+                        <input type="text" name="d_n_id" class="form-control" id="d_n_id">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_date" class="form-label">تاريخ التوظيف</label>
+                        <input type="text" name="d_date" class="form-control" id="d_date">
+                    </div>
+                </div>
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_comm" class="form-label">العمولة</label>
+                        <input type="number" name="d_comm" class="form-control" id="d_comm">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="d_salary" class="form-label">الراتب</label>
+                        <input type="number" name="d_salary" class="form-control" id="d_salary">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="d_comment" class="form-label">تعليقات اضافية</label>
+                    <textarea class="form-control" name="d_comment" id="d_comment" row botns="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success px-5">تسجيل البائع</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("user-dealer-select").addEventListener("change", (e) => {
+            document.getElementById("d_name").value = `${e.target.options[e.target.selectedIndex].text}`
+        });
+    </script>
+
+    <%- include('../components/footer') %>

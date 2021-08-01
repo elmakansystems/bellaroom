@@ -1,0 +1,79 @@
+<div class="wrapper">
+    <nav id="right-sidebar">
+        <% if (user.isAdmin) { %>
+     
+            <ul class="list-unstyled components">
+                
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/invoices">
+                            <img src="/images/bill.svg">
+                            <p>الفواتير</p>
+                        </a>
+                    </li>
+                    </ul>
+    
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/invoices/create">
+                            <img src="/images/create.svg">
+                            <p>انشاء فاتورة</p>
+                        </a>
+                    </li>
+                    </ul>
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/receipt">
+                            <img src="/images/receipt.svg">
+                            <p>اذن الاستلام</p>
+                        </a>
+                    </li>
+                    </ul>
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/orders">
+                            <img src="/images/order.svg">
+                            <p>اوامر الشغل</p>
+                        </a>
+                    </li>
+                    </ul>
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/products">
+                            <img src="/images/box.svg">
+                            <p>المنتجات</p>
+                        </a>
+                    </li>
+                    </ul>
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: auto">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/purchases">
+                            <img src="/images/purchases.svg">
+                            <p>مشتريات</p>
+                        </a>
+                    </li>
+                    </ul>
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: auto">
+                        <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href="/clients/change">
+                            <img src="/images/payment-method.svg">
+                            <p>المتبقي</p>
+                        </a>
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                        <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent; margin: 5px;">
+                            <a class="nav-link active" style="padding: 5px 10px;" aria-current="page" href=""
+
+                            >
+                                
+                            </a>
+                        </li>
+                        </ul>
+                
+                
+            </ul>
+            <% } %>
+
+    </nav> 
+</div>

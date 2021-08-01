@@ -1,0 +1,234 @@
+<%- include('../components/head' , {title : 'تسجيل حضور ' +  new Date().toLocaleDateString('ar-EG-u-nu-latn', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="m100">
+        <div class="main-header">
+            <h3 class="text-center" id="attend-head">
+                تسجيل حضور اليوم |
+
+            </h3>
+        </div>
+
+
+        <div id="loader" style="display: none;">
+            <img src="/images/loading.gif" alt="loader icon">
+        </div>
+
+        <div class="alert-container" id="alert-container" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                    <div class="alert alert-danger text-center" role="alert">
+                        لقد تم تسجيل حضور اليوم بالفعل
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-lg" dir="rtl">
+
+
+            <div class="last-days-container ">
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <div class="accordion-header profile-card" id="headingOne" style="margin-bottom: 0;border-radius: 0;padding: 0;">
+                            <div type="button" data-bs-toggle="collapse" style="padding: 15px ;" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h3 class="text-center" style="font-weight: 300;">
+                                    او اختر اليوم المراد تسجيل الحضور فيه
+                                </h3>
+                            </div>
+                        </div>
+                        <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body bg-light">
+
+                                <div id='today-attendance-form'>
+                                    <div class="row justify-content-betwen">
+                                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-8">
+                                            <p>
+                                                اختر اليوم
+                                            </p>
+                                            <select class="form-select " name="day" id="day-attend-select" aria-label="Default select example">
+                            
+                                        <% for( let index = 1; index < 32; index++ ) { %>
+                                            <option value="<%= index %>"><%= index %></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-8">
+                                            <p>
+                                                اختر الشهر
+                                            </p>
+                                            <select class="form-select" name="month" id="month-attend-select" aria-label="Default select example">
+                                                    <option value="0">يناير</option>
+                                                    <option value="1">فبراير</option>
+                                                    <option value="2">مارس</option>
+                                                    <option value="3">ابريل</option>
+                                                    <option value="4">مايو</option>
+                                                    <option value="5">يونيو</option>
+                                                    <option value="6">يوليو</option>
+                                                    <option value="7">اغسطس</option>
+                                                    <option value="8">سبتمبر</option>
+                                                    <option value="9">أكتوبر</option>
+                                                    <option value="10">نوفمبر</option>
+                                                    <option value="11">ديسمبر</option>
+                                                </select>
+                                        </div>
+                                        <div class=" col-4 col-sm-4 col-md-4 col-lg-4 col-8 ">
+                                            <p>
+                                                اختر العام
+                                            </p>
+                                            <select class="form-select" name="year" id="year-attend-select" aria-label="Default select example">
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="clients_card" class="row table-row">
+                <div class="cell col-md-8 col-lg-8 col-sm-8 col-7 px-4">
+                    الاسم
+                </div>
+                <div class="cell col-md-4 col-lg-4 col-sm-4 col-4 px-4">
+                    الحالة
+                </div>
+            </div>
+            <div class="dealers">
+
+                <% dealers.forEach((dealer , i) => { %>
+                    <div class="row table-row ">
+                        <div class="cell col-md-8 col-lg-8 col-sm-8 col-7 px-4">
+                            <%= dealer.name %>
+                        </div>
+                        <div class="cell col-md-4 col-lg-4 col-sm-4 col-4 px-4">
+                            <div class="attend-check">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input _radio_attend _attend_present" data-id="<%= dealer._id %>" data-name="<%= dealer.name %>" checked type="radio" name="attend-d-state-<%=i %>" id="present-d-<%=i %>" value="present">
+                                    <label class="form-check-label" for="present-d-<%=i %>">حاضر</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input _radio_attend _attend_absent" data-id="<%= dealer._id %>" data-name="<%= dealer.name %>" type="radio" name="attend-d-state-<%=i %>" id="absent-d-<%=i %>" value="absent">
+                                    <label class="form-check-label" for="absent-d-<%=i %>">غائب</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <div class="emps">
+                <% emps.forEach((emp , i) => { %>
+                    <div class="row table-row ">
+                        <div class="cell col-md-8 col-lg-8 col-sm-8 col-7 px-4">
+                            <%= emp.name %>
+                        </div>
+                        <div class="cell col-md-4 col-lg-4 col-sm-4 col-4 px-4">
+                            <div class="attend-check">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input _radio_attend _attend_present" data-id="<%= emp._id %>" data-name="<%= emp.name %>" checked type="radio" name="attend-e-state-<%=i %>" id="present-e-<%=i %>" value="present">
+                                    <label class="form-check-label" for="present-e-<%=i %>">حاضر</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input _radio_attend _attend_absent" data-id="<%= emp._id %>" data-name="<%= emp.name %>" type="radio" name="attend-e-state-<%=i %>" id="absent-e-<%=i %>" value="absent">
+                                    <label class="form-check-label" for="absent-e-<%=i %>">غائب</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <div class="row justify-content-between ">
+                <div class="my-3  col-md-4 col-lg-4 col-sm-4  d-grid ">
+                    <button class="btn btn-success" id="attend-save">
+                        حفظ 
+                    </button>
+                </div>
+                <div class="my-3  col-md-3 col-lg-3 col-sm-6 col-6 col-3  d-grid">
+                    <button class="btn btn-primary" id="all-present">
+                        تسجيل الجميع حضور 
+                    </button>
+                </div>
+                <div class="my-3  col-md-3 col-lg-3 col-sm-6 col-6  col-3 d-grid">
+                    <button class="btn btn-warning" id="all-absent">
+                            تسجيل الجميع غياب 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        const day = document.getElementById("day-attend-select")
+        const month = document.getElementById("month-attend-select")
+        const year = document.getElementById("year-attend-select")
+        let date
+        day.value = new Date().getDate()
+        month.value = new Date().getMonth()
+        year.value = new Date().getFullYear()
+        document.getElementById('attend-head').textContent = `تسجيل حضور يوم |${new Date(year.value, month.value, day.value).toLocaleDateString('ar-EG-u-nu-latn', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        })}`
+        document.querySelectorAll(".form-select").forEach(elm => elm.addEventListener("change", (e) => {
+            const day = document.getElementById("day-attend-select")
+            const month = document.getElementById("month-attend-select")
+            const year = document.getElementById("year-attend-select")
+            date = new Date(year.value, month.value, day.value).toLocaleDateString('ar-EG-u-nu-latn', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            })
+            document.getElementById('attend-head').textContent = `تسجيل حضور يوم |${date}`
+
+        }))
+        document.getElementById('attend-save').addEventListener("click", () => {
+            document.getElementById('loader').style.display = 'grid'
+            let data = []
+            document.querySelectorAll("input[type=radio]:checked").forEach(elm => {
+                data.push({
+                    name: elm.getAttribute("data-name"),
+                    id: elm.getAttribute("data-id"),
+                    attend: elm.value === 'present' ? true : false
+                })
+            })
+            axios.post('/attendance/today', {
+                    data,
+                    date: new Date(year.value, month.value, day.value)
+                })
+                .then(res => {
+                    if (res.data === 'already taken') {
+                        document.getElementById('loader').style.display = 'none'
+                        document.getElementById('alert-container').style.display = 'block'
+                        setTimeout(() => {
+                            document.getElementById('alert-container').style.display = 'none'
+                        }, 3000);
+                    } else if (res.data.link) {
+                        location.pathname = res.data.link
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('loader').style.display = 'none'
+                    location.reload()
+                })
+        })
+        document.getElementById("all-present").addEventListener("click", () => {
+            document.querySelectorAll('._attend_present').forEach(elm => elm.checked = true)
+        })
+        document.getElementById("all-absent").addEventListener("click", () => {
+            document.querySelectorAll('._attend_absent').forEach(elm => elm.checked = true)
+        })
+    </script>
+    <%- include('../components/footer') %>

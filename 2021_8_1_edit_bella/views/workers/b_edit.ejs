@@ -1,0 +1,171 @@
+<%- include('../components/head' , {title : 'حسابات الشهر'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            مرتب شهر
+            <%= bill.monthReg %> ل
+                <%= dealer.name %>
+        </h3>
+    </div>
+    <div id="d-bill" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-10 col-10 col-sm-10 profile-card">
+                    <div class="profile-form ">
+                        <form>
+                            <input type="hidden" name="id" id="d-id" value="<%= dealer._id %>">
+                            <input type="hidden" name="d-n_id" id="b-id" value="<%= bill._id %>">
+                            <div id="form-value-rows">
+                                <div class="row p-form-row p-form-title">
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        اضافة
+                                    </div>
+                                    <div class="col-md-6 col-9 col-sm-6 col-lg-6 p-form-col">
+                                        السبب
+                                    </div>
+                                    <div class="col-md-3 col-12 col-sm-3 col-lg-3 p-form-col">
+                                        القيمة
+                                    </div>
+                                </div>
+                                
+                                <% if (bill && bill.add && bill.add.length >0) { %>
+                                    <% bill.add.forEach(a => { %>
+                                        <div class="row p-form-row ">
+                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-more calc_row">
+                                                اضافة
+                                            </div>
+                                            <div class="col-md-6 col-9 col-sm-6 col-lg-6 p-form-col">
+                                                <input type="text" class="form-control _more_name" value="<%= a.name%>" placeholder="سبب الاضافة">
+                                            </div>
+                                            <div class="col-md-3 col-12 col-sm-3 col-lg-3 p-form-col">
+                                                <input type="number" class="form-control  _more" value="<%= a.value%>" placeholder="500">
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+                                                <% if (bill && bill.sub && bill.sub.length >0) { %>
+                                                    <% bill.sub.forEach(a => { %>
+                                                        <div class="row p-form-row bton">
+                                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-less calc_row">
+                                                                خصم
+                                                            </div>
+                                                            <div class="col-md-6 col-9 col-sm-6 col-lg-6 p-form-col">
+                                                                <input type="text" class="form-control _sub_name" value="<%= a.name%>" placeholder="سبب الخصم">
+                                                            </div>
+                                                            <div class="col-md-3 col-12 col-sm-3 col-lg-3 p-form-col">
+                                                                <input type="number" class="form-control _sub" value="<%= a.value%>" placeholder="500">
+                                                            </div>
+                                                        </div>
+                                                        <% }) %>
+                                                            <% } %>
+
+                            </div>
+                            <div class="row p-form-row p-form-title">
+                                <div class="col-md-7 col-7 col-sm-7 col-lg-7 p-form-col">
+                                    الاجمالي
+                                </div>
+                                <div class="col-md-5 col-5 col-sm-5 col-lg-5 p-form-col">
+                                    <%= bill.total %>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mt-5 botn">
+                                <div id="calc-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-primary text-white ctc w100">
+                                    حساب المرتب
+                                </div>
+                                <div id="add-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-success text-white ctc w100">
+                                    اضافة قيمة
+                                </div>
+                                <div id="sub-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-danger text-white ctc w100">
+                                    خصم قيمة
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('add-value').addEventListener("click", () => {
+            const more_template = `<div class="row p-form-row ">
+                                        <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-more calc_row">
+                                            اضافة
+                                        </div>
+                                        <div class="col-md-6 col-9 col-sm-6 col-lg-6 p-form-col">
+                                            <input type="text" class="form-control _more_name"  placeholder="سبب الاضافة">
+                                        </div>
+                                        <div class="col-md-3 col-12 col-sm-3 col-lg-3 p-form-col">
+                                            <input type="number" class="form-control  _more" placeholder="500">
+                                        </div>
+                                    </div>
+            `
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', more_template)
+        })
+        document.getElementById('sub-value').addEventListener("click", () => {
+            const sub_template = ` <div class="row p-form-row ">
+                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-less calc_row">
+                                                خصم
+                                            </div>
+                                            <div class="col-md-6 col-9 col-sm-6 col-lg-6 p-form-col">
+                                                <input type="text" class="form-control _sub_name"  placeholder="سبب الخصم">
+                                            </div>
+                                            <div class="col-md-3 col-12 col-sm-3 col-lg-3 p-form-col">
+                                                <input type="number" class="form-control _sub" placeholder="500">
+                                            </div>
+                                        </div>
+                `
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', sub_template)
+        })
+
+        document.getElementById('calc-value').addEventListener("click", () => {
+            const add_names = data_collector(document.querySelectorAll("._more_name")),
+                add_val = data_collector(document.querySelectorAll("._more")),
+                sub_names = data_collector(document.querySelectorAll("._sub_name")),
+                sub_val = data_collector(document.querySelectorAll("._sub"))
+
+            let add = []
+            let sub = []
+            add_names.forEach((e, i) => add.push({
+                name: add_names[i],
+                value: add_val[i]
+            }))
+            sub_names.forEach((e, i) => sub.push({
+                name: sub_names[i],
+                value: sub_val[i]
+            }))
+
+            let _add = add_val.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+            let _sub = sub_val.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+            let total = _add - _sub
+                // document.querySelector("#show-paid-amount").textContent = total
+            axios.post('/workers/d/calcs/bill/edit/', {
+                    d_id: document.getElementById('d-id').value,
+                    b_id: document.getElementById('b-id').value,
+                    add,
+                    sub,
+                    _add,
+                    _sub,
+                    total
+                })
+                .then(res => {
+                    if (res.status === 201) location.pathname = res.data
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        })
+
+        const data_collector = (target) => {
+            if (target) {
+                let data = []
+                target.forEach(t => data.push(t.value))
+                return data
+            }
+        }
+    </script>
+    <%- include('../components/footer') %>

@@ -1,0 +1,190 @@
+<%- include('../components/head' , {title : dealer.name}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            الحساب
+        </h3>
+    </div>
+    <div id="d-profile" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-evenly">
+
+                <div class="col-md-6 col-lg-6 col-sm-10 col-12">
+                    <div class="profile-card">
+                        <header class="text-center">
+                            <img src="/images/profile.png" class="profile-img" alt="<%= dealer.name %>" title="<%= dealer.name %>">
+                        </header>
+                        <h5 class="text-center">
+                            <%= dealer.name %>
+                        </h5>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-4 col-4">
+                                الرقم
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-8 col-8">
+                                <%= dealer.phone %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-4 col-4">
+                                العنوان
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-8 col-8">
+                                <%= dealer.location %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-4 col-4">
+                                الرقم القومي
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-8 col-8">
+                                <%= dealer.n_id %>
+                            </div>
+                        </div>
+                        <div class="row my-2 profile-row">
+                            <div class="col-md-5 col-lg-5 col-sm-4 col-4">
+                                تاريخ التوظيف
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-8 col-8">
+                                <%= dealer.date %>
+                            </div>
+                        </div>
+                        <% if (user.isAdmin) { %>
+                            <div class="row my-2 profile-row">
+                                <a href="/workers/d/edit/<%= dealer._id %>" class="btn btn-warning">تعديل البيانات</a>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="row justify-content-between p-2">
+                        <div class="profile-card salary-row col-md-6 col-6 col-lg-6 col-sm-6">
+                            <div class="row my-2 ">
+                                <div class="text-center">
+                                    <h3>
+                                        الاساسي
+                                    </h3>
+                                    <h1>
+                                        <%= dealer.salary %>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-card salary-row col-md-5 col-5 col-lg-5 col-sm-5">
+                            <div class="row my-2 ">
+                                <div class="text-center">
+                                    <h3>
+                                        العمولة
+                                    </h3>
+                                    <h1>
+                                        <%= dealer.comm %>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-card debt-row">
+                        <div class="row my-2 ">
+                            <div class="text-center">
+                                <h3>
+                                    سلفة
+                                </h3>
+                                <h4>
+                                    <%= loan_sum > 0 ? loan_sum : 'لا يوجد حاليا' %>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12 col-12">
+
+                    <div class="profile-card attendance-row">
+                        <header class="my-3">
+                            <h6>الحضور</h6>
+                        </header>
+                        <div class="row justify-content-evenly">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-12 py-2 mb-3 bg-e">
+                                اليوم
+                            </div>
+                            <% if (isAttend) { %>
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-12 bg-success text-white py-2 mb-3">
+                                    حاضر
+                                </div>
+                                <% } else { %>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-12 bg-danger text-white py-2 mb-3">
+                                        غائب
+                                    </div>
+                                    <% } %>
+
+                        </div>
+                        <div class="row justify-content-evenly">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-12 py-2 mb-3 bg-e">
+                                عدد ايام الغياب
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-12 bg-warning text-white py-2 mb-3">
+                                <%= absent_days %>
+                            </div>
+                        </div>
+                        <p class="alert alert-danger py-2 ">ايام الغياب</p>
+                        <% reg_absent_days.forEach(d => { %>
+                            <div class="row table-row ">
+                                <div class=" cell col-md-6 col-lg-6 col-sm-12 col-12 bg-e" style="padding: 5px 10px;">
+                                    التاريخ
+                                </div>
+                                <div class=" cell col-md-6 col-lg-6 col-sm-12 col-12 bg-e" style="padding: 5px 10px;">
+                                    <%= d.date_at %>
+                                </div>
+
+                            </div>
+                            <% }) %>
+                    </div>
+
+                    <% if (user.isAdmin) { %>
+                        <div class="profile-card salary-row">
+                            <div class="row my-2">
+                                <header class="mb-3">
+                                    <h3>
+                                        حسابات الشهر
+                                    </h3>
+                                </header>
+                                <a href="/workers/d/calcs/<%= dealer._id %>" class="btn btn-secondary">
+                                    الى صفحة الحسابات
+                                </a>
+                            </div>
+                        </div>
+                        <% } %>
+                            <div class="profile-card salary-row">
+                                <header class="mb-5">
+                                    <h3>
+                                        فواتير الشهر
+                                    </h3>
+                                </header>
+                                <div class="row my-2 table-row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6  cell bg-e">
+                                        اجمالي الفاتورة
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6  cell bg-e">
+                                        تاريخ البيع
+                                    </div>
+                                </div>
+                                <% sold_inv.forEach(({_id , total_price ,date_added }) => { %>
+                                    <div class="row my-2 table-row">
+                                        <div class="  col-4 col-sm-4 col-md-4 col-lg-4 cell bg-e">
+                                            <%= total_price %>
+                                        </div>
+                                        <div class="  col-4 col-sm-4 col-md-4 col-lg-4 cell bg-e">
+                                            <%= date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                                        </div>
+                                        <div class=" col-4 col-sm-4 col-md-4 col-lg-4 cell bg-e py-2">
+                                            <a href="/invoices/<%= _id %>" class="btn btn-primary">عرض</a>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('../components/footer') %>

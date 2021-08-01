@@ -1,0 +1,51 @@
+<div class="bill-card">
+    <header class="text-center">
+        <img src="/images/profile.png" class="bill-img" alt="الفاتورة" title="الفاتورة">
+    </header>
+    <h5 class="text-center">
+        البائعين و الموظفين
+    </h5>
+
+    <div class="row my-2 bill-row">
+        <div class="col-md-6 col-lg-6 col-sm-6 col-6 bg-e">
+            الرواتب الاجمالية
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-6 bg-danger text-white py-1">
+            <%= total_bills %>
+        </div>
+    </div>
+
+    <div class="row my-2 bill-row">
+        <div class="col-md-8 col-lg-8 col-sm-8 col-8">
+            اسم الموظف
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+            قيمة الراتب
+        </div>
+    </div>
+    <div class="info_card px-3 scroll-hide">
+        <% bills.forEach(({name , total , _id , dealer_id}) => { %>
+            <a href="/workers/d/calcs/<%= dealer_id %>/view/<%= _id %>" class="row my-2 bill-row bg-light">
+                <div class="col-md-8 col-lg-8 col-sm-8 col-8">
+                    <%= name %>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                    <%= total %>
+                </div>
+            </a>
+            <% }) %>
+                <% ebills.forEach(({name , total , _id , emp_id}) => { %>
+                    <a href="/workers/e/calcs/<%= emp_id %>/view/<%= _id %>" class="row my-2 bill-row bg-light ">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-8">
+                            <%= name %>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-4">
+                            <%= total %>
+                        </div>
+                    </a>
+                    <% }) %>
+
+    </div>
+
+
+</div>

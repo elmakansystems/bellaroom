@@ -1,0 +1,74 @@
+<%- include('../components/head' , {title : 'حسابات الشهر'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            حسابات الشهور ل
+            <%= emp.name %>
+        </h3>
+    </div>
+    <div id="e-calcs" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <a href="/workers/e/calcs/<%= emp._id %>/create" class="home-link">
+                    <img src="/images/add.svg">
+                    <p> اضافة فاتورة جديدة</p>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-lg-10 col-10 col-sm-10 hr"></div>
+            </div>
+            <% if (bills && bills.length >0) { %>
+                <div class="row table-row">
+                    <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell 🌹">
+                        الاجمالي
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-3 col-sm-3 cell">
+                        تاريخ
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell">
+                        وقت
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell">
+                        شهر الراتب
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-3 col-sm-3">
+                        الاعدادات
+                    </div>
+                </div>
+                <% bills.forEach(bill => { %>
+                    <div class="row table-row">
+                        <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell">
+                            <%= bill.total %>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-3 col-sm-3 cell">
+                            <%= bill.dateAdded %>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell">
+                            <%= bill.timeReg %>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-2 col-sm-2 cell">
+                            <%= bill.monthReg %>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-3 col-sm-3">
+                            <a href="/workers/e/calcs/<%= emp._id %>/edit/<%= bill._id %>" class="btn btn-primary text-white mtb">تعديل</a>
+                            <a href="/workers/e/calcs/<%= emp._id %>/view/<%= bill._id %>" class="btn btn-success text-white mtb">عرض</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="row justify-content-center">
+                                <div class="col-md-7">
+                                    <div class="alert alert-danger text-center my-5 text-bold">
+                                        لاتوجد فواتير حالية لهذا الموظف
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+        </div>
+    </div>
+
+
+    <script>
+    </script>
+    <%- include('../components/footer') %>

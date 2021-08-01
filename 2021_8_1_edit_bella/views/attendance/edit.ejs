@@ -1,0 +1,131 @@
+<%- include('../components/head' , {title : 'تعديل حضور '+ at }) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    
+    <div class="main-header">
+            <h3 class="text-center">
+                تعديل حضور يوم -
+                <%= at %>
+    
+            </h3>
+        </div>
+        <div class="alert-container" id="alert-container" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                    <div class="alert alert-success text-center" role="alert">
+                        تم حفظ التعديلات
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-lg" dir="rtl">
+            <div class="row justify-content-between">
+                <div class="col-2 d-grid">
+                    <a href="/attendance/all" class="btn btn-primary my-2">العودة</a>
+                </div>
+                <div class="col-2 d-grid">
+                    <a href="/attendance/view/<%= at %>" class="btn btn-warning my-2">الى صفحة العرض</a>
+                </div>
+            </div>
+            <div class="row table-row ">
+                <div class="cell col-md-8 col-lg-8 col-sm-8 col-8 px-4">
+                    الاسم
+                </div>
+                <div class="cell col-md-4 col-lg-4 col-sm-4 col-4 px-4">
+                    الحالة
+                </div>
+            </div>
+            <div class="ds">
+                <% data.forEach((d , i) => { %>
+                    <div class="row table-row ">
+                        <div class="cell col-md-8 col-lg-8 col-sm-8 col-8 px-4">
+                            <%= d.name %>
+                        </div>
+                        <div class="cell col-md-4 col-lg-4 col-sm-4 col-4 px-4">
+                            <div class="attend-check">
+                                <% if (d.attend) { %>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input _radio_attend _attend_present" data-id="<%= d._id %>" checked data-name="<%= d.name %>" type="radio" name="attend-d-state-<%=i %>" id="present-d-<%=i %>" value="present">
+                                        <label class="form-check-label" for="present-d-<%=i %>">حاضر</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input _radio_attend _attend_absent" data-id="<%= d._id %>" data-name="<%= d.name %>" type="radio" name="attend-d-state-<%=i %>" id="absent-d-<%=i %>" value="absent">
+                                        <label class="form-check-label" for="absent-d-<%=i %>">غائب</label>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input _radio_attend _attend_present" data-id="<%= d._id %>" data-name="<%= d.name %>" type="radio" name="attend-d-state-<%=i %>" id="present-d-<%=i %>" value="present">
+                                            <label class="form-check-label" for="present-d-<%=i %>">حاضر</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input _radio_attend _attend_absent" data-id="<%= d._id %>" checked data-name="<%= d.name %>" type="radio" name="attend-d-state-<%=i %>" id="absent-d-<%=i %>" value="absent">
+                                            <label class="form-check-label" for="absent-d-<%=i %>">غائب</label>
+                                        </div>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+    
+            <div class="row justify-content-between">
+                <div class="my-3  col-md-3 col-lg-3 col-sm-6 col-6 d-grid">
+                    <button class="btn btn-success" id="attend-save">
+                        تعديل 
+                    </button>
+                </div>
+                <div class="my-3  col-md-3 col-lg-3 col-sm-6 col-6 d-grid">
+                    <button class="btn btn-primary" id="all-present">
+                        تسجيل الجميع حضور 
+                    </button>
+                </div>
+                <div class="my-3  col-md-3 col-lg-3 col-sm-6 col-6 d-grid">
+                    <button class="btn btn-warning" id="all-absent">
+                            تسجيل الجميع غياب 
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+    <script>
+        document.getElementById('attend-save').addEventListener("click", () => {
+            let data = []
+            document.querySelectorAll("input[type=radio]:checked").forEach(elm => {
+                data.push({
+                    id: elm.getAttribute("data-id"),
+                    attend: elm.value === 'present' ? true : false
+                })
+            })
+            console.log(data);
+
+            axios.post('/attendance/edit', {
+                    data
+                })
+                .then(res => {
+                    if (res.status === 200) {
+                        document.getElementById('alert-container').style.display = 'block'
+                        setTimeout(() => {
+                            document.getElementById('alert-container').style.display = 'none'
+                            location.href = '/attendance/all'
+                        }, 3000);
+                    }
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.error(err.message);
+                })
+        })
+
+
+
+
+        document.getElementById("all-present").addEventListener("click", () => {
+            document.querySelectorAll('._attend_present').forEach(elm => elm.checked = true)
+        })
+        document.getElementById("all-absent").addEventListener("click", () => {
+            document.querySelectorAll('._attend_absent').forEach(elm => elm.checked = true)
+        })
+    </script>
+    <%- include('../components/footer') %>

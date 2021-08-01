@@ -1,0 +1,51 @@
+<%- include('../components/head' , {title : 'اضافة موظف جديد'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            تسجيل موظف جديد
+        </h3>
+    </div>
+    <div id="create-employee" class="create-form" dir="rtl">
+        <div class="container-lg">
+            <form action="/workers/e/create" method="POST">
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100 ">
+                        <label for="e_name" class="form-label">اسم الموظف</label>
+                        <input type="text" name="e_name" class="form-control" id="e_name">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="e_phone" class="form-label">رقم الموظف</label>
+                        <input type="text" name="e_phone" class="form-control" id="e_phone">
+                    </div>
+                </div>
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="e_location" class="form-label">عنوان الموظف</label>
+                        <input type="text" name="e_location" class="form-control" id="e_location">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="e_date" class="form-label">تاريخ التوظيف</label>
+                        <input type="text" name="e_date" class="form-control" id="e_date">
+                    </div>
+                </div>
+                <div class="row botn">
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="e_n_id" class="form-label">الرقم القومي</label>
+                        <input type="text" name="e_n_id" class="form-control" id="e_n_id">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-6 col-sm-6 ctc w100">
+                        <label for="e_salary" class="form-label">الراتب</label>
+                        <input type="number" name="e_salary" class="form-control" id="e_salary">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="e_comment" class="form-label">تعليقات اضافية</label>
+                    <textarea class="form-control" name="e_comment" id="e_comment" row botns="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success px-5">تسجيل الموظف</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../components/footer') %>

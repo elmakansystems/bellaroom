@@ -1,0 +1,297 @@
+<div class="container-lg" dir="rtl">
+    <h1 class="bg-secondary my-3 fs-3 text-center text-white py-2 pb-3">
+        تسجيل عملية بيع جديده
+
+    </h1>
+
+
+
+
+    <div class="data_container" style="display: none;">
+        <select class="form-select products-selector" name="products[]" aria-label="Default select example">
+            <option selected>اختر المنتج</option>
+            <% products.forEach(p => { %>
+                <option  value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+            <% }) %>
+          </select>
+    </div>
+
+
+    <form id="form" method="POST" action="/invoices/create_new">
+
+        <div class="row">
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">رقم الفاتورة</label>
+                <input required type="text" name="number" class="form-control" id="number" readonly value="<%= invoice %>" placeholder="<%= invoice %>">
+            </div>
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">البائع</label>
+                <select class="form-select dealer-selector" name="dealer" aria-label="Default select example">
+                    <option selected>اختر البائع</option>
+                    <% dealers.forEach(d => { %>
+                        <option  value="<%= d._id %>"><%= d.name %></option>
+                    <% }) %>
+                  </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">اسم العميل</label>
+                <input required type="text" name="name" class="form-control" id="name" placeholder="محمد احمد">
+            </div>
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">الهاتف</label>
+                <input required type="text" name="phone" class="form-control" id="phone" placeholder="01234567890">
+            </div>
+        </div>
+        <div class="mb-3 col-lg-12 col-xl-12 col-md-12 col-10 ma ">
+            <label class="form-label">العنوان</label>
+            <input required type="text" name="location" class="form-control" id="location" placeholder="القاهرة / فرنتشر تاون مول / اما النادي الاهلي">
+        </div>
+        <div class="products">
+            <div class="product" data-index="0">
+                <div class="delete-btn" data-index="0">
+                    <img src="/images/deleteicon.svg" class="small-img" alt="delete icon">
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma  ">
+                        <label class="form-label ">المنتج</label>
+                        <select class="form-select products-selector" name="products[]" aria-label="Default select example">
+                            <option selected>اختر المنتج</option>
+                            <% products.forEach(p => { %>
+                                <option  value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+                            <% }) %>
+                          </select>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma m0w8">
+                        <label class="form-label">الضمان</label>
+                        <input required type="text" name="warranty[]" class="form-control warranty" id="warranty-0" placeholder="5 سنوات">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                        <label class="form-label">السعر</label>
+                        <input required type="number" name="price[]" class="form-control price" id="price-0" placeholder="20000">
+                    </div>
+                    <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                        <label class="form-label">الخصم</label>
+                        <input required type="text" name="discount[]" class="form-control discount" id="discount-0" placeholder="2000">
+                    </div>
+                    <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                        <label class="form-label">نسبة الخصم % </label>
+                        <input required type="text" name="percentage[]" class="form-control precentage" id="precentage-0" placeholder="10 ma %">
+                    </div>
+                    <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                        <label class="form-label">الاجمالي</label>
+                        <input required type="number" name="total[]" class="form-control total" readonly id="total-0" placeholder="18000">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="mb-3 ">
+            <span class="btn btn-secondary" id="add">اضافة منتج جديد</span>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">اجمالي سعر المنتجات</label>
+                <input required type="text" name="total_total" class="form-control" readonly id="product-total" placeholder="20000 جنية">
+            </div>
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">اجمالي الخصم بالجنية</label>
+                <input required type="text" name="total_discount" class="form-control" readonly id="discount-total" placeholder="1000 جنية">
+            </div>
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">اجمالي نسبة الخصم</label>
+                <input required type="text" name="total_percentage" class="form-control" readonly id="precentage-total" placeholder="10%">
+            </div>
+            <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                <label class="form-label">اجمالي الفاتورة</label>
+                <input required type="text" name="total_price" class="form-control" readonly id="price-total" placeholder="18000 جنية">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <hr/>
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                    <label class="form-label">المبلغ المدفوع </label>
+                    <input required type="number" name="paid" class="form-control" id="paid" placeholder="15000 جنية">
+                </div>
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                    <label class="form-label">المبلغ المتبقي</label>
+                    <input required type="number" name="change" class="form-control" readonly id="change" placeholder="5000 جنية">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <hr/>
+            <label class="form-label">تعليقات</label>
+            <textarea required class="form-control" name="comment" id="comment" rows="5"></textarea>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary mb-3 btn-block form-control ">بيع</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+<script>
+    let i = 0;
+    const delete_product_handler = (e) => {
+        e.target.closest(".product").remove()
+        update_totals('.total', 'price-total')
+        update_totals('.discount', 'discount-total')
+        update_totals('.price', 'product-total')
+        update_total_percent()
+    }
+
+    document.getElementById('add').addEventListener('click', () => {
+        i++;
+        let template = `
+        <div class="product" data-index="${i}">
+            <div class="delete-btn" data-index="${i}">
+                    <img src="/images/deleteicon.svg" class="small-img" alt="delete icon">
+                </div>
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                    <label  class="form-label ">المنتج</label>
+                         ${document.querySelector(".data_container").innerHTML} 
+                </div>
+                <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-10 ma ">
+                    <label  class="form-label">الضمان</label>
+                    <input required type="number" name="warranty[]" class="form-control warranty" id="warranty-${i}" placeholder="5 سنوات">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                    <label  class="form-label">السعر</label>
+                    <input required type="number" name="price[]" class="form-control price" id="price-${i}" placeholder="20000">
+                </div>
+                <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                    <label  class="form-label">الخصم</label>
+                    <input required type="text" name="discount[]" class="form-control discount" id="discount-${i}" placeholder="2000">
+                </div>
+                <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                    <label  class="form-label">نسبة الخصم % </label>
+                    <input required type="text" name="percentage[]" class="form-control precentage" id="precentage-${i}" placeholder="10%">
+                </div>
+                <div class="mb-3 col-lg-3 col-xl-3 col-md-3 col-6">
+                    <label  class="form-label">الاجمالي</label>
+                    <input required type="number" name="total[]" class="form-control total" readonly id="total-${i}" placeholder="18000">
+                </div>
+            </div>
+            <hr>
+      </div>
+      `
+
+        document.querySelector('.products').insertAdjacentHTML('beforeend', template)
+
+
+
+        document.querySelectorAll(".delete-btn").forEach(elm => elm.addEventListener('click', delete_product_handler))
+
+
+
+
+    })
+
+    window.addEventListener("keyup", (e) => {
+        let elm = e.target.closest(".product")
+        if (elm) {
+
+
+
+            let index = elm.getAttribute('data-index')
+
+            let _percentage = document.getElementById(`precentage-${index}`)
+            _percentage.addEventListener('keyup', (e) => {
+                    let _price = document.getElementById(`price-${index}`).value
+                    let _total = document.getElementById(`total-${index}`)
+                    let _discount = document.getElementById(`discount-${index}`)
+                    if (_price && _price > 0 && e.target.value && e.target.value >= 0) {
+                        let price = parseInt(_price)
+
+                        let percent = parseInt(e.target.value)
+                        _total.value = (price - (price * percent / 100)).toFixed(1)
+                        _discount.value = (price * (percent / 100)).toFixed(1)
+
+                        if (_total.value <= 0) _total.style.background = '#fd8b93'
+                        else _total.style.background = '#e9ecef'
+                    } else {
+                        _total.value = ''
+                        _discount.value = ''
+                    }
+                })
+                //================percentage==================
+            let _discount = document.getElementById(`discount-${index}`)
+            _discount.addEventListener('keyup', (e) => {
+                let _price = document.getElementById(`price-${index}`).value
+                let _total = document.getElementById(`total-${index}`)
+                let _percent = document.getElementById(`precentage-${index}`)
+                if (_price && _price > 0 && e.target.value && e.target.value >= 0) {
+                    let price = parseInt(_price)
+                    let discount = parseInt(e.target.value)
+                    _total.value = (price - discount).toFixed(2)
+                    _percent.value = ((((discount / price)) * 100)).toFixed(2)
+
+                    if (_total.value <= 0) _total.style.background = '#fd8b93'
+                    else _total.style.background = '#e9ecef'
+                } else {
+                    _total.value = ''
+                    _percent.value = ''
+                }
+
+            })
+            update_totals('.total', 'price-total')
+            update_totals('.discount', 'discount-total')
+            update_totals('.price', 'product-total')
+            update_total_percent()
+
+        }
+
+    })
+
+
+
+
+    document.getElementById("paid").addEventListener("keyup", (e) => {
+        let paid = parseFloat(e.target.value)
+        let total = parseFloat(document.getElementById('price-total').value)
+        let change = document.getElementById('change')
+        if (paid && total) {
+            change.value = parseFloat(total - paid).toFixed(1)
+            if (change.value < 0) change.style.background = '#fd8b93'
+            else change.style.background = '#e9ecef'
+        } else change.value = 0
+    })
+
+    const update_totals = (elms, out) => {
+        const sum_array = []
+        let sum;
+        const target_elms = document.querySelectorAll(elms)
+        target_elms.forEach(elm => {
+
+            let int_elm = parseInt(elm.value)
+            if (int_elm !== NaN && int_elm >= 0) sum_array.push(int_elm)
+        })
+        if (sum_array.length > 0) {
+            sum = sum_array.reduce((a, b) => a + b, 0)
+            document.getElementById(out).value = sum.toFixed(0)
+
+        }
+        return sum
+    }
+    const update_total_percent = () => {
+
+        const total_price = update_totals('.total', 'price-total'),
+            total_discount = update_totals('.discount', 'discount-total')
+        if (total_price && total_price !== NaN && total_discount !== NaN) {
+            document.getElementById("precentage-total").value = (((total_discount / (total_discount + total_price))) * 100).toFixed(2)
+        }
+    }
+    document.querySelectorAll(".delete-btn").forEach(elm => elm.addEventListener('click', delete_product_handler))
+</script>

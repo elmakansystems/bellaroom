@@ -1,0 +1,40 @@
+<%- include('./components/head', {title : 'فاتورة بيع'}) %>
+
+
+    <div class="invoice">
+
+        <div class="container A4body_height">
+           
+            <div class="row inv_head text-center my-3">
+                <div class="col  my-2">
+                    <h3>إذن استلام</h3>
+                </div>
+            </div>
+            <%- include('./components/receipt-head') %>
+                <div class="">
+                    <div class="A4body_height">
+                        <div class="row text-center my-3 border-top2">
+                            <div class="col  my-2">
+                                <h3>المحتويات </h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="cell cell_total  px-3">
+                                <!-- المنتج -->
+                            </div>
+                            <div class="cell cell_count  px-3">
+                                <!-- العدد -->
+                            </div>
+                            <div class="cell cell_description px-3">
+                                <!-- البيان  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <%- include('./components/receipt-footer') %>
+    </div>
+    <%- include('./components/print')  %>
+    <%- include('./components/footer') %>

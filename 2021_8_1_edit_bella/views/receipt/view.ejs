@@ -1,0 +1,52 @@
+<%- include('../components/head' , {title : 'اذن استلام'}) %>
+    <div class="m100">
+        <div class="main-header">
+            <h3 class="text-center">
+                اذن استلام
+            </h3>
+        </div>
+        <div class="container lw9">
+            <div class="invoices_view">
+                <div class="row">
+                    <div class="invoice-row-names" dir="rtl">
+                        <p>
+                            اسم
+                        </p>
+                        <p class="dsn">
+                            رقم العميل
+                        </p>
+                        <p class="dsn">
+                            عنوان العميل
+                        </p>
+
+                        <p>
+                            تاريخ الاضافة
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <% invoices.forEach(inv => { %>
+                        <div class="invoice-row" dir="rtl">
+                            <a href="/receipt/<%= inv._id %>" style="text-decoration: none;">
+                                <p>
+                                    <%= inv.name %>
+                                </p>
+                                <p class="dsn">
+                                    <%= inv.phone %>
+                                </p>
+                                <p class="dsn">
+                                    <%= inv.location %>
+                                </p>
+
+                                <p>
+                                    <%= inv.date_added.toLocaleDateString('ar-EG') %>
+                                </p>
+                            </a>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../components/footer') %>
+     <%- include('./components/print')  %>

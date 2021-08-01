@@ -1,0 +1,28 @@
+@media (min-width: 768px) {
+  .order_col {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+@media (max-width: 768px) {
+  .client-card {
+    flex-basis: 45%;
+    margin: auto;
+    height: 600px;
+  }
+  .client-card .img-fluid {
+    max-width: 100%;
+  }
+  #p-view .img-fluid,
+  #m-view .img-fluid,
+  #a-view .img-fluid {
+    max-width: 15%;
+  }
+}
+@media (max-width: 375px) {
+  .client-card {
+    flex-basis: 88%;
+
+    margin: auto;
+  }
+}

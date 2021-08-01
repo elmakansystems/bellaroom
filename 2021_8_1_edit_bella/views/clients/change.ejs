@@ -1,0 +1,71 @@
+<%- include('../components/head' , {title : 'العملاء'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+<div class="main-header">
+    <h3 class="text-center">
+        الباقي علي العملاء
+    </h3>
+</div>
+<div id="p-view" dir="rtl">
+    <div class="container-lg">
+        <div class="row table-row">
+            <div class="cell  col-1 col-sm-1 col-md-2 col-lg-2">
+                الأسم
+            </div>
+            <div class="cell  col-6 col-sm-6 col-md-2 col-lg-2">
+                الرقم
+            </div>
+            <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                المدفوع
+            </div>
+            <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                المتبقي
+            </div>
+            <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                التاريخ
+            </div>
+            <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+              تعديل
+            </div>
+
+        </div>
+
+        <% change.forEach(c => { %>
+            <% if (!c.change == 0) { %>
+            <div class="row table-row">
+                <div class="cell  col-1 col-sm-1 col-md-2 col-lg-2">
+                    <%= c.name %>
+                </div>
+                <div class="cell  col-6 col-sm-6 col-md-2 col-lg-2">
+                    <%= c.phone %>
+                </div>
+                <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                    <%= c.paid %>
+                </div>
+                <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                      
+                        <%= c.change %>
+                        
+                    </div>
+                    <div class="cell col-2 col-sm-2 col-md-2 col-lg-2">
+                        <%= c.date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                    </div>
+                  <div class="cell col-2 col-sm-1 col-md-1 col-lg-1 px-2 wss">
+                        <div class="row">
+                            <div class="col-6 mr-3 ctc">
+                                <a href="/clients/edit/<%= c._id%>"><img src="/images/editicon.svg" class="img-fluid" alt="delete icon"></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <% } %>
+                <% }) %>
+
+
+    </div>
+</div>
+</div>
+
+<%- include('../components/footer') %>

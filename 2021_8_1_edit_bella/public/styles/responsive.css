@@ -1,0 +1,138 @@
+.user {
+    cursor: pointer;
+}
+
+@media (max-width: 1224px) {
+    .attend {
+        padding: 0 0 0 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .product .delete-btn {
+        top: -9px;
+        left: 0;
+    }
+}
+
+@media (max-width: 770px) {
+    .ma {
+        margin: auto !important;
+    }
+    .lw9 {
+        width: 90%;
+    }
+    .product .delete-btn {
+        top: 180px;
+    }
+}
+
+@media (max-width: 767px) {
+    .product .delete-btn {
+        top: 344px;
+    }
+    .dsn2 {
+        display: none !important;
+    }
+    .jc2 {
+        justify-content: center;
+    }
+    .mtb {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .dsn {
+        display: none !important;
+    }
+}
+
+@media (max-width: 577px) {
+    /* ============lone=========== */
+    .value {
+        display: none !important;
+    }
+    .ctc {
+        width: 60%;
+        flex: unset;
+        margin: 10px;
+    }
+    .wss {
+        width: 19%;
+        padding: 9px 10px;
+    }
+    .wsm {
+        width: 56%;
+        padding: 9px 10px;
+    }
+    .w100 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    /* ===============home================ */
+    .home-link {
+        height: 140px;
+        flex-basis: 33%;
+    }
+    .home-link img {
+        height: 40px;
+        width: 40px;
+    }
+    /* ================client-form================= */
+    .client_add {
+        display: none !important;
+    }
+    .client_num {
+        display: none !important;
+    }
+    /* =====================invoices============ */
+    .invoices_row {
+        margin: auto;
+    }
+    /* ======================today=========== */
+    .client-card {
+        flex-basis: 80%;
+        margin: auto;
+    }
+    /* ============lone=========== */
+    #l-view .table-row a {
+        margin-right: 20px;
+    }
+    /* =====end of media ==== */
+}
+
+@media (max-width: 460px) {
+    /* invoice */
+    .product .delete-btn {
+        padding: 3px;
+    }
+    .pd12 {
+        padding: 10px 0;
+    }
+    .home-link {
+        height: 140px;
+        flex-basis: 37%;
+    }
+    /* ============lone=========== */
+    .value {
+        display: none !important;
+    }
+    .botn {
+        display: flex;
+        flex-direction: column;
+    }
+    .ctc {
+        width: unset;
+        flex: unset;
+        margin: 10px;
+    }
+    .jc {
+        justify-content: center;
+    }
+    .🌹 {
+        transform: rotate(-90deg);
+    }
+}

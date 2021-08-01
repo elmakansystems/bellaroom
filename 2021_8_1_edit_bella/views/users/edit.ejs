@@ -1,0 +1,40 @@
+<%- include('../components/head' , {title : 'تعديل البيانات'}) %>
+
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تعديل البيانات
+        </h3>
+    </div>
+    <div class="container-lg" dir="rtl">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-8 col-lg-5 profile-card">
+                <form id="new-user-form" action="/user/new" method="POST">
+                    <input type="hidden" name="_id" value="<%= user._id %>">
+                    <div class="form-group my-4">
+                        <label for="phone" class="form-label">الرقم </label>
+                        <input required type="text" name="phone" class="form-control" id="phone">
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="n_id" class="form-label">الرقم القومي</label>
+                        <input type="text" name="n_id" class="form-control" id="n_id">
+                    </div>
+                    <div class="form-group my-4">
+                        <label for="location" class="form-label">العنوان </label>
+                        <input type="text" name="location" class="form-control" id="location">
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-grid">
+                            <button type="submit" class="btn btn-primary">تعديل</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+
+    <%- include('../components/footer') %>

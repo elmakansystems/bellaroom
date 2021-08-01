@@ -1,0 +1,94 @@
+<%- include('../components/head' , {title : 'تسجيل المستخدمين'}) %>
+
+  
+    <div class="m100">
+      <div class="main-header">
+        <h3 class="text-center">
+            عملية تسجيل جديدة
+        </h3>
+    </div>
+    <div class="container-lg" dir="rtl">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-8 col-lg-5 profile-card">
+                <div class="alert alert-danger text-center" id="err-alert" style="display: none;">
+                    من فضلك اصلح الاخطاء التالية !
+                </div>
+                <div class="alert alert-success text-center" id="success-alert" style="display: none;">
+                    تمت العميلة بنجاح
+                </div>
+                <form id="register">
+                    <div class="form-group my-4">
+                        <label class="mb-2" for="name">الاسم</label>
+                        <input required type="text" class="form-control" id="name" name="name" placeholder="احمد محمود">
+                        <small class="err name text-danger"></small>
+                    </div>
+                    <div class="form-group my-4">
+                        <label class="mb-2" for="email">البريد الالكتروني</label>
+                        <input required type="email" class="form-control" id="email" name="email" placeholder="example@example.com">
+                        <small class="err email text-danger"></small>
+                    </div>
+                    <div class="form-group my-4">
+                        <label class="mb-2" for="password">كلمة المرور</label>
+                        <input required type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <small class="err password text-danger"></small>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-grid">
+                            <button type="submit" class="btn btn-primary">تسجيل</button>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        مستخدم سابق ؟ <a href="/login">سجل الدخول</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.getElementById("register").addEventListener('submit', async(e) => {
+            e.preventDefault()
+            document.getElementById('err-alert').style.display = 'none'
+            document.querySelector(`.err.email`).textContent = ''
+            document.querySelector(`.err.password`).textContent = ''
+            document.querySelector(`.err.name`).textContent = ''
+            const email = e.target.email.value
+            const name = e.target.name.value
+            const password = e.target.password.value
+
+            try {
+                const res = await axios.post('/users/register', {
+                    name,
+                    email,
+                    password,
+
+                })
+                if (res.data.errs) {
+                    res.data.errs.forEach(({
+                        err,
+                        target
+                    }) => {
+                        document.getElementById('err-alert').style.display = 'block'
+                        document.querySelector(`.err.${target}`).textContent = err
+                    });
+                } else {
+                    document.getElementById('err-alert').style.display = 'none'
+                    document.getElementById('success-alert').style.display = 'block'
+                    e.target.email.value = ''
+                    e.target.password.value = ''
+                    e.target.name.value = ''
+                    setTimeout(() => {
+                        document.getElementById('success-alert').style.display = 'none'
+                        location.pathname = '/'
+                    }, 2000);
+                }
+            } catch (err) {
+                location.pathname = '/error'
+            }
+        })
+    </script>
+
+
+
+    <%- include('../components/footer') %>

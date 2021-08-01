@@ -1,0 +1,101 @@
+<%- include('../components/head' , {title : 'حسابات الشهر'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            حسابات شهر
+            <%= bill.monthReg %>
+                ل
+                <%= name %>
+        </h3>
+    </div>
+    <div id="d-bill" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-10 col-10 col-sm-10 profile-card">
+                    <div class="profile-form ">
+                        <div>
+                            <div id="form-value-rows">
+                                <div class="row p-form-row p-form-title">
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col py-2">
+                                        الحالة
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col">
+                                        السبب
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        القيمة
+                                    </div>
+                                </div>
+                                <% if (bill && bill.add && bill.add.length >0) { %>
+                                    <% bill.add.forEach(a => { %>
+                                        <div class="row p-form-row ">
+                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-more calc_row py-2">
+                                                اضافة
+                                            </div>
+                                            <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col">
+                                                <%= a.name%>
+                                            </div>
+                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                                <%= a.value%>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+                                                <% if (bill && bill.sub && bill.sub.length >0) { %>
+                                                    <% bill.sub.forEach(a => { %>
+                                                        <div class="row p-form-row ">
+                                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-less calc_row py-2">
+                                                                خصم
+                                                            </div>
+                                                            <div class="col-md-6 col-6 col-sm-6 col-lg-6 p-form-col">
+
+                                                                <%= a.name%>
+
+                                                            </div>
+                                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col ">
+
+                                                                <%= a.value%>
+
+                                                            </div>
+                                                        </div>
+                                                        <% }) %>
+                                                            <% } %>
+
+                            </div>
+
+                            <div class="row p-form-row ">
+                                <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col  bg-dark  text-white calc_row py-2">
+                                    -
+                                </div>
+                                <div class="col-md-7 col-7 col-sm-7 col-lg-7 p-form-col bg-dark  text-white ">
+
+                                    الاجمالي
+
+                                </div>
+                                <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col bg-dark  text-white ">
+
+                                    <%= bill.total%>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row justify-content-center">
+                                <div class="col-md-5 col-lg-5 col-lg-5 col-sm-5 col-5">
+                                    <div class="my-3 d-grid">
+                                        <a href="/workers/d/calcs/<%= id %>/edit/<%= bill._id %>" class="btn btn-warning">
+                                            تعديل
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%- include('../components/footer') %>

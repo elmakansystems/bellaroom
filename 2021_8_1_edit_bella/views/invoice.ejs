@@ -1,0 +1,163 @@
+<%- include('./components/head', {title : 'فاتورة بيع'}) %>
+
+
+    <div class="invoice">
+        <div class="container">
+            <!-- <div class="water-mark">
+                <img src="/images/water.png" class="mark-img">
+            </div> -->
+            <div class="row inv_head">
+                <div class="col">
+                    <img src="/images/logo.png" alt="logo">
+                </div>
+                <div class="col" style="opacity: 0;">
+                    <h3>بيلا رووم</h3>
+                    <p>
+                        الدور الثالث مول فرنتشر تاون اما النادي الاهلي / القاهرة
+                    </p>
+                    <p>
+                        رقم الفاتورة : <span class="inv_no"><%= inv.id %> </span>
+                    </p>
+                </div>
+            </div>
+            <div class="inv_body">
+                <div class="row">
+                    <div class="cell cell_name">
+                        رقم الفاتورة :
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.id || 0 %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell cell_name">
+                        اســـــــم الـبـائــــــع :
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.dealer %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell cell_name">
+                        اســـــــم العمـــــيل :
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.name %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell cell_name">
+                        هاتــــــف العمـــــيل :
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.phone %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell cell_name">
+                        عــنــوان الــعــمــيل :
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.location %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell cell_name">
+
+                        تاريخ عملـية البـيــع :
+
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.date.toLocaleDateString('ar-EG-u-nu-latn',{ weekday: 'long',year: 'numeric',month: 'short',day: 'numeric', }) %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="cell cell_name">
+
+                        تــاريــخ الاســتــلام :
+
+                    </div>
+                    <div class="cell cell_body">
+                        <%= inv.receive %>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="cell cell_name">
+
+                        تـعـليقــات اضـــافية :
+
+                    </div>
+                   <pre class="cell cell_body mb-5"><div><%= inv.comment%></div></pre>
+                </div>
+                <div class="row">
+                    <div class=" 😐 col-5 col-sm-5 col-md-5 col-lg-5">المنتج</div>
+                    <div class=" 😐 col-1 col-sm-1 col-md-1 col-lg-1 text-center">الضمان</div>
+                    <div class=" 😐 col-2 col-sm-2 col-md-2 col-lg-2 text-center">السعر</div>
+                    <div class=" 😐 col-2 col-sm-2 col-md-2 col-lg-2 text-center">الخصم</div>
+                    <div class=" 😐 col-2 col-sm-2 col-md-2 col-lg-2 text-center">الاجمالي</div>
+                </div>
+                <% inv.products.forEach(product => { %>
+                    <%- include('./components/product' , {product}) %>
+                        <% }) %>
+                            <div class="row  p-0">
+                                <div class=" 😐 green bg-e p-3 col-3 col-sm-3 col-md-3 col-lg-3">المبلغ المدفوع</div>
+                                <div class=" 😐 green  p-3 col-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                                    <%= inv.paid %>
+                                        جنية
+                                </div>
+                                <div class=" 😐 yellow bg-e p-3 col-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                                    المبلغ المتبقى
+                                </div>
+                                <div class=" 😐 yellow  p-3 col-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                                    <%= inv.change %>
+                                </div>
+                            </div>
+                            <div class="row last-row p-0">
+                                <div class=" 😐  p-3 col-4 col-sm-4 col-md-4 col-lg-4">الاجـــمـــالــي</div>
+                                <div class=" 😐  p-3 col-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                                    <%= inv.real_price %>
+                                        جنية
+                                </div>
+                                <div class=" 😐  p-3 col-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                                    <%= inv.total_discount %>
+                                        جنية
+                                </div>
+                                <div class=" 😐  p-3 col-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                                    <%= inv.total_percentage %>
+                                        %
+                                </div>
+                                <div class=" 😐  p-3 col-2 col-sm-2 col-md-2 col-lg-2 text-center total_paid">
+                                    <%= inv.total_price %>
+                                        جنية
+                                </div>
+                            </div>
+                            <div class="row justify-content-end mt-4">
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                                    <h5>
+                                        توقيع المشتري / ............................
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <br></br>
+
+
+                            <div class="text-center">
+                                <p> الضمان بالسنوات</p>
+                                <p>البضاعة المباعة لا ترد ولا تستبدل</p>
+                                <p> الشحن والتطليع والتركيب علي حساب المشتري</p>
+                            </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('./components/print')  %>
+    <%- include('./components/footer') %>

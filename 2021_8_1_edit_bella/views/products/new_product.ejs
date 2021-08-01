@@ -1,0 +1,82 @@
+<%- include('../components/head' , {title : 'تسجيل المنتجات الجديدة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تسجيل المنتجات الجديدة
+        </h3>
+    </div>
+    <div id="products-new" dir="rtl">
+        <div class="container-lg">
+            <div class="product-forms my-3">
+                <div class="product-form-container bg-e ">
+                    <form action="/products/new" class="p-3" id="p-form" method="POST">
+                        <input type="text" class="form-control" id="part_type-${n}" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="collection">
+
+                        <div class="form-fields ">
+                            <div class="row mb-3">
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="name" class="form-label"> المنتج</label>
+                                    <input type="text" class="form-control" id="name" name="names[]" placeholder="سفرة كنزي">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 ">
+                                    <label for="d_name" class="form-label">المورد</label>
+                                    <input type="text" class="form-control" id="d_name" name="dealers[]" placeholder="احمد">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="d_phone" class="form-label">رقم المورد</label>
+                                    <input type="number" class="form-control" id="d_phone" name="phones[]" placeholder="01234567890">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="unit_price" class="form-label"> جملة المنتج</label>
+                                    <input type="number" class="form-control" id="d_unit" name="prices[]" placeholder="100">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white ">حفظ البيانات</button>
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-warning text-white my-2" id="add-new-product">اضافة خانة جديدة</button>
+
+        </div>
+    </div>
+</div>
+   
+
+    <script>
+        let n = 1;
+        document.getElementById("add-new-product").addEventListener("click", () => {
+            let template = `
+            <div class="my-2">
+                <hr />
+                <input type="text" class="form-control" id="part_type-${n}" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="collection">
+
+                        <div class="row mb-3">
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="name-${n}" class="form-label">المنتج</label>
+                                <input type="text" class="form-control" id="name-${n}" name="names[]" placeholder="سفرة كنزي">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="d_name-${n}" class="form-label">المورد</label>
+                                <input type="text" class="form-control" id="d_name-${n}" name="dealers[]" placeholder="احمد">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="d_phone-${n}" class="form-label">رقم المورد</label>
+                                <input type="number" class="form-control" id="d_phone-${n}" name="phones[]" placeholder="01234567890">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="unit_price-${n}" class="form-label">جملة المنتج</label>
+                                <input type="number" class="form-control" id="d_unit-${n}" name="prices[]" placeholder="100">
+                            </div>
+                        </div>
+               
+                </div>
+            `
+            n++
+            document.querySelector(".form-fields").insertAdjacentHTML("beforeend", template)
+        })
+    </script>
+
+    <%- include('../components/footer') %>

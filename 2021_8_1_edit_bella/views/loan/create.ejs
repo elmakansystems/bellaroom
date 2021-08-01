@@ -1,0 +1,55 @@
+<%- include('../components/head' , {title : 'تسجيل سلفة جديدة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            تسجيل سلفة جديدة
+        </h3>
+    </div>
+    <div id="loan-new" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-between my-3 botn">
+                <div class="col-md-3 col-lg-3 col-sm-3 col-3 d-grid ctc">
+                    <a href="/loan/list" class="btn btn-success">عرض جميع السلف</a>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-4 d-grid ctc">
+                    <a href="/loan/" class="btn btn-primary">العودة لصفحة السلف الرئيسية</a>
+                </div>
+            </div>
+
+            <div class="loan-forms my-3">
+                <div class="loan-form-container bg-e p-4">
+                    <form action="/loan/create" id="p-form" method="POST">
+                        <div class="form-fields my-3">
+                            <div class="row mb-3 botn">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                                    <label for="bill-serial" class="form-label">العامل</label>
+                                    <select class="form-select" name="id" aria-label="Default select example">
+                                        <option selected>اختر العامل</option>
+                                        <% emps.forEach(({name , _id})=> { %>
+                                            <option value="<%= _id %>|e|<%= name %>"><%= name %></option>
+                                        <% }) %>
+                                        <% dealers.forEach(({name , _id})=> { %>
+                                            <option value="<%= _id %>|d|<%= name %>"><%= name %></option>
+                                        <% }) %>
+                                      </select>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                                    <label for="bill-amount" class="form-label">قيمة السلفة</label>
+                                    <input required type="number" class="form-control" id="loan-amount" name="amount" placeholder="500 جنية">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-primary text-white my-3">تسجيل البيانات</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    
+
+    <%- include('../components/footer') %>

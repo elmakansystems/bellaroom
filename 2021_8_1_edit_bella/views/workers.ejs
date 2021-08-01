@@ -1,0 +1,37 @@
+<%- include('./components/head' , {title : 'العاملين'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            العاملين
+        </h3>
+    </div>
+    <div id="workers">
+        <div class="container home">
+            <div class="row">
+                <a href="/workers/d/create" class="home-link " style="display: none;">
+                    <img src="/images/create_user.svg">
+                    <p> تسجيل بائع</p>
+                </a>
+                <a href="/workers/e/create" class="home-link " style="display: none;">
+                    <img src="/images/create_user.svg">
+                    <p> تسجيل موظف</p>
+                </a>
+                <a href="/workers/d" class="home-link ">
+                    <img src="/images/view_user.svg">
+                    <p> عرض البائعين</p>
+                </a>
+                <a href="/workers/e" class="home-link ">
+                    <img src="/images/view_user.svg">
+                    <p> عرض الموظفين</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+    
+
+
+    <%- include('./components/footer') %>

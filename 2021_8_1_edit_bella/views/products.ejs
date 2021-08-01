@@ -1,0 +1,31 @@
+<%- include('./components/head' , {title : 'المنتجات'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            المنتجات
+        </h3>
+    </div>
+    <div id="products">
+        <div class="container home">
+            <div class="row">
+                <a href="/products/new_product" class="home-link">
+                    <img src="/images/create.svg">
+                    <p> تسجيل منتجات جديده</p>
+                </a>
+                <a href="/products/new_part" class="home-link">
+                    <img src="/images/create.svg">
+                    <p> تسجيل قطع جديده</p>
+                </a>
+                <a href="/products/view_products" class="home-link">
+                    <img src="/images/list.svg">
+                    <p>عرض المنتجات السابقة</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    <%- include('./components/footer') %>

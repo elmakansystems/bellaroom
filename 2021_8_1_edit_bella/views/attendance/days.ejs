@@ -1,0 +1,167 @@
+<%- include('../components/head' , {title : 'سجل حضور الايام السابقة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            سجل حضور الايام السابقة
+        </h3>
+    </div>
+    <div id="loader" style="display: none;">
+        <img src="/images/loading.gif" alt="loader icon">
+    </div>
+    <div class="container-lg" id="attend-table" dir="rtl">
+        <div class="last-days-container">
+            <div id='attendance-form'>
+                <div class="row justify-content-betwen">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-8">
+                        <p>
+                            اختر اليوم
+                        </p>
+                        <select class="form-select" name="day" id="day-attend-select" aria-label="Default select example">
+                    <option selected value="all">جميع ايام الشهر</option>
+                    <% for( let index = 1; index < 32; index++ ) { %>
+                        <option value="<%= index %>"><%= index %></option>
+                    <% } %>
+                  </select>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-8">
+                        <p>
+                            اختر الشهر
+                        </p>
+                        <select class="form-select" name="month" id="month-attend-select" aria-label="Default select example">
+                        <option value="0">يناير</option>
+                        <option value="1">فبراير</option>
+                        <option value="2">مارس</option>
+                        <option value="3">ابريل</option>
+                        <option value="4">مايو</option>
+                        <option value="5">يوتنيو</option>
+                        <option value="6">يوليو</option>
+                        <option value="7">اغسطس</option>
+                        <option value="8">سبتمبر</option>
+                        <option value="9">أكتوبر</option>
+                        <option value="10">نوفمبر</option>
+                        <option value="11">ديسمبر</option>
+                    </select>
+                    </div>
+                    <div class=" col-4 col-sm-4 col-md-4 col-lg-4 col-8 ">
+                        <p>
+                            اختر العام
+                        </p>
+                        <select class="form-select" name="year" id="year-attend-select" aria-label="Default select example">
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                  </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center my-3">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-8 d-grid">
+                        <button class="btn btn-primary" id="atten-btn">عرض الايام</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <% if (days&&days.length>0) { %>
+            <div class="day-list">
+                <div class="row table-row justify-content-around">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 cell">
+                        اليوم
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 cell">
+                        الاعدادت
+                    </div>
+                </div>
+                <div class="day-list-container">
+                    <% days.forEach(({at}) => { %>
+                        <div class="row table-row justify-conent-between">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 cell">
+                                <%= at %>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 cell">
+                                <div class="row justify-content-between">
+                                    <div class="col-6 col-sm-6 col-md-6 col-6 d-grid attend">
+                                        <a href="/attendance/view/<%= at %>" class="btn btn-success">عرض </a>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-6 d-grid attend">
+                                        <a href="/attendance/edit/<%= at %>" class="btn btn-warning">تعديل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+                <p class="text-center alert alert-danger">
+                    لا توجد بيانات
+                </p>
+
+                <% } %>
+
+    </div>
+</div>
+
+
+    <script>
+        document.getElementById("month-attend-select").value = new Date().getMonth()
+        document.getElementById("year-attend-select").value = new Date().getFullYear()
+        document.getElementById('atten-btn').addEventListener("click", () => {
+
+            document.getElementById('loader').style.display = 'grid'
+            let data = {
+                day: document.getElementById('day-attend-select').value,
+                month: document.getElementById('month-attend-select').value,
+                year: document.getElementById('year-attend-select').value
+            }
+            axios.post('/attendance/all', data)
+                .then(res => {
+
+                    if (res.data.length > 0) {
+                        document.querySelector('.day-list-container').innerHTML = ''
+                        res.data.forEach(({
+                            at
+                        }) => {
+                            document.querySelector('.day-list-container').innerHTML += `
+                            <div class="row table-row justify-content-around">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 cell">
+                                        ${at} 
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 cell">
+                                        <div class="row justify-content-between">
+                                            <div class="col-6 d-grid">
+                                                   <a href="/attendance/view/${at}" class="btn btn-success">عرض </a>
+                                             </div>
+                                    <div class="col-6 d-grid">
+                                        <a href="/attendance/edit/${at}" class="btn btn-warning">تعديل</a>
+                                    </div>
+                                    </div>
+                             </div>
+                             </div>
+                            `
+                        });
+                        document.getElementById('loader').style.display = 'none'
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('loader').style.display = 'none'
+                    document.querySelector('.day-list-container').innerHTML = ''
+
+                    document.querySelector('.day-list-container').innerHTML += `
+                    
+                    <p class="text-center alert alert-danger">
+                    لا توجد بيانات
+                </p>
+
+                    
+                    `
+
+                })
+        })
+    </script>
+
+
+
+
+    <%- include('../components/footer') %>

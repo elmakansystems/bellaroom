@@ -1,0 +1,161 @@
+body {
+    background-color: #f5f5f5;
+}
+
+.invoice {
+    width: 992px;
+    background-color: #fff;
+    height: fit-content;
+    border-radius: 20px;
+    margin: 10px;
+    position: relative;
+    min-height: 80vh;
+    font-weight: 500;
+}
+
+.inv_body {
+    position: relative;
+    z-index: 10;
+    height: 1125px;
+}
+
+.inv_body,
+.inv_head .col:last-child {
+    direction: rtl;
+}
+
+.inv_head {
+    border-bottom: 1px dashed #555;
+}
+
+.cell_name {
+    flex-basis: 25%;
+    font-size: 20px;
+}
+
+.cell_body {
+    flex-basis: 70%;
+    font-size: 20px;
+}
+
+.😐 {
+    border: 1px solid #777;
+    padding: 10px;
+}
+
+.water-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(3);
+    z-index: 1;
+}
+
+.green {
+    background: #0dac9a;
+}
+
+.yellow {
+    background: #dcb202;
+}
+
+.product-row {
+    display: flex;
+    padding: 0px !important;
+    margin: 0 !important;
+}
+
+.product-row>div {
+    flex: 1;
+    flex-grow: 1;
+    outline: 1px solid #ccc;
+    padding: 10px 5px;
+}
+
+.total_paid {
+    background-color: #A5F341;
+}
+
+.last-row {
+    background-color: #eee;
+}
+
+.invoice footer .cell {
+    width: fit-content;
+    text-align: center;
+    font-weight: 700;
+}
+
+.invoice-row,
+.invoice-row-names {
+    background-color: #fff;
+    margin: 5px 0;
+    transition: .3s;
+    padding: 0px !important;
+}
+
+.invoice-row:hover {
+    filter: drop-shadow(5px 5px 5px #ccc);
+}
+
+.invoice-row a,
+.invoice-row-names {
+    display: flex;
+    color: #333;
+    align-items: stretch;
+}
+
+.invoice-row a p,
+.invoice-row-names p {
+    flex: 1;
+    outline: 1px solid rgba(204, 204, 204, 0.418);
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px 5px;
+    text-overflow: ellipsis;
+}
+
+
+/* ============ */
+
+.A4body_height {
+    min-height: 840px;
+    direction: rtl;
+}
+
+.cell_total {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    font-size: 20px;
+    border-right: 1px dashed #555;
+    border-bottom: 1px dashed #555;
+    border-top: 1px dashed #555;
+}
+
+.cell_count {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+    font-size: 20px;
+    height: 740px;
+    border-bottom: 1px dashed #555;
+    border-top: 1px dashed #555;
+}
+
+.cell_description {
+    -ms-flex-preferred-size: 60%;
+    flex-basis: 60%;
+    font-size: 20px;
+    border-left: 1px dashed #555;
+    border-bottom: 1px dashed #555;
+    border-top: 1px dashed #555;
+}
+
+.receiving_footer {
+    padding-top: 40px;
+    border-top: 1px dashed #555;
+}
+
+.border-top2 {
+    border-top: 1px dashed #555;
+}

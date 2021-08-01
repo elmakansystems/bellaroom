@@ -1,0 +1,43 @@
+<%- include('../components/head' , {title : 'تسجيل اضافة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+        <div class="main-header">
+        <h3 class="text-center">
+            تسجيل اضافة
+        </h3>
+    </div>
+    <div id="purchases-new" dir="rtl">
+        <div class="container-lg">
+            <div class="purchase-forms my-3">
+                <div class="purchase-form-container bg-e p-4">
+                    <form action="/purchases/a/new" id="p-form" method="POST">
+                        <div class="form-fields my-3">
+                            <div class="row mb-3">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="bill-serial" class="form-label">رقم البيان</label>
+                                    <input required type="number" class="form-control" id="bill-serial" name="serial" placeholder="001">
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="bill-amount" class="form-label">قيمة البيان</label>
+                                    <input required type="number" class="form-control" id="bill-amount" name="amount" placeholder="500 جنية">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="name" class="form-label">البيان</label>
+                                    <textarea name="text" id="text" cols="30" class="form-control" placeholder="-مصروفات تجهيز الحملة الاعلانية" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white my-3">حفظ البيانات</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    <%- include('../components/footer') %>

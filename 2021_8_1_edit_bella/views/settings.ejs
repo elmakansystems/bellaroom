@@ -1,0 +1,84 @@
+<%- include('./components/head' , {title : ' المستخدمين'}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+<div class="m100">
+    
+    <div class="main-header">
+        <h3 class="text-center">
+            اعدادت المستخدمين
+        </h3>
+    </div>
+    <div class="container-lg" dir="rtl">
+        <div class="row table-row">
+            <div class="cell col-md-5">
+                اسم المستخدم
+            </div>
+            <div class="cell col-md-5">
+                البريد الالكتروني
+            </div>
+        </div>
+        <% users.forEach((user , i) => { %>
+            <div class="accordion my-2" id="accordionExample-<%= i %>" dir="rtl">
+                <div class="accordion-item">
+                    <div class="accordion-header" id="headingOne-<%= i %>">
+                        <div class="accordion-button" dir="rtl" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-<%= i %>" aria-expanded="true" aria-controls="collapseOne-<%= i %>">
+                            <div class="row w-100">
+                                <div class="col-md-5 tr">
+                                    <%= user.name %>
+                                </div>
+                                <div class="col-md-5 tr">
+                                    <%= user.email %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseOne-<%= i %>" class="accordion-collapse collapse bg-e" aria-labelledby="headingOne-<%= i %>" data-bs-parent="#accordionExample-<%= i %>">
+                        <form action="/settings/update" method="POST">
+                            <input type="hidden" name="_id" value="<%= user._id %>">
+                            <div class="row justify-content-evenly">
+                                <div class='col-md-5 my-2 '>
+                                    <p>هل المستخدم مدير ؟</p>
+                                    <select class="form-select" name="isAdmin">
+                                        <option value="<%= user.isAdmin %>"> <%= user.isAdmin ? 'نعم' : 'لا'  %> </option>
+                                        <option  value="<%= !user.isAdmin %>"> <%= !user.isAdmin ? 'نعم' : 'لا'  %> </option>
+                            </select>
+                                </div>
+                                <div class='col-md-5 my-2  '>
+                                    <p>هل المستخدم كاشير</p>
+                                    <select class="form-select" name="isEditor">
+                                        <option value="<%= user.isEditor %>"> <%= user.isEditor ? 'نعم' : 'لا'  %> </option>
+                                        <option  value="<%= !user.isEditor %>"> <%= !user.isEditor ? 'نعم' : 'لا'  %> </option>
+                                     </select>
+                                </div>
+                                <div class='col-md-5 my-2  '>
+                                    <p>
+                                        هل المستخدم مفعل ؟
+                                    </p>
+                                    <select class="form-select" name="isActive">
+                                        <option value="<%= user.isActive %>"> <%= user.isActive ? 'نعم' : 'لا'  %> </option>
+                                        <option  value="<%= !user.isActive %>"> <%= !user.isActive ? 'نعم' : 'لا'  %> </option>
+                                    </select>
+                                </div>
+                                <div class='col-md-5 my-2 form-group '>
+                                    <p>كلمة المرور</p>
+                                    <input type="password" class="form-control" id="password-<%= i %>" name="password" placeholder="Password">
+                                </div>
+                                <div class="col-md-5 my-2 d-grid">
+                                    <button class="btn btn-warning">
+                                  تعديل البيانات
+                                </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>
+
+
+
+
+    <%- include('./components/footer') %>

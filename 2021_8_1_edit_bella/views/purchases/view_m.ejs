@@ -1,0 +1,73 @@
+<%- include('../components/head' , {title : 'عرض الخامات'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            عرض الخامات
+        </h3>
+    </div>
+
+    <div id="m-view" dir="rtl">
+        <div class="container-lg">
+            <div class="row table-row">
+                <div class="col-md-2 order-list-item">
+                    اسم الخامه
+                </div>
+                <div class="col-md-2 order-list-item">
+                    اسم المورد
+                </div>
+                <div class="col-md-2 order-list-item">
+                    رقم المورد
+                </div>
+                <div class="col-md-1 order-list-item">
+                    سعر الوحدة
+                </div>
+                <div class="col-md-2 order-list-item">
+                    الاجمالي
+                </div>
+                <div class="col-md-2 order-list-item">
+                    التاريخ
+                </div>
+                <div class="col-md-1 order-list-item">
+                    اعدادت
+                </div>
+            </div>
+            <% if (mats&&mats.length>0) { %>
+                <% mats.forEach(m => { %>
+                    <div class="row table-row">
+                        <div class="col-md-2 order-list-item">
+                            <%= m.name %>
+                        </div>
+                        <div class="col-md-2 order-list-item">
+                            <%= m.dealer %>
+                        </div>
+                        <div class="col-md-2 order-list-item">
+                            <%= m.phone %>
+                        </div>
+                        <div class="col-md-1 order-list-item">
+                            <%= m.unit %>
+                        </div>
+                        <div class="col-md-2 order-list-item">
+                            <%= m.total %>
+                        </div>
+                        <div class="col-md-2 order-list-item">
+                            <%= m.date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                        </div>
+                        <div class="col-md-1 order-list-item">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="/purchases/m/edit/<%= m._id%>"><img src="/images/editicon.svg" class="img-fluid" alt="delete icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+        </div>
+    </div>
+
+</div>
+    
+
+    <%- include('../components/footer') %>

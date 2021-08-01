@@ -1,0 +1,59 @@
+<%- include('../components/head' , {title : emp.name }) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            تعديل بيانات
+            <%= emp.name %>
+        </h3>
+    </div>
+    <div id="create-employee" class="create-form" dir="rtl">
+        <div class="container-lg">
+            <form action="/workers/e/edit" method="POST">
+                <input type="hidden" name="id" value="<%= emp._id %>">
+                <div class="row justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_name" class="form-label">اسم الموظف</label>
+                        <input type="text" name="e_name" class="form-control" value="<%= emp.name %>" id="e_name">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_phone" class="form-label">رقم الموظف</label>
+                        <input type="text" name="e_phone" class="form-control" value="<%= emp.phone %>" id="e_phone">
+                    </div>
+                </div>
+                <div class="row  justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_location" class="form-label">عنوان الموظف</label>
+                        <input type="text" name="e_location" class="form-control" value="<%= emp.location %>" id="e_location">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_date" class="form-label">تاريخ التوظيف</label>
+                        <input type="text" name="e_date" class="form-control" value="<%= emp.date %>" id="e_date">
+                    </div>
+                </div>
+                <div class="row  justify-content-evenly">
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_n_id" class="form-label">الرقم القومي</label>
+                        <input type="text" name="e_n_id" class="form-control" value="<%= emp.n_id %>" id="e_n_id">
+                    </div>
+                    <div class="mb-3 col-md-6 col-lg-6 col-12 col-sm-10">
+                        <label for="e_salary" class="form-label">الراتب</label>
+                        <input type="text" name="e_salary" class="form-control" value="<%= emp.salary %>" id="e_salary">
+                    </div>
+                </div>
+                <div class="row justify-content-evenly">
+                    <div class=" mb-3 col-md-12 col-lg-12 col-12 col-sm-10">
+                        <label for="e_comment" class="form-label">تعليقات اضافية</label>
+                        <textarea class="form-control" name="e_comment" id="e_comment" rows="3"><%= emp.comment %></textarea>
+                    </div>
+                </div>
+                <div class="row justify-content-evenly">
+                    <div class=" mb-3 col-md-5 col-lg-5 col-12 col-sm-10 d-grid">
+                        <button type="submit" class="btn btn-primary px-5">تعديل بيانات الموظف</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../components/footer') %>

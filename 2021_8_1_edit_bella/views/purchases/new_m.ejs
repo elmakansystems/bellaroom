@@ -1,0 +1,175 @@
+<%- include('../components/head' , {title : 'تسجيل الخامات الجديدة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تسجيل الخامات الجديدة
+        </h3>
+    </div>
+    <div id="purchases-new" dir="rtl">
+        <div class="container-lg">
+            <div class="purchase-forms my-3">
+                <div class="purchase-form-container bg-e p-4">
+                    <form id="p-form" method="POST">
+                        <div class="form-fields my-3">
+                            <div class="row mb-3">
+                                <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                                    <label for="no" class="form-label">اسم الخامة</label>
+                                    <input required type="text" class="form-control name" id="name" name="names[]" placeholder="قماش سفرة كنزي">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="d_name" class="form-label">اسم البائع</label>
+                                    <input required type="text" class="form-control dealer" id="d_name" name="dealers[]" placeholder="احمد">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                    <label for="d_phone" class="form-label">رقم البائع</label>
+                                    <input required type="text" class="form-control phone" id="d_phone" name="phones[]" placeholder="01234567890">
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                    <label for="d_unit" class="form-label">سعر الوحدة</label>
+                                    <input required type="number" class="form-control unit" id="d_unit" name="units[]" placeholder="100">
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                    <label for="total" class="form-label">اجمالي المدفوع</label>
+                                    <input required type="number" class="form-control total" id="total" name="totals[]" placeholder="500">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white my-3">حفظ البيانات</button>
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-warning text-white my-3" id="add-new-purchase">اضافة خانة جديدة</button>
+        </div>
+    </div>
+</div>
+   
+
+    <script>
+        let n = 1;
+        document.getElementById("add-new-purchase").addEventListener("click", () => {
+            let template = `
+            <hr />
+            <div class="my-3">
+                        <div class="row mb-3">
+                            <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                                <label for="name-${n}" class="form-label">اسم الخامة</label>
+                                <input required type="text" class="form-control" id="name-${n}" name="names[]" placeholder="قماش سفرة كنزي">
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                <label for="d_name-${n}" class="form-label">اسم البائع</label>
+                                <input required type="text" class="form-control" id="d_name-${n}" name="dealers[]" placeholder="احمد">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                <label for="d_phone-${n}" class="form-label">رقم البائع</label>
+                                <input required type="text" class="form-control" id="d_phone-${n}" name="phones[]" placeholder="01234567890">
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                <label for="d_unit-${n}" class="form-label">سعر الوحدة</label>
+                                <input required type="number" class="form-control" id="d_unit-${n}" name="units[]" placeholder="100">
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-6">
+                                <label for="total-${n}" class="form-label">اجمالي المدفوع</label>
+                                <input required type="number" class="form-control" id="total-${n}" name="totals[]" placeholder="500">
+                            </div>
+                        </div>
+                </div>
+            `
+            n++
+            document.querySelector(".form-fields").insertAdjacentHTML("beforeend", template)
+        })
+        const new_mat_handler = (e) => {
+
+            e.preventDefault()
+
+            const data = {
+                names: [...document.querySelectorAll("input[name = 'names[]']")].map(v => v.value),
+                dealers: [...document.querySelectorAll("input[name = 'dealers[]']")].map(v => v.value),
+                phones: [...document.querySelectorAll("input[name = 'phones[]']")].map(v => v.value),
+                units: [...document.querySelectorAll("input[name = 'units[]']")].map(v => v.value),
+                totals: [...document.querySelectorAll("input[name = 'totals[]']")].map(v => v.value)
+            }
+
+
+            Swal.fire({
+                title: 'هل تريد تسجيلها كمصروفات ايضا ؟',
+                text: "   سيتم اضافتها في المصروفات  !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم اضفها'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post('/purchases/m/new', {
+                            data,
+                            isExp: true
+                        })
+                        .then(res => {
+                            if (res.status === 201) {
+                                Swal.fire(
+                                    'تم ',
+                                    ' تم اضاففتها في الخامات والمصروفات ',
+                                    'success'
+                                )
+                                setTimeout(() => {
+                                    location.pathname = res.data
+                                }, 2000);
+                            }
+
+                        })
+                        .catch(err => {
+                            console.error('>delete error : ' + err);
+                        })
+                } else {
+                    axios.post('/purchases/m/new', {
+                            data,
+                            isExp: false
+                        })
+                        .then(res => {
+                            if (res.status === 201) {
+                                Swal.fire(
+                                    'تم ',
+                                    ' تم الاضافة كخامة فقط ',
+                                    'success'
+                                )
+                                setTimeout(() => {
+                                    location.pathname = res.data
+                                }, 2000);
+
+                            }
+
+                        })
+                        .catch(err => {
+                            console.error('>delete error : ' + err);
+                        })
+
+                }
+            })
+
+
+
+
+
+
+            // axios.post('/purchases/m/new', data)
+            //     .then(res => {
+            //         console.log(res)
+            //     })
+            //     .catch(err => {
+            //         console.error(err);
+            //     })
+
+
+
+
+        }
+        document.getElementById('p-form').addEventListener("submit", new_mat_handler)
+    </script>
+
+    <%- include('../components/footer') %>

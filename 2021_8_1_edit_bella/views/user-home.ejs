@@ -1,0 +1,51 @@
+<%- include('./components/head' , {title : user.name}) %>
+<%- include('./components/right-sidebar') %>
+<%- include('./components/left-sidebar') %>
+    <div class="m100">
+
+        <div class="main-header">
+            <h3 class="text-center">
+                اهلا
+                <%= user.name %>
+            </h3>
+        </div>
+
+        <div class="container-lg home ">
+            <% if (!isActive) { %>
+                <div class="alert alert-danger text-center fit-content" style="margin: auto; padding: 10px 100px;">
+                    <h3>موقوف عن العمل</h3>
+                </div>
+                <% } else if(ref !== 'e') { %>
+                    <div class="row">
+                        <a href="/invoices/create" class="home-link">
+                            <img src="/images/create.svg">
+                            <p>انشاء فاتورة</p>
+                        </a>
+                        <a href="/orders/create" class="home-link ">
+                            <img src="/images/create.svg ">
+                            <p>
+                                انشاء امر شغل
+                            </p>
+                        </a>
+                        <a href="/receipt" class="home-link">
+                            <img src="/images/receipt.svg">
+                            <p>اذن الاستلام</p>
+                        </a>
+                        <a href="/workers/<%= ref %>/<%= id %>" class="home-link">
+                            <img src="/images/profile.png">
+                            <p>الحساب</p>
+                        </a>
+                    </div>
+                    <% } else { %>
+                        <div class="row">
+                            <a href="/workers/<%= ref %>/<%= id %>" class="home-link">
+                                <img src="/images/profile.png">
+                                <p>الحساب</p>
+                            </a>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') %>

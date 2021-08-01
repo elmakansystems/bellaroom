@@ -1,0 +1,56 @@
+<%- include('../components/head' , {title : 'تعديل الخامة'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+      <div class="main-header">
+        <h3 class="text-center">
+            تعديل الخامة
+        </h3>
+    </div>
+  
+    <div id="products-new" dir="rtl">
+        <div class="container-lg">
+            <div class="product-forms my-3">
+                <div class="product-form-container bg-e p-4">
+                    <% if ({ product }) { %>
+                        <form action="/products/single/edit" id="p-form" method="POST">
+                            <input type="hidden" name="id" value="<%= product._id %>">
+                            <input type="hidden" name="soldID" value="<%= sold[0]._id %>">
+                            <input type="hidden" name="date_added" value="<%=  new Date(Date.now()) %>">
+                            <div class="form-fields my-3">
+                                <div class="row mb-3">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <label for="no" class="form-label">المنتج </label>
+                                        <input required type="text" class="form-control" id="name" value="<%=product.name%>" name="name" placeholder=" <%=product.name%> ">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <label for="d_name" class="form-label">المورد</label>
+                                        <input required type="text" class="form-control" id="d_name" value='<%=product.dealer%>' name="dealer" placeholder="<%=product.dealer%>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <label for="d_phone" class="form-label"> جملته</label>
+                                        <input required type="text" class="form-control" id="d_phone" value="<%=sold[0].current_price%>" name="current_price" placeholder="<%=sold[0].current_price%>">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <label for="total" class="form-label"> مبلغ البيع</label>
+                                        <input required type="number" class="form-control" id="total" value='<%=sold[0].inv_price%>' name="sold" placeholder="<%=sold[0].inv_price%>">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <button class="btn btn-warning text-white my-3">تعديل البيانات </button>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  
+
+
+
+    <%- include('../components/footer') %>

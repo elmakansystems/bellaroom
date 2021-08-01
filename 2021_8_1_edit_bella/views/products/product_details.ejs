@@ -1,0 +1,71 @@
+<%- include('../components/head' , {title : 'تفاصيل المنتج'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            تفاصيل المنتج
+        </h3>
+    </div>
+    <div class="container">
+        <div class="order-list" dir="rtl">
+            <div class="row order-list-row">
+                <div class="col-md-4 order-list-item">
+                    المنتج
+                </div>
+                <div class="col-md-4 order-list-item">
+                    المورد
+                </div>
+                <div class="col-md-4 order-list-item">
+                    رقم المورد
+                </div>
+            </div>
+            <div class="row order-list-row">
+                <div class="col-md-4 order-list-item">
+                    <%=  product.name   %>
+                </div>
+                <div class="col-md-4 order-list-item">
+                    <%= product.dealer %>
+                </div>
+                <div class="col-md-4 order-list-item">
+                    <%= product.phone %>
+                </div>
+            </div>
+
+            <div class="row table-row ">
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    جملته وقت الشراء
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    تاريخ البيع
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    مبلغ البيع للعميل
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    المكسب
+                </div>
+            </div>
+            <% sold.forEach(p => { %>
+                <a class="no_edtid" href="/products/product/edit/<%= product._id%>/<%= p._id%>">
+                    <div class="row table-row ">
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= p.current_price %>
+                        </div>
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= p.date_added.toLocaleDateString('ar-EG-u-nu-latn') %>
+                        </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <%= p.inv_price %>
+                    </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <%=  p.inv_price -  p.current_price %>
+                    </div>
+                </div>
+            </a>
+                <% }) %>
+
+        </div>
+        </div>
+</div>
+   <%- include('../components/footer') %>

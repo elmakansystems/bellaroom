@@ -1,0 +1,215 @@
+<%- include('../components/head' , {title : 'حسابات الشهر'}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+    <div class="main-header">
+        <h3 class="text-center">
+            فاتورة شهر
+            <%= dealer.name %>
+        </h3>
+    </div>
+    <div class="container-lg">
+        <div class="row justify-content-center my-3" dir="rtl">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 px-0">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <div class="accordion-header profile-card" id="headingOne" style="margin-bottom: 0;border-radius: 0;padding: 0;">
+                            <div type="button" data-bs-toggle="collapse" style="padding: 15px ;" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h3 class="text-center" style="font-weight: 300;">
+                                   (اضغط هنا) اختر الشهر المراد تسجيل المرتب فيه 
+                                </h3>
+                            </div>
+                        </div>
+                        <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body bg-light">
+                                <%- include('./date') %>
+
+                                
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="d-bill" dir="rtl">
+        <div class="container-lg">
+            <div class="row justify-content-center">
+
+                <div class="col-md-10 col-lg-10 col-10 col-sm-10 profile-card">
+                    <div class="profile-form ">
+                        <div class="profile-card">
+                            <h4 class="text-center mb-0 py-2" style="font-weight: 300;">
+                    مرتب بتاريخ        </h4>
+                    
+                            <h4 class="text-center mb-0 py-2" style="font-weight: 300;">
+                                <input type="text" value="<%= end.getMonth() %>" id="month_of_chosen" style="display: none;" >
+                                <input type="text" value="<%= end.getFullYear() %>" id="year_of_chosen" style="display: none;" >
+                                <span class="mx-2 alert alert-warning py-1 pd12" role="alert"><%= to_month %> / <%= end.getFullYear() %> </span>
+                            </h4>
+                        </div>
+                        <form action="">
+                            <input type="hidden" name="id" id="d-id" value="<%= dealer._id %>">
+                            <input type="hidden" name="d-n_id" id="d-n_id" value="<%= dealer.n_id %>">
+                            <input type="hidden" name="d-name" id="d-name" value="<%= dealer.name %>">
+                            <div id="form-value-rows">
+                                <div class="row p-form-row p-form-title">
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col">
+                                        اضافة
+                                    </div>
+                                    <div class="col-md-7 col-7 col-sm-7 col-lg-7 p-form-col">
+                                        السبب
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        القيمة
+                                    </div>
+                                </div>
+                                <div class="row p-form-row ">
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-more calc_row">
+                                        اضافة
+                                    </div>
+                                    <div class="col-md-7 col-7 col-sm-7 col-lg-7 p-form-col">
+                                        <input type="text" class="form-control _more_name"  disabled value="المرتب">
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        <input type="number" class="form-control _more"  disabled value="<%= dealer.salary %>">
+                                    </div> 
+                                </div>
+                                <div class="row p-form-row ">
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-more calc_row">
+                                        اضافة
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        <input type="text" class="form-control _more_name"  disabled value="العمولة">
+                                    </div>
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col">
+                                        <input type="number" class="form-control " readonly placeholder="500" value="<%= dealer.comm%>">
+                                    </div>
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col">
+                                        
+                                        <input type="number" class="form-control " readonly placeholder="500" value="<%= sum%>">
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        <input type="number" class="form-control _more" readonly placeholder="500" value="<%= Math.ceil((dealer.comm/100) * sum) %>">
+                                    </div>
+                                </div>
+                                <div class="row p-form-row ">
+                                    <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-more calc_row">
+                                        اضافة
+                                    </div>
+                                    <div class="col-md-7 col-8 col-sm-7 col-lg-7 p-form-col">
+                                        <input type="text" class="form-control _more_name"  disabled value="حوافز">
+                                    </div>
+                                    <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                        <input type="number" class="form-control _more" placeholder="500" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mt-5">
+                                <div id="calc-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-primary text-white">
+                                    حساب المرتب
+                                </div>
+                                <div id="add-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-success text-white">
+                                    اضافة قيمة
+                                </div>
+                                <div id="sub-value" class="col-md-3 col-3 col-sm-3 col-lg-3 btn btn-danger text-white">
+                                    خصم قيمة
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+       
+
+    let d = new Date(Date.now())
+        let start = new Date(d.getFullYear(), d.getMonth(), 1)
+        let end = new Date(new Date(new Date(d.getFullYear(), d.getMonth() + 1, 0)).setHours(23, 59, 59, 999))
+
+            
+
+        document.getElementById('add-value').addEventListener("click", () => {
+            const more_template = `<div class="row p-form-row ">
+                                        <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-more calc_row">
+                                            اضافة
+                                        </div>
+                                        <div class="col-md-7 col-8 col-sm-7 col-lg-7 p-form-col">
+                                            <input type="text" class="form-control _more_name"  placeholder="سبب الاضافة">
+                                        </div>
+                                        <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                            <input type="number" class="form-control  _more" placeholder="500">
+                                        </div>
+                                    </div>
+            `
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', more_template)
+        })
+        document.getElementById('sub-value').addEventListener("click", () => {
+            const sub_template = ` <div class="row p-form-row ">
+                                            <div class="col-md-2 col-2 col-sm-2 col-lg-2 p-form-col bg-less calc_row">
+                                                خصم
+                                            </div>
+                                            <div class="col-md-7 col-8 col-sm-7 col-lg-7 p-form-col">
+                                                <input type="text" class="form-control _sub_name"  placeholder="سبب الخصم">
+                                            </div>
+                                            <div class="col-md-3 col-3 col-sm-3 col-lg-3 p-form-col">
+                                                <input type="number" class="form-control _sub" placeholder="500">
+                                            </div>
+                                        </div>
+                `
+            document.getElementById('form-value-rows').insertAdjacentHTML('beforeend', sub_template)
+        })
+        document.getElementById('calc-value').addEventListener("click", () => {
+            const add_names = data_collector(document.querySelectorAll("._more_name")),
+                add_val = data_collector(document.querySelectorAll("._more")),
+                sub_names = data_collector(document.querySelectorAll("._sub_name")),
+                sub_val = data_collector(document.querySelectorAll("._sub"))
+            let add = []
+            let sub = []
+            add_names.forEach((e, i) => add.push({
+                name: add_names[i],
+                value: add_val[i]
+            }))
+            sub_names.forEach((e, i) => sub.push({
+                name: sub_names[i],
+                value: sub_val[i]
+            }))
+
+            let _add = add_val.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+            let _sub = sub_val.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+            let total = _add - _sub
+
+            
+            axios.post('/workers/d/calcs', {
+                    id: document.getElementById('d-id').value,
+                    n_id: document.getElementById('d-n_id').value,
+                    name: document.getElementById('d-name').value,
+                    add,
+                    sub,
+                    _add,
+                    _sub,
+                    total,
+                    month : document.getElementById('month_of_chosen').value,
+                    year : document.getElementById('year_of_chosen').value
+                })
+                .then(res => {
+                    if (res.status === 201) location.pathname = res.data
+                })
+                .catch(err => {
+                    location.reload()
+                })
+        })
+
+        const data_collector = (target) => {
+            if (target) {
+                let data = []
+                target.forEach(t => data.push(t.value))
+                return data
+            }
+        }
+    </script>
+    <%- include('../components/footer') %>
