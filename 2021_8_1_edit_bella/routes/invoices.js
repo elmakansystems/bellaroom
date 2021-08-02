@@ -67,7 +67,8 @@ router.get('/edit/:id', isAdmin, async(req, res) => {
 
 router.get('/create', isSales, async(req, res) => {
     try {
-        const products = await product.find({p_type: 'collection' , p_type: null}).select('name price')
+        const products = await product.find({p_type: 'collection' }).select('name price')
+        const old_products = await product.find({ p_type: null}).select('name price')
         const parts = await product.find({p_type: 'part'}).select('name price')
         
         const dealers = await dealer.find().select('name')
@@ -76,7 +77,7 @@ router.get('/create', isSales, async(req, res) => {
 
         const old_serial = await Invoice.find({invId: serial})
        
-        res.status(201).render('invoices/create', { products, dealers, serial ,parts , old_serial })
+        res.status(201).render('invoices/create', { products, dealers, serial ,parts , old_serial , old_products})
     } catch (error) {
         return res.status(404).render("error")
     }

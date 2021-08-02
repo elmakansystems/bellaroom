@@ -605,3 +605,46 @@ input[type="number"] {
   color: #000;
   text-decoration: none;
 }
+/* ==================== */
+
+.counter-box {
+  display: block;
+  background: #f6f6f6;
+  padding: 40px 20px 37px;
+  text-align: center;
+}
+
+.counter-box h3 {
+  margin: 5px 0 0;
+  padding: 0;
+  color: #909090;
+  font-size: 18px;
+  font-weight: 500;
+}
+.counter-box i {
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #d2d2d2;
+}
+
+.counter {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #eead64;
+  line-height: 28px;
+}
+.counter-box.colored {
+  background: #3acf87;
+}
+
+.counter-box.colored h3,
+.counter-box.colored i,
+.counter-box.colored .counter {
+  color: #fff;
+}
+.projects h3 {
+  color: #198754;
+  text-align: center;
+  margin-bottom: 20px;
+}

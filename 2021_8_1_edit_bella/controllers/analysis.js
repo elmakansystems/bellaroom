@@ -24,35 +24,42 @@ exports.current_month_data = async(req, res) => {
         let end = new Date(new Date(new Date(d.getFullYear(), d.getMonth() + 1, 0)).setHours(23, 59, 59, 999))
 
 
-        
-        
+
         
         // بيانات الفواتير خلال الشهر
         // اسأل عن الـــ receive
-        const invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid change name dealer date_added')
+        const invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid name dealer date_added')
+        // عدد الفواتير خلال الشهر
         
+        const inv_count = await invoice.find({ date_added: { $gte: start, $lte: end } }).countDocuments()
+        // الباقي المستحق جمعه 
+        const invoices_all = await invoice.find({ change: { $gt: 0 } }).select('change date_added')
+        const change = invoices_all.map(v => v.change).reduce((a, b) => a + b, 0) || 0
         
-        // عدد المنتجات في الشهر الحالي
-        
+        // محتاج يتعدل التاريخ او نشوف طريقة حل لمشكلة التاريخ دي يا باشا 
+        const order = await Order.find({ dateAdded: { $gte: start , $lte: end } })
+         
+       
         const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).select('inv_total product_id date_added')
+        const total_paid = sold_products.map(v => v.inv_total).reduce((a, b) => a + b, 0) || 0
+        
+        
         // منتحات الشهر الحالي
-        const products = await Product.find({ date_added: { $gte: start, $lte: end } }).select('p_type price name date_added').sort('-_id')
-        
-
-        
+        const products = await Product.find().select('p_type price name dealer date_added')
+        const total_price = products.map(v => v.price).reduce((a, b) => a + b, 0) || 0
         
         
 
         // المصاريف و الاضافات
         
-        const expenses = await Expenses.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
-        const addition = await Addition.find({ date_added: { $gte: start, $lte: end } }).select('amount text').sort('-_id')
+        const expenses = await Expenses.find({ date_added: { $gte: start, $lte: end } }).select('amount text date_added').sort('-_id')
+        const addition = await Addition.find({ date_added: { $gte: start, $lte: end } }).select('amount text date_added').sort('-_id')
       
-                // فلوس الموظفين
-        const bills = await Bill.find({ date: { $gte: start, $lte: end } }).select("name total dealer_id").sort('-_id')
-        const ebills = await EBill.find({ date: { $gte: start, $lte: end } }).select("name total emp_id").sort('-_id')
+        // فلوس الموظفين
+        const bills = await Bill.find({ date: { $gte: start, $lte: end } }).select("name total dealer_id date").sort('-_id')
+        const ebills = await EBill.find({ date: { $gte: start, $lte: end } }).select("name total emp_id date").sort('-_id')
 
-        let loans = await Loan.find({ change: { $gt: 0 }, date_added: { $gte: start, $lte: end } }).select("name change").sort('-_id')
+        let loans = await Loan.find({ change: { $gt: 0 } }).select("name change date_added").sort('-_id')
 
         let total_exps = expenses.map(v => v.amount).reduce((a, b) => a + b, 0) + products.map(v => v.price).reduce((a, b) => a + b, 0)
             // أيمن
