@@ -25,17 +25,118 @@ exports.current_month_data = async(req, res) => {
 
 
 
+        // تستخدم لاستخراج البيانات من الموديل في 
+        // Array
+        // و ممكن تستخدم في عددهم 
+
+        // و هنا البيانات غير مكررة 
+
+
+        function data_in_date_NR(model , attribute) {
+            let data = [];
+            model.forEach((elem, i) => {
+          if (data.length == 0 && elem.date_added >= start && elem.date_added <= end) {
+              data.push(elem[attribute]);
+            } else {
+                if (!data.includes(elem[attribute]) && elem.date_added >= start && elem.date_added <= end) {
+              data.push(elem[attribute]);
+            }
+          }
+        });
+            return data
+        }
+
         
+        // تستخدم لاستخراج البيانات من الموديل في 
+        // Array
+        // و ممكن تستخدم في عددهم 
+
+
+        function data_in_date(model , attribute) {
+            let data = [];
+            model.forEach((elem, i) => {
+          if (elem.date_added >= start && elem.date_added <= end) {
+              data.push(elem[attribute]);
+            } 
+        });
+            return data
+        }
+
+        //  تستخدم لاستخراج جمع البيانات من الموديل في تاريخ محدد 
+        
+        
+        function totalSum_in_data(model , data) {
+            var result = 0
+            model.forEach((elem, i) => {
+                if (elem.date_added >= start && elem.date_added <= end) {
+                    result = result + elem[data]
+                  } 
+                });
+                
+                return result
+            }
+            
+            //  تستخدم لاستخراج جمع البيانات من الموديل في تاريخ غير محدد 
+        function totalSum(model , data) {
+            var result = 0
+            model.forEach((elem, i) => {
+           
+                    result = result + elem[data]
+                  
+              });
+          
+            return result
+        }
+
+
+
+        let z = totalSum(invoices , 'change')
+        let e = totalSum_in_data(invoices , 'change')
+
+
+
+
+
+
+
+
+
+
+
         // بيانات الفواتير خلال الشهر
         // اسأل عن الـــ receive
-        const invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid name dealer date_added')
+        const invoices = await invoice.find().select('change name dealer date_added')
+        const month_invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid date_added')
         // عدد الفواتير خلال الشهر
+      
+
+
+      
+
         
-        const inv_count = await invoice.find({ date_added: { $gte: start, $lte: end } }).countDocuments()
-        // الباقي المستحق جمعه 
-        const invoices_all = await invoice.find({ change: { $gt: 0 } }).select('change date_added')
-        const change = invoices_all.map(v => v.change).reduce((a, b) => a + b, 0) || 0
+        let x = data_in_date_NR(invoices , 'change')
+        let y = data_in_date(invoices , '_id')
         
+        
+       
+
+
+        
+
+
+
+
+     
+
+     
+
+       
+
+
+
+        const change_date = await invoice.find({  date_added: { $gte: start, $lte: end }  }).select('change date_added')
+        const change_d = change_date.map(v => v.change).reduce((a, b) => a + b, 0) || 0
+     
         // محتاج يتعدل التاريخ او نشوف طريقة حل لمشكلة التاريخ دي يا باشا 
         const order = await Order.find({ dateAdded: { $gte: start , $lte: end } })
          
