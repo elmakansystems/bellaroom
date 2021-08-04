@@ -45,6 +45,7 @@ exports.current_month_data = async(req, res) => {
         });
             return data
         }
+      
 
         
         // تستخدم لاستخراج البيانات من الموديل في 
@@ -54,100 +55,132 @@ exports.current_month_data = async(req, res) => {
 
         function data_in_date(model , attribute) {
             let data = [];
+            let re = []
             model.forEach((elem, i) => {
           if (elem.date_added >= start && elem.date_added <= end) {
               data.push(elem[attribute]);
             } 
         });
-            return data
+        let x = data_in_date_NR(model , attribute)
+        x.forEach(elem => {
+            if(elem != null){
+                re.push([data.filter(v => v===elem).length , elem]) 
+            }
+        });
+        result = re.sort().reverse()
+        
+        
+       
+            return  {result , data}
         }
 
         //  تستخدم لاستخراج جمع البيانات من الموديل في تاريخ محدد 
         
         
         function totalSum_in_data(model , data) {
-            var result = 0
+            let result = 0
+            let bigNum = 0
             model.forEach((elem, i) => {
                 if (elem.date_added >= start && elem.date_added <= end) {
                     result = result + elem[data]
+                    if(bigNum < elem[data] && elem[data] != null ){
+                        bigNum = elem[data]
+                    }
                   } 
                 });
                 
-                return result
+                return {result , bigNum}
             }
             
             //  تستخدم لاستخراج جمع البيانات من الموديل في تاريخ غير محدد 
         function totalSum(model , data) {
-            var result = 0
+            let result = 0
+            let bigNum =0
+
             model.forEach((elem, i) => {
-           
-                    result = result + elem[data]
-                  
-              });
+                result = result + elem[data]
+                if(bigNum < elem[data] && elem[data] != null ){
+
+                    bigNum = elem[data]
+                }
+            });
+            
           
-            return result
+            return {result , bigNum}
         }
 
-
-
-        let z = totalSum(invoices , 'change')
-        let e = totalSum_in_data(invoices , 'change')
+        
 
 
 
 
-
-
-
-
-
-
-
-        // بيانات الفواتير خلال الشهر
-        // اسأل عن الـــ receive
-        const invoices = await invoice.find().select('change name dealer date_added')
-        const month_invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid date_added')
-        // عدد الفواتير خلال الشهر
+        const invoices = await invoice.find().select('change date_added')
+        const month_invoices = await invoice.find({ date_added: { $gte: start, $lte: end } }).select('total_price paid dealer date_added name')
+        
       
 
+        // العملاء المميزين خلال الشهر و عدد الفواتير الخاصة بهم خلال الشهر
+       let client_of_period = data_in_date(month_invoices , "name").result[0][1]
+       let client_of_period_num = data_in_date(month_invoices , "name").result[0][0]
 
+    //    اعلى قمية عقد
+       let invoice_of_period_num = totalSum_in_data(month_invoices , "total_price").bigNum
+
+       
+       //    البائع الاكثر تميزا خلال الفترة المحددة و عدد العقود المشتراه
+       let dealer_of_period = data_in_date(month_invoices , "dealer").result[0][1]
+       let dealer_of_period_num = data_in_date(month_invoices , "dealer").result[0][0]
+       const dealer_name = await Dealer.find({_id : dealer_of_period})
       
+    //    الباقي خلال الفترة المحددة و خلال وجود السيستم 
+       let change_of_period = totalSum_in_data(invoices , 'change')
+       let change_of_all = totalSum(invoices , "change")
 
+    //    اجمالي مستحقات العقود خلال فترة معينة 
+       let price_of_period = totalSum(month_invoices , "total_price")
+    //    اجمالي المدفوع خلال فترة معينة
+       let paid_of_period = totalSum(month_invoices , "paid")
+      
         
-        let x = data_in_date_NR(invoices , 'change')
-        let y = data_in_date(invoices , '_id')
         
-        
+      
        
 
 
         
 
+       const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).select('inv_total product_id date_added')
 
 
-
-     
-
+       
+    
      
 
        
 
 
 
-        const change_date = await invoice.find({  date_added: { $gte: start, $lte: end }  }).select('change date_added')
-        const change_d = change_date.map(v => v.change).reduce((a, b) => a + b, 0) || 0
      
         // محتاج يتعدل التاريخ او نشوف طريقة حل لمشكلة التاريخ دي يا باشا 
         const order = await Order.find({ dateAdded: { $gte: start , $lte: end } })
          
        
-        const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).select('inv_total product_id date_added')
         const total_paid = sold_products.map(v => v.inv_total).reduce((a, b) => a + b, 0) || 0
         
         
-        // منتحات الشهر الحالي
         const products = await Product.find().select('p_type price name dealer date_added')
-        const total_price = products.map(v => v.price).reduce((a, b) => a + b, 0) || 0
+        let products_filterd = products.filter( v =>  v.p_type =="collection")
+        let parts_filterd = products.filter( v =>  v.p_type =="part")
+        
+        // منتحات الشهر الحالي
+        let products_of_month_n = data_in_date(products_filterd , "name").data.length
+        let products_of_month = data_in_date(products_filterd , "name").data
+        // قطع الشهر الحالي
+        let parts_of_month_n = data_in_date(parts_filterd , "name").data.length
+        let parts_of_month = data_in_date(parts_filterd , "name").data
+        
+
+
         
         
 
