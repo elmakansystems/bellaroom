@@ -4,7 +4,7 @@
 <div class="m100">
     <div class="main-header">
         <h3 class="text-center">
-            g
+          تحليل بيانات
         </h3>
     </div>
     <div class="container-lg" id="attend-table" dir="rtl">
@@ -14,40 +14,37 @@
                 <div class="container-lg">
                     <div class="row jc2">
                         <div class="col-md-6 col-lg-6 col-sm-10 col-10">
-                            <div class="bill-card attendance-row">
-                               
-                                <div class="projects">
-                                    <h3>قيمةالعقود الكلية</h3>
-                                    <% var total_price = 0 %> 
-                                    <% invoices.forEach(element => { %>
-                                     <% total_price = element.total_price + total_price %> 
-                                     <% }) %>
-                                     <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= total_price %> </h2>
+   
+                            <%- include('./client') %>
+                            <%- include('./dealer') %>
+                            <%- include('./change') %>
+                            <%- include('./expenses') %>
 
-                      </div> 
-                      </div>
-
-
-                            </div>
-                            <%- include('./workers') %>
-                                <%- include('./loans') %>
+                           
 
                         </div>
                         <div class="col-md-6 col-lg-6 col-sm-10 col-10">
-                            <%- include('./invoices') %>
-
-                                <%- include('./expenses') %>
-                                    <%- include('./addition') %>
+                            <%- include('./income') %>
+                            <%- include('./incomes') %>
+                            <%- include('./change') %>
+                            <%- include('./paid') %>
+             
+                     
+                                
 
                         </div>
+                        <!-- <div class="col-md-6 col-lg-6 col-sm-10 col-10">
+                            <%- include('./invoices') %>
+                          
+                           
+
+                        </div> -->
 
                     </div>
                 </div>
             </div>
 
-            
 </div>
-
 
 
 
@@ -70,7 +67,6 @@
     
     });
 </script>
-
 
 
             <%- include('../components/footer') %>
