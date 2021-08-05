@@ -262,7 +262,7 @@ exports.current_month_data = async(req, res) => {
         if(most_loans_period.length > 0){
             var most_loans_period_name = most_loans_period[0].name
         }else{
-            var most_loans_period_name = 'no Loan' 
+            var most_loans_period_name = 'no Loan'
         }
         if(most_loans_all.length > 0){
             var most_loans_all_name = most_loans_all[0].name
