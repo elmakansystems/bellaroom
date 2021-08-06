@@ -15,6 +15,9 @@
       <% products.forEach(p => { %>
       <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
       <% }) %>
+      <% old_products.forEach(p => { %>
+        <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+        <% }) %>
     </select>
   </div>
   <div class="data_parts_container" style="display: none">
