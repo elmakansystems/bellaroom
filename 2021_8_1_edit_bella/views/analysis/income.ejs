@@ -2,11 +2,12 @@
                                
     <div class="projects">
         <h3>قيمة الدخل الكلي</h3>
+        
         <% var total_price = 0 %> 
         <% invoices.forEach(element => { %>
          <% total_price = element.total_price + total_price %> 
          <% }) %>
-         <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= total_price %> </h2>
+         <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= analysis.change_of_period_sb.sum %> </h2>
 
 </div> 
 </div>
