@@ -451,7 +451,7 @@ exports.specific_data_range = async(req, res) => {
             price: invoices.map(elm => elm.total_price ? elm.total_price : 0).reduce((a, b) => a + b, 0),
         }
 
-        res.status(201).render('safe/safe_view', {
+        res.status(201).render('analysis/analysis_view', {
             invoices,
             totals,
             expenses,
