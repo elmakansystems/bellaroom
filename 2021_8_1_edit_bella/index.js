@@ -95,6 +95,7 @@ app.use(
   require("./routes/products")
 );
 app.use("/safe/", isLogged, isActive, isAdmin, require("./routes/safe_view"));
+app.use("/printfile/", isLogged, isActive, isAdmin, require("./routes/printfile"));
 app.use("/analysis/", isLogged, isActive, isAdmin, require("./routes/analysis"));
 app.use("/loan/", isLogged, isActive, isAdmin, require("./routes/loan"));
 app.use("/user", isLogged, isActive, require("./routes/user"));

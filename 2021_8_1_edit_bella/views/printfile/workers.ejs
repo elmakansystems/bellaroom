@@ -1,0 +1,56 @@
+<div class="bill-card" >
+
+    
+   
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <!-- <caption>List of invoices</caption> -->
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">اسم المنتج</th>
+                <th scope="col">رقم الفاتورة</th>
+                <th scope="col">المورد</th>
+                <th scope="col">جملة</th>
+                <th scope="col">بيع</th>
+                <th scope="col">ربح</th>
+              </tr>
+            </thead>
+            <tbody>
+
+
+               
+
+
+
+                <% sold.forEach(async(p , i) => { %>
+                   
+                    <% let name  %>                     
+                    <% products.forEach(elem => { %>
+                        <% if (p.product_id.toString() === elem._id.toString() ) { %>
+                            <% dealer = elem.dealer %> 
+                         <% name = elem.name %> 
+                        <% } %>
+                        <% }) %>
+                        
+                       
+                    
+                    <tr>
+                        <th scope="row"><%= i %> </th>
+                        <th scope="row"><%= name %> </th>
+                        <th scope="row"><%= name %> </th>
+                        <th scope="row"><%= dealer %> </th>
+                        
+                     
+                        <td><%= p.current_price %></td>
+                        <td><%= p.inv_price %></td>
+                        <td><%= p.inv_price -  p.current_price %></td>
+                      </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+      </div>
+
+
+</div>

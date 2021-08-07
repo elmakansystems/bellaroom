@@ -1,0 +1,45 @@
+<%- include('../components/head' , {title : 'الخزنة'}) %>
+<style>
+    @media print {
+        td , th{
+            font-size: 12px;
+        }
+        .last-days-container form,.main-header .text-center{
+            display: none;
+        }
+        .bill-card ,.main-header{
+            all: unset !important;
+        }
+    }
+
+</style>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            كشف حساب 
+        </h3>
+        <div class="main_img">
+
+            <img src="/images/logo.png" class="bill-img" alt="الفاتورة" title="الفاتورة" style="width: 100px; height: 100px; margin: 20px;  ">
+        </div>
+    </div>
+    <div class="container-lg" id="attend-table" dir="rtl">
+        <%- include('./date') %>
+
+
+
+
+            <div id="e-bill" dir="rtl">
+                <div class="container-lg">
+                    
+                            <%- include('./workers') %>
+
+                    </div>
+                </div>
+            </div>
+
+</div>
+
+
+
+            <%- include('../components/footer') %>
