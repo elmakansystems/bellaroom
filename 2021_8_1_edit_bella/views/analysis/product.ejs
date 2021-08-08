@@ -1,35 +1,9 @@
 
-
 <div class="bill-card   ">
     <div class="text-center projects ">
         <h3>
 
-            أعلي قيمة فاتورة
-        </h3>
-    </div>
-    <div class="analysis-card">
-
-   
-    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
-    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
-        <div class="row my-2 ">
-            <div class="text-center">
-                
-                <h1 class="counter">
-                    <%= analysis.invoice_of_period_num%>
-                </h1>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
-</div>
-<div class="bill-card   ">
-    <div class="text-center projects ">
-        <h3>
-
-           المستحقات والمدفوع منها
+          مجموع أسعار المنجات 
         </h3>
     </div>
     <div class="analysis-card">
@@ -38,7 +12,7 @@
     <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
         <h5>
             <center>
-            إجمالي مستحقات العقود
+           إجمالي أسعار المنتجات خلال الفترة المحددة
         </center>
     </h5>
     <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
@@ -46,7 +20,7 @@
             <div class="text-center">
                 
                 <h1 class="counter">
-                    <%= analysis.price_of_period_sb.sum%>
+                    <%= analysis.products_of_period_sb.sum%>
                 </h1>
             </div>
         </div>
@@ -55,7 +29,7 @@
 <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
     <h5>
         <center>
-            إجمالي المدفوع من المستحقات
+           إجمالي أسعار المنتجات الكلي
     </center>
 </h5>
 <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
@@ -63,7 +37,54 @@
         <div class="text-center">
             
             <h1 class="counter">
-                <%= analysis.paid_of_period_sb.sum%>
+                <%= analysis.products_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+          مجموع أسعار المنجات 
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+          المنتج الأكثر مبيعا خلال الفترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.most_products_period_name%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي أسعار المنتجات الكلي
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.products_of_all_sb.sum%>
             </h1>
         </div>
     </div>
