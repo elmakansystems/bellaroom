@@ -1,15 +1,186 @@
-<div class="bill-card attendance-row">
-                               
-    <div class="projects">
-        <h3> المصاريف الكلية</h3>
-        <% var total_price = 0 %> 
-        <% invoices.forEach(element => { %>
-         <% total_price = element.total_price + total_price %> 
-         <% }) %>
-         <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= total_price %> </h2>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
 
-</div> 
+         المصاريف والاضافات خلال فترة
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+     إجمالي المصاريف خلال فترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.expenses_of_period_sb.sum%>
+                </h1>
+            </div>
+        </div>
+    </div>
 </div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي الإضافات خلال فترة
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.addition_of_period_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
 
+      المصاريف والاضافات الكلية
+        </h3>
+    </div>
+    <div class="analysis-card">
 
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+     إجمالي المصاريف الكلية 
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.expenses_of_all_sb.sum%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي الإضافات الكلية
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.addition_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+         أكثر المصاريف 
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+ اسم اكثر المصايف خلال فترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.most_expenses_period_name%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           اسم أكثر المصاريف علي مدار وجود السيستم
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 >
+               <%= analysis.most_expenses_all_name %> 
+   
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+         أكثر الاضافات 
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+ اسم اكثر الاضافات خلال فترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.most_addition_period_name%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           اسم أكثر الاضافات علي مدار وجود السيستم
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 >
+               <%= analysis.most_addition_all_name %> 
+   
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </div>

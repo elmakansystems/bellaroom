@@ -1,9 +1,6 @@
 <div class="bill-card">
-    <header class="text-center">
-        <img src="/images/profile.png" class="bill-img" alt="الفاتورة" title="الفاتورة">
-    </header>
     <h5 class="text-center">
-      البائعين المميز
+      الدخل والمصاريف
     </h5>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
@@ -29,9 +26,9 @@
             legendMarkerColor: "grey",
             legendText: "",
             dataPoints: [      
-                { y: 300878, label: "Venezuela" },
-                { y: 266455,  label: "Saudi" },
-                { y: 169709,  label: "Canada" },
+                { y: <%= analysis.expenses_of_all_sb.sum%> , label: "المصاريف" },
+                { y:      <%= analysis.paid_of_period_sb.sum%> ,  label: "الدخل الكلي" },
+            
                 
             ]
         }]

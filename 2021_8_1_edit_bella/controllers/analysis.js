@@ -187,9 +187,9 @@ exports.current_month_data = async(req, res) => {
         
         let products_period_filterd = products.filter( v =>  v._id ==products_of_period_sb.id)
         let products_all_filterd = products.filter( v =>  v._id ==products_of_period_sb.id)
-
         let parts_period_filterd = products.filter( v =>  v._id ==parts_of_period_sb.id)
         let parts_all_filterd = products.filter( v =>  v._id ==parts_of_period_sb.id)
+      
         
 
         const most_parts_all = await Product.find({_id : parts_of_all_sb.id})
@@ -228,17 +228,18 @@ exports.current_month_data = async(req, res) => {
         let products_of_month_n = data_in_date(products_filterd , "name").data.length
         let products_of_month = data_in_date(products_filterd , "name").data
         
-        
+
       
         //   قطع تم شراؤها حديثا عددها و اسمها
         let parts_of_month_n = data_in_date(parts_filterd , "name").data.length
         let parts_of_month = data_in_date(parts_filterd , "name").data
-        
+      
 
 
         // المصاريف و الاضافات
         const expenses = await Expenses.find().select('amount text date_added').sort('-_id')
         let expenses_of_period_sb = totalSum_in_data(expenses , 'amount')
+
         let expenses_of_all_sb = totalSum(expenses , 'amount')
         const most_expenses_all = await Expenses.find({_id : expenses_of_all_sb.id})
         const most_expenses_period = await Expenses.find({_id : expenses_of_period_sb.id})
@@ -252,7 +253,7 @@ exports.current_month_data = async(req, res) => {
         }else{
             var most_expenses_all_name = 'no expenses'
         }
-        
+       
 
         
         

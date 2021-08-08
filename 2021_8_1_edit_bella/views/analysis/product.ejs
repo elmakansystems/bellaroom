@@ -3,7 +3,7 @@
     <div class="text-center projects ">
         <h3>
 
-          مجموع أسعار المنجات 
+          مجموع أسعار المنتجات 
         </h3>
     </div>
     <div class="analysis-card">
@@ -50,7 +50,7 @@
     <div class="text-center projects ">
         <h3>
 
-          مجموع أسعار المنجات 
+        المنتج الأكثر مبيعا وعدده
         </h3>
     </div>
     <div class="analysis-card">
@@ -76,7 +76,7 @@
 <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
     <h5>
         <center>
-           إجمالي أسعار المنتجات الكلي
+           عدد مرات بيع المنتج
     </center>
 </h5>
 <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
@@ -85,6 +85,192 @@
             
             <h1 class="counter">
                 <%= analysis.products_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+          مجموع أسعار القطع 
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+           إجمالي أسعار القطع خلال الفترة المحددة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 class="counter">
+                    <%= analysis.parts_of_period_sb.sum%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي أسعار القطع الكلية
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.parts_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+         القطع الأكثر مبيعا وعددها
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+          القطعة الأكثر مبيعا خلال الفترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.most_parts_period_name%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي أسعار القطع الكلية
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.parts_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+         المنتج الأكثر مبيعا خلال الشهر
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+     اسم المنتج الأكثر مبيعا خلال الشهر
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.products_of_month[0]%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           عدد مرات بيع المنتج خلال الشهر
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.products_of_month_n%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+         القطعة الأكثر مبيعا خلال الشهر
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+     اسم القطعة الأكثر مبيعا خلال الشهر
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.parts_of_month[1]%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           عدد مرات بيع القطعة خلال الشهر
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.parts_of_month_n%>
             </h1>
         </div>
     </div>
