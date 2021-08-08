@@ -29,6 +29,7 @@
 
                     <% if (user) { %>
                         <% if (user.isAdmin || user.isEditor) { %>
+                           
                             <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                                 <li class="nav-item btn btn-outline-warning mx-1" style="border-color: transparent;">
                                     <a class="nav-link active" style="padding: 5px 20px;" aria-current="page" href="/">الرئيسية</a>
@@ -50,11 +51,15 @@
                                     <div class="d-grid">
                                         <a href="/logout" class="btn btn-danger">تسجيل الخروج</a>
                                     </div>
-
                                 </form>
                                 <% } %>
-                </div>
-            </div>
+                            </div>
+                        </div>
+                        <% if (user) { %>
+                            <% if (user.isAdmin || user.isEditor) { %>
+                        <%- include('../navslid')  %> 
+                        <% } %>
+                        <% } %>
         </nav>
 
 

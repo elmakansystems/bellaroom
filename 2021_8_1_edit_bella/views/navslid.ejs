@@ -1,0 +1,92 @@
+
+<style>
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1111;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  margin: 0 15px 0 0;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.marg{
+    margin: 0 50px;
+}
+
+@media screen and (max-width: 991.5px) {
+    .marg{
+        display: none;
+    }
+    
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+</style>
+
+
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/invoices/create">انشاء فاتورة</a>
+    
+    <a href="/invoices">الفواتير</a>
+    <a href="/receipt">اذن الاستلام</a>
+    <a href="/products">المنتجات</a>
+    <a href="/purchases">المشتريات</a>
+    <a href="/clients/change">المتبقي</a>
+    <a href="/orders">اوامر الشغل</a>
+    <a href="/safe">الخزنة</a>
+    <a href="/printfile">كشف حساب</a>
+    <a href="/attendance">الحضور</a>
+    <a href="/workers/d">البائعين</a>
+    <a href="/workers/e">الموظفين</a>
+    <a href="/loan">السلف</a>
+    <a href="/workers/d/deactivated">البائعين الموقفين عن العمل</a>
+    <a href="/workers/e/deactivated">الموظفين الموقفين عن العمل</a>
+    
+  </div>
+  
+  <div class="marg">
+
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  </div>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "350px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
