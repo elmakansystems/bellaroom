@@ -1,7 +1,11 @@
 <%- include('./components/head' , {title : 'الرئيسية'}) %>
 
+<div class="loading_div">
+    <div class="spinner-border text-primary loading_img" role="status" id="loading_img">
+        
+      </div>
+</div>
     <div class="m100">
-
         <div class="main-header">
             <h3 class="text-center">
                 نظام محاسبة بيلاروم
@@ -10,61 +14,62 @@
         <div class="container-lg home ">
             <div class="row">
                 <% if (admin || editor) { %>
-                    <a href="/invoices/create" class="home-link">
+                    <a href="/invoices/create" class="home-link" onclick="loading_s()">
                         <img src="/images/create.svg">
                         <p>انشاء فاتورة</p>
                     </a>
-                    <a href="/invoices" class="home-link">
+                    <a href="/invoices" class="home-link" onclick="loading_s()">
                         <img src="/images/bill.svg">
                         <p>الفواتير</p>
                     </a>
-                    <a href="/receipt" class="home-link">
+                    <a href="/receipt" class="home-link" onclick="loading_s()">
                         <img src="/images/receipt.svg">
                         <p>اذن الاستلام</p>
                     </a>
-                    <a href="/attendance" class="home-link">
+                    <a href="/attendance" class="home-link" onclick="loading_s()">
                         <img src="/images/attendance.svg">
                         <p>الحضور</p>
                     </a>
-                    <a href="/orders" class="home-link">
+                    <a href="/orders" class="home-link" onclick="loading_s()">
                         <img src="/images/order.svg">
                         <p>اوامر الشغل</p>
                     </a>
-                    <a href="/clients" class="home-link">
+                    <a href="/clients" class="home-link" onclick="loading_s()">
                         <img src="/images/team.svg">
                         <p>العملاء</p>
                     </a>
                     <% } %>
                         <% if (admin) { %>
-                            <a href="/workers" class="home-link">
+                            <a href="/workers" class="home-link" onclick="loading_s()">
                                 <img src="/images/user.svg">
                                 <p>العاملين</p>
                             </a>
-                            <a href="/products" class="home-link">
+                            <a href="/products" class="home-link" onclick="loading_s()">
                                 <img src="/images/box.svg">
                                 <p>المنتجات</p>
                             </a>
-                            <a href="/purchases" class="home-link">
+                            <a href="/purchases" class="home-link" onclick="loading_s()">
                                 <img src="/images/purchases.svg">
                                 <p>المشتريات</p>
                             </a>
-                            <a href="/safe" class="home-link">
+                            <a href="/safe" class="home-link" onclick="loading_s()">
                                 <img src="/images/safe.png">
                                 <p>الخزنة</p>
                             </a>
-                            <a href="/analysis" class="home-link">
+                            <a href="/analysis" class="home-link" onclick="loading_s()">
                                 <img src="/images/pie-chart.svg">
                                 <p>تحليل البيانات</p>
                             </a>
-                            <a href="/printfile" class="home-link">
+                            <a href="/printfile" class="home-link" onclick="loading_s()">
                                 <img src="/images/statement.svg">
                                 <p> كشف حساب</p>
                             </a>
-                            <a href="/loan" class="home-link">
+                            
+                            <a href="/loan" class="home-link" onclick="loading_s()">
                                 <img src="/images/loan.svg">
                                 <p>السلف</p>
                             </a>
-                            <a href="/settings/" class="home-link">
+                            <a href="/settings/" class="home-link" onclick="loading_s()">
                                 <img src="/images/settings.svg">
                                 <p>المستخدمين</p>
                             </a>
@@ -74,6 +79,13 @@
         </div>
     </div>
 
+
+    <script>
+        function loading_s() {
+            document.getElementById("loading_img").style.display  = "block";
+        }
+    </script>
+ 
 
 
     <%- include('./components/footer') %>
