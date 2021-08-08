@@ -255,6 +255,13 @@ input[type="number"] {
   margin-bottom: 30px;
 }
 
+.card {
+  background-color: #fff;
+  padding: 15px 10px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  width: 100%;
+}
 .profile-card img {
   width: 150px;
   height: 150px;
@@ -278,7 +285,17 @@ input[type="number"] {
 .bill-row {
   padding: 5px 0 10px;
   font-weight: 500;
-  border-bottom: 1px solid #eee;
+}
+.analysis-card {
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: #6d78ad;
+  border-radius: 15px;
+  color: beige;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .p-form-row {

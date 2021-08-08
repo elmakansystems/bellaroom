@@ -1,14 +1,23 @@
 <div class="bill-card attendance-row">
                                
     <div class="projects">
-        <h3>قيمة الباقي خلال الشهر </h3>
-        <% var total_price = 0 %> 
-        <% invoices.forEach(element => { %>
-         <% total_price = element.total_price + total_price %> 
-         <% }) %>
-         <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= total_price %> </h2>
+        <h3>قيمة الباقي خلال الفترة المحددة </h3>
+      
+        <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= analysis.change_of_period_sb.sum %> </h2>
+            
+            </div> 
+</div>
 
-</div> 
+
+</div>
+<div class="bill-card attendance-row">
+                               
+    <div class="projects">
+        <h3>قيمة الباقي الكلي </h3>
+      
+        <div class="counter-box "> <i class="fa fa-shopping-cart"></i> <h2 class="counter"><%= analysis.change_of_all_sb.sum %> </h2>
+            
+            </div> 
 </div>
 
 
