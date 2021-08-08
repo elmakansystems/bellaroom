@@ -1,56 +1,47 @@
-<div class="bill-card">
-    <header class="text-center">
-        <!-- <img src="/images/profile.png" class="bill-img" alt="الفاتورة" title="الفاتورة"> -->
-    </header>
+<div class="bill-card   ">
     <div class="text-center projects ">
         <h3>
 
             العملاء المميزين
         </h3>
     </div>
+    <div class="analysis-card">
 
-    <div class="row my-2 bill-row analysis">
-        <div class="col-md-6 col-lg-6 col-sm-6 col-6  text-center">
-            <h4>
-
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h4>
+            <center>
                 العميل المميز 
-            </h4>
-        </div>
-        <div class="col-md-6 col-lg-6 col-sm-6 col-6  text-center" >
-            <h4>
-
-                عدد الفواتير الخاصة بالعميل المميز
-            </h4>
-        </div>
-    </div>
-
-    <div class="row justify-content-between p-2">
-        <div class="profile-card salary-row col-md-6 col-6 col-lg-6 col-sm-6">
-            <div class="row my-2 ">
-                <div class="text-center">
-                  
-                    
-                    <h4 >
-                        <center>
-
-                            <%= analysis.client_of_period %>
-                        </center>
-                    </h4>
-                </div>
-            </div>
-        </div>
-        <div class="profile-card salary-row col-md-6 col-6 col-lg-6 col-sm-6">
-            <div class="row my-2 ">
-                <div class="text-center">
-               
-                    <h1 class="counter">
-                        <%= analysis.client_of_period_num %>
-                    </h1>
-                </div>
+        </center>
+    </h4>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1>
+                    <%= analysis.client_of_period %> 
+                    <%= console.log(analysis.client_of_period) %>
+                </h1>
             </div>
         </div>
     </div>
-    
-
-
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h4>
+        <center>
+            عدد الفواتير الخاصة بالعميل المميز
+    </center>
+</h4>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.client_of_period_num %>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </div>
