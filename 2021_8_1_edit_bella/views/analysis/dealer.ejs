@@ -1,56 +1,48 @@
-<div class="bill-card">
-    <header class="text-center">
-        <!-- <img src="/images/profile.png" class="bill-img" alt="الفاتورة" title="الفاتورة"> -->
-    </header>
+<div class="bill-card   ">
     <div class="text-center projects ">
         <h3>
 
             البائعين المميزين
         </h3>
     </div>
+    <div class="analysis-card">
 
-    <div class="row my-2 bill-row analysis">
-        <div class="col-md-6 col-lg-6 col-sm-6 col-6  text-center">
-            <h4>
-
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h4>
+            <center>
                 البائع المميز 
-            </h4>
-        </div>
-        <div class="col-md-6 col-lg-6 col-sm-6 col-6  text-center" >
-            <h4>
-
-                عدد الفواتير التي قام ببيعها
-            </h4>
-        </div>
-    </div>
-
-    <div class="row justify-content-between p-2">
-        <div class="profile-card salary-row col-md-6 col-6 col-lg-6 col-sm-6">
-            <div class="row my-2 ">
-                <div class="text-center">
-                  
-                    
-                    <h4 >
-                        <center>
-
-                            <%= analysis.dealer_name[0].name %>
-                        </center>
-                    </h4>
-                </div>
-            </div>
-        </div>
-        <div class="profile-card salary-row col-md-6 col-6 col-lg-6 col-sm-6">
-            <div class="row my-2 ">
-                <div class="text-center">
-               
-                    <h1 class="counter">
-                        <%= analysis.dealer_of_period_num %>
-                    </h1>
-                </div>
+        </center>
+    </h4>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h4>
+                    <%= analysis.dealer_name[0].name %>
+                 
+                </h4>
             </div>
         </div>
     </div>
-    
-
-
 </div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h4>
+        <center>
+            عدد الفواتير التي قام ببيعها
+        </center>
+</h4>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.dealer_of_period_num %>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
