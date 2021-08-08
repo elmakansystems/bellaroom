@@ -254,7 +254,9 @@ input[type="number"] {
   box-shadow: 10px 10px 10px #eee;
   margin-bottom: 30px;
 }
-
+.bill-row h5 {
+  color: beige !important;
+}
 .card {
   background-color: #fff;
   padding: 15px 10px;
