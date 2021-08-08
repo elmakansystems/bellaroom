@@ -312,6 +312,7 @@ exports.current_month_data = async(req, res) => {
         }else{
             var most_ebills_all_name = 'no bills'
         }
+        console.log( most_ebills_all_name)
 
         // السلف
         let loans = await Loan.find({ change: { $gt: 0 } }).select("name change date_added").sort('-_id')

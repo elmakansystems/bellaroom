@@ -1,0 +1,92 @@
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+        رواتب الموظفين
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+     إجمالي الرواتب خلال الفترة
+        </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.ebills_of_period_sb.sum%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+           إجمالي الرواتب الكلية  
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1 class="counter">
+                <%= analysis.ebills_of_all_sb.sum%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bill-card   ">
+    <div class="text-center projects ">
+        <h3>
+
+        اسم الموظف الحاصل علي أعلي راتب
+        </h3>
+    </div>
+    <div class="analysis-card">
+
+   
+    <div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row ">
+        <h5>
+            <center>
+                اسم الموظف الحاصل علي أعلي راتب خلال الفترة
+            </center>
+    </h5>
+    <div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+        <div class="row my-2 ">
+            <div class="text-center">
+                
+                <h1 >
+                    <%= analysis.most_ebills_period_name.name%>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" col-md-6 col-6 col-lg-6 col-sm-6  my-2 bill-row">
+    <h5>
+        <center>
+            اسم الموظف الحاصل علي أعلي راتب خلال الفترة الكلية  
+    </center>
+</h5>
+<div class="card  salary-row col-md-6 col-6 col-lg-6 col-sm-6 ">
+    <div class="row my-2 ">
+        <div class="text-center">
+            
+            <h1>
+                <%= analysis.most_ebills_all_name[0].name%>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
