@@ -1,53 +1,74 @@
 
 <style>
-    .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1111;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+  .sidenav {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1111;
+top: 0;
+left: 0;
+background-color: #111;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-  margin: 0 15px 0 0;
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 18px;
+color: #818181;
+display: block;
+transition: 0.3s;
+margin: 0 15px 0 0;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
 }
 
 .marg{
-    margin: 0 50px;
+  margin: 0 50px;
 }
 
 @media screen and (max-width: 991.5px) {
-    .marg{
-        display: none;
-    }
-    
+  .marg{
+      display: none;
+  }
+  
 }
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+
+#mySidenav::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #000;
+}
+
+#mySidenav::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #000;
+}
+
+#mySidenav::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #F6A367;
 }
 
 </style>
@@ -56,37 +77,52 @@
 
 
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/invoices/create">انشاء فاتورة</a>
-    
-    <a href="/invoices">الفواتير</a>
-    <a href="/receipt">اذن الاستلام</a>
-    <a href="/products">المنتجات</a>
-    <a href="/purchases">المشتريات</a>
-    <a href="/clients/change">المتبقي</a>
-    <a href="/orders">اوامر الشغل</a>
-    <a href="/safe">الخزنة</a>
-    <a href="/printfile">كشف حساب</a>
-    <a href="/attendance">الحضور</a>
-    <a href="/workers/d">البائعين</a>
-    <a href="/workers/e">الموظفين</a>
-    <a href="/loan">السلف</a>
-    <a href="/workers/d/deactivated">البائعين الموقفين عن العمل</a>
-    <a href="/workers/e/deactivated">الموظفين الموقفين عن العمل</a>
-    
-  </div>
+<div class="img_cont" style="width: 100%; text-align: center;">
+  <img src="/images/logo.png" alt="" width="60px" height="60px" >
+</div>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/safe">الخزنة</a>
+  <a href="/printfile">كشف حساب</a>
+  <a href="/analysis">تحليل البيانات</a>
+  <hr style="border: #818181 1px solid;">
+  <a href="/invoices/create">انشاء فاتورة</a>
+  <a href="/receipt">اذن الاستلام</a>
+  <a href="/attendance/today">تسجيل حضور اليوم</a>
+  <hr style="border: #818181 1px solid;">
   
-  <div class="marg">
+  <a href="/invoices">الفواتير</a>
+  <a href="/orders/view">اوامر الشغل</a>
+  <a href="/attendance/all">الحضور</a>
+  <hr style="border: #818181 1px solid;">
+  <a href="/products">المنتجات</a>
+  <a href="/purchases">المشتريات</a>
+  
+  <hr style="border: #818181 1px solid;">
+  <a href="/clients/change">المتبقي</a>
+  <a href="/loan">السلف</a>
+  <hr style="border: #818181 1px solid;">
+  
+  <a href="/workers/d">البائعين</a>
+  <a href="/workers/e">الموظفين</a>
+  <a href="/workers/d/deactivated">البائعين الموقفين عن العمل</a>
+  <a href="/workers/e/deactivated">الموظفين الموقفين عن العمل</a>
+  <a href="/settings/"> المستخدمين  </a>
+  <hr style="border: #818181 1px solid;">
+  
+  <a href="/logout" class="btn btn-danger my-3" style="color: #fff; width: 80%; margin: auto;">تسجيل الخروج</a>
+</div>
 
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-  </div>
-  
-  <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "350px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
-  </script>
+<div class="marg">
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "350px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>

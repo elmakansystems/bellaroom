@@ -162,12 +162,8 @@ exports.current_month_data = async(req, res) => {
        // اجمالي المدفوع خلال فترة معينة
        let paid_of_period_sb = totalSum(month_invoices , "paid")
        
-       
        const sold_products = await InvProduct.find({ date_added: { $gte: start, $lte: end }}).select('inv_total product_id date_added')
-       
-       
-       
-    
+
        // محتاج يتعدل التاريخ او نشوف طريقة حل لمشكلة التاريخ دي يا باشا 
         const order = await Order.find({ dateAdded: { $gte: start , $lte: end } })
         
@@ -312,8 +308,7 @@ exports.current_month_data = async(req, res) => {
         }else{
             var most_ebills_all_name = 'no bills'
         }
-        console.log( ebills_of_period_sb)
-
+      
         // السلف
         let loans = await Loan.find({ change: { $gt: 0 } }).select("name change date_added").sort('-_id')
         let loans_of_period_sb = totalSum_in_data(loans , 'change')
@@ -330,6 +325,7 @@ exports.current_month_data = async(req, res) => {
         }else{
             var most_loans_all_name = 'no Loan'
         }
+        console.log(loans_of_period_sb)
 
 
         
