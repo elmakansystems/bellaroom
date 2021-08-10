@@ -3,55 +3,58 @@
     
    
     
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <!-- <caption>List of invoices</caption> -->
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">اسم المنتج</th>
-                <th scope="col">المورد</th>
-                <th scope="col">رقم الفاتورة</th>
-                <th scope="col">جملة</th>
-                <th scope="col">بيع</th>
-                <th scope="col">ربح</th>
-              </tr>
-            </thead>
-            <tbody>
-
-
-               
-
-
-
-                <% sold.forEach(async(p , i) => { %>
-                         <% invoices.forEach(elem => { %>
-                          <% if (p._id.toString() === elem.inv_products.toString() ) { %>
-                            <% serial = elem.invId %> 
-                        <% } %>
-                        <% }) %>
-                         <% products.forEach(elem => { %>
-                        <% if (p.product_id.toString() === elem._id.toString() ) { %>
-                            <% dealer = elem.dealer %> 
-                         <% name = elem.name %> 
-                         <% } %>
-                         <% }) %> 
-
-                    <tr>
-                        <th scope="row"><%= i %> </th>
-                        <td scope="row"><%= name %> </td>
-                        <td scope="row"><%= dealer %> </td>
-                        <td scope="row"><%= serial %> </td>
-                        
-                     
-                        <td><%= p.current_price %></td>
-                        <td><%= p.inv_price %></td>
-                        <td><%= p.inv_price -  p.current_price %></td>
-                      </tr>
-                    <% }) %>
-            </tbody>
-        </table>
-      </div>
+  <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+          <!-- <caption>List of invoices</caption> -->
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">اسم المنتج</th>
+              <th scope="col">المورد</th>
+              <th scope="col">رقم الفاتورة</th>
+              <th scope="col">جملة</th>
+              <th scope="col">بيع</th>
+              <th scope="col">ربح</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% var total_current_price  = 0%> 
+            <% var total_inv_price = 0%> 
+           
+              <% sold.forEach(async(p , i) => { %>
+                       <% invoices.forEach(elem => { %>
+                        <% if (p._id.toString() === elem.inv_products.toString() ) { %>
+                          <% serial = elem.invId %> 
+                      <% } %>
+                      <% }) %>
+                       <% products.forEach(elem => { %>
+                      <% if (p.product_id.toString() === elem._id.toString() ) { %>
+                        <% dealer = elem.dealer %> 
+                       <% name = elem.name %> 
+                       <% } %>
+                       <% }) %>
+                       <tr>
+                      <th scope="row"><%= i+1 %> </th>
+                      <td scope="row"><%= name %> </td>
+                      <td scope="row"><%= dealer %> </td>
+                      <td scope="row"><%= serial %> </td>
+                      <td><%= p.current_price %></td>
+                      <% total_current_price = total_current_price + p.current_price %> 
+                      <td><%= p.inv_price %></td>
+                      <% total_inv_price = total_inv_price + p.inv_price %>
+                      <td><%= p.inv_price -  p.current_price %></td>
+                    </tr>
+                  <% }) %>
+          </tbody>
+      
+            <th scope="col"></th>
+            <th colspan="3">الاجـــــــــــمــــــــــالــــــي</th>
+            <th scope="col"><%= total_current_price %> </th>
+            <th scope="col"><%= total_inv_price %></th>
+            <th scope="col"><%= total_inv_price - total_current_price %> </th>
+           
+      </table>
+    </div>
 
 
 </div>

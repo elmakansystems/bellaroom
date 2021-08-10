@@ -79,11 +79,14 @@ margin-left: 50px;
 <div id="mySidenav" class="sidenav">
 <div class="img_cont" style="width: 100%; text-align: center;">
   <img src="/images/logo.png" alt="" width="60px" height="60px" >
+  <div class="user_name" style="text-align: center;">
+    <span class="btn btn-dark mx-2 text-white"> <%= user.name %> </span>
+  </div>
 </div>
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="/safe">الخزنة</a>
   <a href="/printfile">كشف حساب</a>
-  <a href="/analysis">تحليل البيانات</a>
+  <!-- <a href="/analysis">تحليل البيانات</a> -->
   <hr style="border: #818181 1px solid;">
   <a href="/invoices/create">انشاء فاتورة</a>
   <a href="/receipt">اذن الاستلام</a>

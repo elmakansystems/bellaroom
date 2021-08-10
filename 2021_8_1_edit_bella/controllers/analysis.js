@@ -325,7 +325,7 @@ exports.current_month_data = async(req, res) => {
         }else{
             var most_loans_all_name = 'no Loan'
         }
-        console.log(loans_of_period_sb)
+        
 
 
         
