@@ -10,16 +10,18 @@ const product_schema = mongoose.Schema({
         type: String,
         default: 'collection'
     },
-    dealer: String,
-    phone: {
-        type: Number,
-        default: 0
+    dealer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'supplier'
     },
     price: {
         type: Number,
         default: 0
     },
-
+    paid: {
+        type: Number,
+        default: 0
+    },
     date_added: {
         type: Date,
         default: new Date(Date.now())

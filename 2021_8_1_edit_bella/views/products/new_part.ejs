@@ -1,80 +1,180 @@
-<%- include('../components/head' , {title : 'تسجيل المنتجات الجديدة'}) %>
-<%- include('../components/right-sidebar') %>
-<%- include('../components/left-sidebar') %>
-<div class="m100">
-     <div class="main-header">
-        <h3 class="text-center">
-            تسجيل قطعة الجديدة
-        </h3>
-    </div>
-    <div id="products-new" dir="rtl">
-        <div class="container-lg">
-            <div class="product-forms my-3">
-                <div class="product-form-container bg-e ">
-                    <form action="/products/new" class="p-3" id="p-form" method="POST">
-                        <input type="text" class="form-control" id="part_type" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="part">
-                        <div class="form-fields ">
+<%- include('../components/head' , {title : 'فاتورة مورد' }) %>
+
+    <div class="m100">
+        <div class="main-header">
+            <h3 class="text-center">
+                فاتورة مورد
+            </h3>
+        </div>
+        <div class="data_container" style="display: none">
+            <select class="form-select products-selector" name="products[]" aria-label="Default select example"
+            required>
+            <option value selected>اختر المنتج</option>
+            <% supplier.forEach(s=> { %>
+            <% products.forEach(p=> { %>
+                <% if (p.dealer == s._id.toString()) { %>
+                    <option value="<%= p._id %>">
+                        <%= p.name %> <pre>|</pre><pre>|</pre> <%= s.name %>
+                    </option>
+                    <% } %>
+                    <% }) %>
+                    <% }) %>
+            </select>
+        </div>
+
+
+        <div id="products-new" dir="rtl">
+            <div class="container-lg">
+                <div class="product-forms my-3">
+                    <div class="product-form-container bg-e ">
+                        <form action="/products/old_new_product" class="p-3" id="p-form" method="POST">
                             <div class="row mb-3">
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="name" class="form-label"> القطعة</label>
-                                    <input type="text" class="form-control" id="name" name="names[]" placeholder="سفرة كنزي">
+
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                    <label for="d_tt" class="mb-3">اجمالي المطلوب سداده</label>
+                                    <input type="text" class="form-control" id="price-total" name="total_need">
                                 </div>
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 ">
-                                    <label for="d_name" class="form-label">المورد</label>
-                                    <input type="text" class="form-control" id="d_name" name="dealers[]" placeholder="احمد">
-                                </div>
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="d_phone" class="form-label">رقم المورد</label>
-                                    <input type="number" class="form-control" id="d_phone" name="phones[]" placeholder="01234567890">
-                                </div>
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="unit_price" class="form-label"> جملة القطعة</label>
-                                    <input type="number" class="form-control" id="d_unit" name="prices[]" placeholder="100">
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                    <label for="d_tt" class="mb-3">اجمالي  المدفوع</label>
+                                    <input type="text" class="form-control" name="total_paid">
                                 </div>
                             </div>
-                        </div>
-                        <button class="btn btn-success text-white ">حفظ البيانات</button>
-                    </form>
-                </div>
-            </div>
-            <button class="btn btn-warning text-white my-2" id="add-new-product">اضافة خانة جديدة</button>
+                            <div class="form-fields " style="margin: auto;">
+                                <div class="row mb-3 product" data-index="0">
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2 ">
+                                        <label for="d_name" class="form-label">المنتج</label>
+                                        <select class="form-select products-selector" name="products[]" aria-label="Default select example"
+                                        required>
+                                        <option value selected>اختر المنتج</option>
+                                        <% supplier.forEach(s=> { %>
+                                        <% products.forEach(p=> { %>
+                                            <% if ( s._id.toString()==p.dealer ) { %>
+                                                <option value="<%= p._id %>">
+                                                    <%= p.name %> <pre>|</pre> <pre>|</pre> <%= s.name %>                                                </option>
+                                            <% } %>
+                                                <% }) %>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                        <label for="name" class="form-label"> العدد</label>
+                                        <input type="text" class="form-control" id="count-0" name="count[]"
+                                            placeholder="العدد">
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                        <label for="name" class="form-label">سعر الوحدة</label>
+                                        <input type="text" class="form-control" id="unit_prices-0" name="unit_prices[]"
+                                            placeholder="سعر الوحدة">
+                                    </div>
 
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                        <label for="name" class="form-label"> المطلوب سداده للمنتج </label>
+                                        <input type="text" class="form-control sums" id="total-0" disabled placeholder="0">
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-success text-white ">حفظ البيانات</button>
+                        </form>
+                    </div>
+                </div>
+                <button class="btn btn-warning text-white my-2" id="add-new-product">اضافة خانة جديدة</button>
+
+            </div>
         </div>
     </div>
-</div>
-   
+
 
     <script>
         let n = 1;
         document.getElementById("add-new-product").addEventListener("click", () => {
             let template = `
-            <div class="my-2">
-                <hr />
-                <input type="text" class="form-control" id="part_type-${n}" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="part">
-                        <div class="row mb-3">
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="name-${n}" class="form-label">القطعة</label>
-                                <input type="text" class="form-control" id="name-${n}" name="names[]" placeholder="سفرة كنزي">
-                            </div>
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="d_name-${n}" class="form-label">المورد</label>
-                                <input type="text" class="form-control" id="d_name-${n}" name="dealers[]" placeholder="احمد">
-                            </div>
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="d_phone-${n}" class="form-label">رقم المورد</label>
-                                <input type="number" class="form-control" id="d_phone-${n}" name="phones[]" placeholder="01234567890">
-                            </div>
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="unit_price-${n}" class="form-label">جملة القطعة</label>
-                                <input type="number" class="form-control" id="d_unit-${n}" name="prices[]" placeholder="100">
-                            </div>
+        <div class="my-2 product" data-index="${n}">
+            <hr/>
+            <div class="row mb-3">
+                <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2 ">
+                    <label for="d_name" class="form-label">المنتج</label>
+                    ${document.querySelector(".data_container").innerHTML
+                } 
+                    </div>
+                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                        <label for="name" class="form-label"> العدد</label>
+                        <input type="text" class="form-control" id="count-${n}" name="count[]"
+                        placeholder="العدد" >
                         </div>
-               
-                </div>
-            `
-            n++
-            document.querySelector(".form-fields").insertAdjacentHTML("beforeend", template)
-        })
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                            <label for="name" class="form-label">سعر الوحدة</label>
+                            <input type="text" class="form-control" id="unit_prices-${n}" name="unit_prices[]"
+                            placeholder="سعر الوحدة" >
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 mt-2">
+                                <label for="name" class="form-label"> المطلوب سداده للمنتج </label>
+                                <input type="text" class="form-control sums" id="total-${n}" disabled placeholder="0">
+                                </div>
+                               
+                                    </div>
+                                    
+
+
+        `;
+            n++;
+            document
+                .querySelector(".form-fields")
+                .insertAdjacentHTML("beforeend", template);
+        });
+
+
+
+
+
+        window.addEventListener("keyup", (e) => {
+            let elm = e.target.closest(".product");
+            let index = elm.getAttribute("data-index");
+            let _unit = document.getElementById(`unit_prices-${index}`);
+            _unit.addEventListener("keyup", (e) => {
+                let _price = document.getElementById(`count-${index}`).value;
+                let _total = document.getElementById(`total-${index}`);
+                let price = parseInt(_price);
+                if(price * _unit.value != NaN){_total.value = (price * _unit.value).toFixed(2);}
+                if (_total.value <= 0) _total.style.background = "#fd8b93";
+                else if(_total.value.toString() == "NaN")_total.style.background = "#fd8b93";
+                else _total.style.background = "#e9ecef";
+
+            });
+            let _price = document.getElementById(`count-${index}`);
+            _price.addEventListener("keyup", (e) => {
+                let _unit = document.getElementById(`unit_prices-${index}`).value;
+                let _total = document.getElementById(`total-${index}`);
+                let unit = parseInt(_unit);
+                if(_price.value * unit != NaN){
+                    _total.value = (_price.value * unit).toFixed(2);
+                }
+                if (_total.value <= 0) _total.style.background = "#fd8b93";
+                else if(_total.value.toString() == "NaN")_total.style.background = "#fd8b93";
+                else _total.style.background = "#e9ecef";
+
+            });
+            update_totals(".sums", "price-total");
+        });
+     
+        const update_totals = (elms, out) => {
+    const sum_array = [];
+    let sum;
+    const target_elms = document.querySelectorAll(elms);
+    target_elms.forEach((elm) => {
+      let int_elm = parseInt(elm.value);
+      if (int_elm !== NaN && int_elm >= 0) sum_array.push(int_elm);
+    });
+    if (sum_array.length > 0) {
+      sum = sum_array.reduce((a, b) => a + b, 0);
+      document.getElementById(out).value = sum.toFixed(0);
+    }
+    return sum;
+  };
+        
     </script>
 
     <%- include('../components/footer') %>

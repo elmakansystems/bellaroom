@@ -658,8 +658,14 @@ input[type="number"] {
   right: 60px;
   display: none;
 }
+<<<<<<< Updated upstream
 
 .df {
   display: flex;
+}
+>>>>>>> Stashed changes
+=======
+.bh:hover {
+  color: blue !important;
 }
 >>>>>>> Stashed changes

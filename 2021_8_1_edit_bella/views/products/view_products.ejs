@@ -35,10 +35,21 @@
                                 <%= product.name %>
                             </div>
                             <div class="col-md-2 order-list-item">
-                                <%= product.dealer %>
+                                <% supplier.forEach(element => { %>
+                                    <% if (product.dealer == element._id.toString()) { %>
+                                        <%= element.name %>
+                                        <% } else { %>
+                                            
+                                         <% product.dealer %> 
+                                    <% } %>
+                                <% }) %>
                             </div>
                             <div class="col-md-2 order-list-item">
-                                <%= product.phone %>
+                                <% supplier.forEach(element => { %>
+                                    <% if (product.dealer == element._id.toString()) { %>
+                                        <%= element.phone %>
+                                    <% } %>
+                                <% }) %>
                         </div>
                         <div class="col-md-2 order-list-item">
                             <%= product.price %>

@@ -1,0 +1,78 @@
+<%- include('../components/head' , {title : 'تعديل منتج '}) %>
+<%- include('../components/right-sidebar') %>
+<%- include('../components/left-sidebar') %>
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تعديل المورد
+        </h3>
+    </div>
+    <div id="products-edit" dir="rtl">
+        <div class="container-lg">
+            <div class="product-forms my-3">
+                <div class="product-form-container bg-e ">
+                    <form action="/suppliers/edit" class="p-3" id="p-form" method="POST">
+                        <input type="hidden" name="id" value="<%= product._id %>">
+                        <input type="hidden" name="supplierid" value="<%= supplier._id %>">
+                        <div class="form-fields">
+                            <div class="row mb-3">
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-2 my-3">
+                                    <label for="name" class="form-label"> المورد</label>
+                                    <input type="text" class="form-control" id="name" name="names[]" value="<%=supplier.name%>" placeholder="<%=supplier.name%>">
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 my-3">
+                                    <label for="name" class="form-label"> اسم المنتج</label>
+                                    <input type="text" class="form-control"  name="product_name[]" value="<%=product.name%>" placeholder="<%=product.name%>">
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 my-3">
+                                    <label for="d_name" class="form-label">العنوان</label>
+                                    <input type="text" class="form-control" id="d_name" name="addres[]" value="<%=supplier.address%>" placeholder="<%=supplier.address%>">
+                                </div>
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-2 my-3">
+                                    <label for="d_phone" class="form-label">رقم المورد</label>
+                                    <input type="number" class="form-control" id="d_phone" name="phones[]" value="<%=supplier.phone%>" placeholder="<%=product.phone%>">
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 my-3">
+                                    <label for="unit_price" class="form-label"> جملة المنتج</label>
+                                    <input type="number" class="form-control"  disabled value="<%=product.price%>" placeholder="<%=product.price%>">
+                                    <input type="number" class="form-control" name="prices[]" hidden value="<%=product.price%>" placeholder="<%=product.price%>">
+                                   
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 my-3">
+                                    <label for="unit_price" class="form-label"> المدفوع القديم </label>
+                                    <input type="number" class="form-control" disabled value="<%=product.paid%>" placeholder="<%=product.paid%>">
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 my-3 ">
+                                    <label for="unit_price" class="form-label">  المطلوب سداده </label>
+                                    <input type="number" class="form-control" disabled id="need"  value="<%=product.price - product.paid %>">
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 my-3 ">
+                                    <label for="unit_price" class="form-label"> المدفوع الجديد </label>
+                                    <input type="number" class="form-control" id="paid" name="paids[]" value="<%=product.price - product.paid %>">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white " type="submit" onclick="enableedit()">تعديل البيانات</button>
+                    </form>
+                    <button class="btn btn-danger text-white  mx-3 mb-3" onclick="enableedit()">تقعيل تعديل البيانات </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    let dis = document.getElementById('need').value
+    if(dis == 0){
+        document.getElementById('paid').disabled = true;
+    }
+   function enableedit(){
+    document.getElementById('paid').disabled = false;
+    }
+</script>
+
+
+    <%- include('../components/footer') %>

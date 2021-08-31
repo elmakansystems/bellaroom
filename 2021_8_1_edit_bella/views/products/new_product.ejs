@@ -7,38 +7,77 @@
             تسجيل المنتجات الجديدة
         </h3>
     </div>
+
+
+    <div class="data_container" style="display: none">
+        <select
+        class="form-select products-selector"
+        name="dealers[]"
+        aria-label="Default select example"
+      >
+        <option selected>اختر المورد</option>
+        <% supplier.forEach(p => { %>
+        <option value="<%= p._id %>"><%= p.name %></option>
+        <% }) %>
+      </select>
+      </div>
+
+
+
+
+
     <div id="products-new" dir="rtl">
         <div class="container-lg">
             <div class="product-forms my-3">
                 <div class="product-form-container bg-e ">
                     <form action="/products/new" class="p-3" id="p-form" method="POST">
-                        <input type="text" class="form-control" id="part_type-${n}" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="collection">
 
                         <div class="form-fields ">
                             <div class="row mb-3">
                                 <div class="col-5 col-sm-5 col-md-5 col-lg-5">
                                     <label for="name" class="form-label"> المنتج</label>
-                                    <input type="text" class="form-control" id="name" name="names[]" placeholder="سفرة كنزي">
+                                    <input type="text" class="form-control" id="name" name="names[]" placeholder="سفرة كنزي" >
                                 </div>
                                 <div class="col-5 col-sm-5 col-md-5 col-lg-5 ">
                                     <label for="d_name" class="form-label">المورد</label>
-                                    <input type="text" class="form-control" id="d_name" name="dealers[]" placeholder="احمد">
-                                </div>
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="d_phone" class="form-label">رقم المورد</label>
-                                    <input type="number" class="form-control" id="d_phone" name="phones[]" placeholder="01234567890">
-                                </div>
-                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                    <label for="unit_price" class="form-label"> جملة المنتج</label>
-                                    <input type="number" class="form-control" id="d_unit" name="prices[]" placeholder="100">
-                                </div>
+                                    <!-- <input type="text" class="form-control" id="d_name" name="dealers[]" placeholder="احمد" value="<%= supplier[0]._id%> "> -->
+                                    <select
+                                    class="form-select products-selector"
+                                    name="dealers[]"
+                                    aria-label="Default select example"
+                                    required
+                                    >
+                                    <option value selected>اختر المورد</option>
+                                    <% supplier.forEach(p => { %>
+                                    <option value="<%= p._id %>"><%= p.name %></option>
+                                    <% }) %>
+                                </select>
                             </div>
-                        </div>
+                            </div>
+                            
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 my-3">
+                                    <label for="d_name" class="form-label">ما هو نوع المنتج</label>
+
+                                <select
+                                class="form-select products-selector"
+                                name="part_type[]"
+                                aria-label="Default select example"
+                                required
+                              >
+                                <option value selected>اختر النوع</option>
+                                <option value="collection">منتج كامل</option>
+                                <option value="part">قطعة</option>
+                              </select>
+                              </div>
+                            </div>
+                               
+                          
+                     
                         <button class="btn btn-success text-white ">حفظ البيانات</button>
                     </form>
                 </div>
+                <button class="btn btn-warning text-white my-2" id="add-new-product">اضافة خانة جديدة</button>
             </div>
-            <button class="btn btn-warning text-white my-2" id="add-new-product">اضافة خانة جديدة</button>
 
         </div>
     </div>
@@ -51,8 +90,6 @@
             let template = `
             <div class="my-2">
                 <hr />
-                <input type="text" class="form-control" id="part_type-${n}" name="part_type[]" placeholder="سفرة كنزي" style="display:none" value="collection">
-
                         <div class="row mb-3">
                             <div class="col-5 col-sm-5 col-md-5 col-lg-5">
                                 <label for="name-${n}" class="form-label">المنتج</label>
@@ -60,16 +97,15 @@
                             </div>
                             <div class="col-5 col-sm-5 col-md-5 col-lg-5">
                                 <label for="d_name-${n}" class="form-label">المورد</label>
-                                <input type="text" class="form-control" id="d_name-${n}" name="dealers[]" placeholder="احمد">
-                            </div>
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="d_phone-${n}" class="form-label">رقم المورد</label>
-                                <input type="number" class="form-control" id="d_phone-${n}" name="phones[]" placeholder="01234567890">
-                            </div>
-                            <div class="col-5 col-sm-5 col-md-5 col-lg-5">
-                                <label for="unit_price-${n}" class="form-label">جملة المنتج</label>
-                                <input type="number" class="form-control" id="d_unit-${n}" name="prices[]" placeholder="100">
-                            </div>
+                                ${document.querySelector(".data_container").innerHTML}                             </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="unit_price-${n}" class="form-label">جملة المنتج</label>
+                                    <input type="number" class="form-control" id="d_unit-${n}" name="prices[]" placeholder="100">
+                                    </div>
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                        <label for="d_phone-${n}" class="form-label">رقم المورد</label>
+                                        <input type="number" class="form-control" id="d_paid-${n}" name="paid[]" placeholder="01234567890">
+                                    </div>
                         </div>
                
                 </div>

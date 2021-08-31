@@ -1,0 +1,42 @@
+<%- include('../components/head' , {title : 'تسجيل مورد'}) %>
+
+<div class="m100">
+     <div class="main-header">
+        <h3 class="text-center">
+            تسجيل مورد 
+        </h3>
+    </div>
+    <div id="suppliers-new" dir="rtl">
+        <div class="container-lg">
+            <div class="product-forms my-3">
+                <div class="product-form-container bg-e ">
+                    <form action="/suppliers/new" class="p-3" id="p-form" method="POST">
+                        <input type="text" class="form-control" id="part_type" name="part_type" placeholder="أحمد خالد" style="display:none" value="part">
+                        <div class="form-fields ">
+                            <div class="row mb-3">
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="name" class="form-label"> المورد</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="أحمد خالد">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 ">
+                                    <label for="d_name" class="form-label">العنوان</label>
+                                    <input type="text" class="form-control" id="d_name" name="address" placeholder="القاهرة مدينة نصر">
+                                </div>
+                                <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                                    <label for="d_phone" class="form-label">رقم المورد</label>
+                                    <input type="number" class="form-control" id="d_phone" name="phones" placeholder="01234567890">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success text-white ">حفظ البيانات</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
+   
+
+    <%- include('../components/footer') %>

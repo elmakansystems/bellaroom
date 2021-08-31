@@ -1,0 +1,118 @@
+<%- include('../components/head' , {title : 'تفاصيل المنتج'}) %>
+
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            تفاصيل المورد
+        </h3>
+    </div>
+    <div class="container">
+        <div class="order-list" dir="rtl" >
+            <div class="row order-list-row" >
+                <div class="col-md-4 order-list-item">
+                    المورد
+                </div>
+                <div class="col-md-4 order-list-item">
+                    العنوان
+                </div>
+                <div class="col-md-4 order-list-item">
+                    رقم المورد
+                </div>
+              
+            </div>
+            <div class="row order-list-row">
+                <div class="col-md-4 order-list-item">
+                    <%=  supplier.name   %>
+                </div>
+                <div class="col-md-4 order-list-item">
+                    <%= supplier.address %>
+                </div>
+                <div class="col-md-4 order-list-item">
+                    <%= supplier.phone %>
+                </div>
+            </div>
+<div id="app">
+
+</div>
+            <div class="row table-row ">
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    اسم المنتج
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    المبلغ الكلي
+                </div>
+                
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    مبلغ المدفوع للمورد
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    الباقي
+                </div>
+            </div>
+            <% let total = 0 %> 
+            <% let total_paid = 0 %> 
+            <div class="sort_elem">
+
+                <% product.forEach(p => { %>
+                    <a class="no_edtid" href="/suppliers/view/<%= supplier._id%>/<%= p._id%>">
+                        <div class="row table-row ">
+                            <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                                <%= p.name %>
+                            </div>
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= p.price %>
+                            <% total =  total + p.price %>
+                        </div>
+                        
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= p.paid %>
+                            <% total_paid = total_paid + p.paid %>
+                        </div>
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= p.price -  p.paid %>
+                    </div>
+                </div>
+            </a>
+            <% }) %>
+                <div class="row table-row "  id="tot">
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        الاجمــــــالي
+                    </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <h6>المبلغ الكلي</h6>
+                        <%= total %>
+                    </div>
+                    
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <h6>المبلغ المدفوع</h6>
+                        <%= total_paid %>
+                    </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    <h6>المبلغ المتبقي</h6>
+                    <%= total -  total_paid %>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    
+
+
+
+  try {
+        let itm = document.getElementById("tot");
+  let cln = itm.cloneNode(true);
+  document.getElementById("app").appendChild(cln);
+  itm.style.display = "none"
+  } catch (error) {
+     console.log(error) 
+  }
+
+</script>
+<%- include('../components/footer') %>

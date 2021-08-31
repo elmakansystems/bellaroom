@@ -10,11 +10,27 @@
       class="form-select products-selector"
       name="products[]"
       aria-label="Default select example"
+      required
     >
-      <option selected>اختر المنتج</option>
-      <% products.forEach(p => { %>
-      <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+    <option value selected>اختر المنتج</option>
+    <% products.forEach(p => { %>
+      <% p_buy.forEach(elem => { %>
+        <% if (elem.p_id == p._id.toString()  && elem.inv_p_count > 0) { %>
+          <% console.log(elem.inv_p_count ) %> 
+          <option value="<%= p._id %>|<%= p.price %>|<%= elem.inv_p_count %> |<%= elem._id %>"><%= p.name %></option>
+         <% } %>
+        <% }) %>
       <% }) %>
+<<<<<<< Updated upstream
+=======
+      <% old_products.forEach(p => { %>
+        <% p_buy.forEach(elem => { %>
+          <% if (elem.p_id == p._id.toString()  && elem.inv_p_count > 0) { %>
+            <option value="<%= p._id %>|<%= elem.price %>|<%= elem.inv_p_count %> |<%= elem._id %>"><%= p.name %> / <%= elem.inv_p_count %> </option>
+           <% } %>
+          <% }) %>
+        <% }) %>
+>>>>>>> Stashed changes
     </select>
   </div>
   <div class="data_parts_container" style="display: none">
@@ -22,10 +38,15 @@
       class="form-select products-selector"
       name="products[]"
       aria-label="Default select example"
+      required
     >
-      <option selected>اختر القطعة</option>
+      <option value selected>اختر القطعة</option>
       <% parts.forEach(p => { %>
-      <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+        <% p_buy.forEach(elem => { %>
+          <% if (elem.p_id == p._id.toString()  && elem.inv_p_count > 0) { %>
+            <option value="<%= p._id %>|<%= elem.price %>|<%= elem.inv_p_count %> |<%= elem._id %>"><%= p.name %> / <%= elem.inv_p_count %> </option>
+           <% } %>
+          <% }) %>
       <% }) %>
     </select>
   </div>
@@ -52,8 +73,9 @@
           name="dealer"
           aria-label="Default select example"
           id="selecte_a"
+          required
         >
-          <option selected value="notactive">اختر البائع</option>
+          <option value selected value="notactive">اختر البائع</option>
           <% dealers.forEach(d => { %>
           <option value="<%= d._id %>"><%= d.name %></option>
           <% }) %>
@@ -125,13 +147,22 @@
               class="form-select products-selector"
               name="products[]"
               aria-label="Default select example"
+              required
             >
-              <option selected>اختر المنتج</option>
+              <option value selected>اختر المنتج</option>
               <% products.forEach(p => { %>
-              <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+               <% p_buy.forEach(elem => { %>
+          <% if (elem.p_id == p._id.toString()  && elem.inv_p_count > 0) { %>
+            <option value="<%= p._id %>|<%= elem.price %>|<%= elem.inv_p_count %> |<%= elem._id %>"><%= p.name %> / <%= elem.inv_p_count %> </option>
+           <% } %>
+          <% }) %>
               <% }) %>
               <% old_products.forEach(p => { %>
-              <option value="<%= p._id %>|<%= p.price %>"><%= p.name %></option>
+               <% p_buy.forEach(elem => { %>
+          <% if (elem.p_id == p._id.toString()  && elem.inv_p_count > 0) { %>
+            <option value="<%= p._id %>|<%= elem.price %>|<%= elem.inv_p_count %> |<%= elem._id %>"><%= p.name %> / <%= elem.inv_p_count %> </option>
+           <% } %>
+          <% }) %>
               <% }) %>
             </select>
           </div>

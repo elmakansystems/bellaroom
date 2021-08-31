@@ -24,11 +24,21 @@
                 <div class="col-md-4 order-list-item">
                     <%=  product.name   %>
                 </div>
-                <div class="col-md-4 order-list-item">
-                    <%= product.dealer %>
+                <div class="col-md-4 order-list-item bh">
+                    <% supplier.forEach(element => { %>
+                        <% if (product.dealer == element._id.toString()) { %>
+                            <a href="/suppliers/view/<%= element._id %>" style="text-decoration: none; color: black;" class="bh">
+                                <%= element.name %>
+                            </a>
+                        <% } %>
+                    <% }) %>
                 </div>
                 <div class="col-md-4 order-list-item">
-                    <%= product.phone %>
+                    <% supplier.forEach(element => { %>
+                        <% if (product.dealer == element._id.toString()) { %>
+                            <%= element.phone %>
+                        <% } %>
+                    <% }) %>
                 </div>
             </div>
 

@@ -3,7 +3,6 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 const mongoose = require("mongoose");
-
 require("colors");
 
 const cookieParser = require("cookie-parser");
@@ -76,6 +75,7 @@ app.use(
 );
 app.use("/clients/", isLogged, isActive, isBoth, require("./routes/clients"));
 app.use("/invoices/", isLogged, isActive, require("./routes/invoices"));
+app.use("/suppliers/", isLogged, isActive, require("./routes/suppliers"));
 app.use("/receipt/", isLogged, isActive, require("./routes/receipt"));
 app.use("/orders/", isLogged, isActive, require("./routes/custom-order"));
 app.use("/workers/", isLogged, isActive, require("./routes/workers"));
