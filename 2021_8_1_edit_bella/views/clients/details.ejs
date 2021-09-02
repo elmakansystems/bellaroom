@@ -1,0 +1,77 @@
+<%- include('../components/head' , {title : 'تفاصيل المنتج'}) %>
+<div class="m100">
+    <div class="main-header">
+        <h3 class="text-center">
+            تفاصيل التقسيط
+        </h3>
+    </div>
+    <div class="container">
+        <div class="order-list" dir="rtl">
+            <div class="row order-list-row">
+                <div class="col-md-3 order-list-item">
+                    اسم العميل
+                </div>
+                <div class="col-md-3 order-list-item">
+                    رقم العميل
+                </div>
+                <div class="col-md-3 order-list-item">
+                    رقم الفاتورة
+                </div>
+                <div class="col-md-3 order-list-item">
+                    اجمالي الفاتورة 
+                </div>
+            </div>
+            <div class="row order-list-row">
+                <div class="col-md-3 order-list-item">
+                    <%=  name  %>
+                </div>
+                <div class="col-md-3 order-list-item">
+                    <%= phone %>
+                </div>
+                <div class="col-md-3 order-list-item">
+                    <%= invId %>
+                </div>
+                <div class="col-md-3 order-list-item">
+                    <%= total_total %>
+                </div>
+            </div>
+
+            <div class="row table-row ">
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                   المدفوع 
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                   الباقي
+                </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                    التاريخ
+                   </div>
+                <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                 رقم الدفعة 
+                </div>
+            </div>
+            <% change.forEach(e => { %>
+                
+             <a href="/clients/payment-card/<%= e._id %> " style="text-decoration: none;">
+
+                 <div class="row table-row ">
+                     <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                         <%= e.payment_paid %> 
+                        </div>
+                        <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                            <%= e.payment_change %> 
+                    </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <%= e.date_added.toLocaleDateString('ar-EG-u-nu-latn')  %> 
+                    </div>
+                    <div class=" cell col-md-3 col-lg-3 col-sm-3 col-3 py-2 ">
+                        <%= e.serial %> 
+                    </div>
+                </div>
+            </a>
+                <% }) %>
+
+        </div>
+        </div>
+</div>
+   <%- include('../components/footer') %>

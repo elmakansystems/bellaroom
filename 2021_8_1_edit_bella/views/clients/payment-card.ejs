@@ -1,0 +1,80 @@
+<%- include('../components/head' , {title : "بيان قسط" }) %>
+<div class="m100">
+    
+    <div id="order">
+        <!-- <div class="water-mark">
+            <img src="/images/water.png" class="mark-img">
+        </div> -->
+    
+        <div class="order-form-container container-lg">
+            <div class="row inv_head py-2">
+                <div class="col">
+                    <img src="/images/logo.png" alt="logo">
+                </div>
+                <div class="col">
+                    <h3>أسامه غزال</h3>
+                    <p>
+                        الدور الاول مول فرنتشر تاون اما النادي الاهلي / القاهرة
+                    </p>
+    
+                </div>
+            </div>
+            <div dir="rtl" class="custom-order-form">
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">اسم العميل</label>
+                        <h5 class="order-view-item">
+                            <%= name %>
+                        </h5>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">رقم العميل</label>
+                        <h5 class="order-view-item">
+                            <%= phone %>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label">تاريخ البيان</label>
+                        <h5 class="order-view-item">
+                            <%= date.toLocaleDateString('ar-EG-u-nu-latn') %>
+                        </h5>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-md-6 col-6">
+                        <label class="form-label"> قيمة الفاتورة الاجمالي</label>
+                        <h5 class="order-view-item">
+                            <%= total_total %>
+                        </h5>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">رقم الدفعة</label>
+                    <h5 class="order-view-item">
+                        <%= serial %>
+                    </h5>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">قيمة الباقي المستحق</label>
+                    <h5 class="order-view-item">
+                        <%= payment_change %>
+                    </h5>
+                </div>
+         
+                <div class="mb-3">
+                    <label class="form-label"> قيمة القسط الحالي</label>
+                    <h5 class="order-view-item">
+                        <%= payment_paid %>
+                    </h5>
+                </div>
+                
+              
+               
+            </div>
+    
+         
+        </div>
+    </div>
+</div>
+
+    <%- include('../components/footer') %>

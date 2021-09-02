@@ -385,7 +385,9 @@ input[type="number"] {
   right: 0;
   cursor: pointer;
 }
-
+h1 {
+  background-image: url() no-repeat center center, cover;
+}
 .hr {
   background-color: #ddd;
   height: 2px;

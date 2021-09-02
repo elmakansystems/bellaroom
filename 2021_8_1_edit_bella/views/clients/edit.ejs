@@ -1,9 +1,9 @@
-<%- include('../components/head' , {title : ' تعديل الباقي '+name}) %>
-<%- include('../components/right-sidebar') %>
-<%- include('../components/left-sidebar') %>
+<%- include('../components/head' , {title : ' إضافة الباقي '+name}) %>
+
 <div class="main-header">
-  <h3 class="text-center">تعديل الباقي <%= name %></h3>
+  <h3 class="text-center">دفع باقي جديد</h3>
 </div>
+
 <div id="loan-new" dir="rtl">
   <div class="container-lg">
     <div class="loan-forms my-3">
@@ -15,7 +15,7 @@
           data-submit="false"
         >
           <input type="hidden" name="id" value="<%= _id %>" />
-          <input type="hidden" name="paid" value="<%= paid %>" />
+          <input type="hidden" name="last_paid" value="<%= last_paid %>" />
           <div class="form-fields my-3">
             <div class="row mb-3 botn">
               <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
@@ -32,18 +32,60 @@
                 />
               </div>
               <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                <label for="bill-serial" class="form-label">رقم الفاتورة</label>
+                <input
+                  required
+                  type="text"
+                  readonly
+                  class="form-control"
+                  id="loan-name"
+                  name="invId"
+                  value="<%= invId %>"
+                  placeholder="احمد"
+                />
+              </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                <label for="bill-serial" class="form-label">الأجمالي</label>
+                <input
+                  required
+                  type="text"
+                  readonly
+                  class="form-control"
+                  id="loan-name"
+                  name="total_price"
+                  value="<%= total_price %>"
+                  placeholder="احمد"
+                />
+              </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
                 <label for="bill-amount" class="form-label">الباقي</label>
                 <input
                   required
                   type="number"
                   class="form-control"
                   id="change-amount"
-                  name="change"
+                  name="last_change"
                   readonly
-                  value="<%= change %>"
+                  value="<%= last_change %>"
                   placeholder="500 جنية"
                 />
               </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6 ctc">
+                <label for="bill-amount" class="form-label">رقم الدفعة</label>
+                <input
+                  required
+                  type="number"
+                  class="form-control"
+                  id="change-amount"
+                  name="serial"
+                  readonly
+                  value="<%= serial %>"
+                  placeholder="500 جنية"
+                />
+              </div>
+  
+   
+              
             </div>
             <div class="row botn">
               <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-4 ctc">
@@ -60,6 +102,7 @@
                       >
                         القيمة
                       </div>
+                      
                     </div>
                   </div>
                   <% sub.forEach(a => { %>
@@ -80,7 +123,9 @@
                         value="<%= a %>"
                         placeholder=""
                       />
+            
                     </div>
+                    
                   </div>
                   <% }) %>
                 </div>
@@ -88,7 +133,7 @@
                   <button
                     class="btn btn-warning col-md-3 col-3 col-sm-3 col-lg-3"
                   >
-                    تعديل
+                    إضافة
                   </button>
                 </div>
               </div>

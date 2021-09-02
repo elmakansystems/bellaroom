@@ -30,11 +30,19 @@ const invoice_schema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    last_paid: {
+        type: Number,
+        default: 0
+    },
     paid: {
         type: Number,
         default: 0
     },
     change: {
+        type: Number,
+        default: 0
+    },
+    last_change: {
         type: Number,
         default: 0
     },

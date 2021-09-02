@@ -1,17 +1,17 @@
 <%- include('../components/head' , {title : 'العملاء'}) %>
-<%- include('../components/right-sidebar') %>
-<%- include('../components/left-sidebar') %>
 <div class="m100">
   <div class="main-header">
-    <h3 class="text-center">العملاء السابقين</h3>
+    <h3 class="">العملاء السابقين</h3>
   </div>
- 
+  <center>
+    <img src="/images/logo.png" class="header-img my-2" alt="og logo " />
+  </center>
   <div class="container">
     <div class="row client-row" dir="rtl">
       <% let phone = [] %> <% clients.forEach((c , i) => { %> <% if
       (filtered.includes(c.name) && !phone.includes(c.phone)) { %> <%
       phone.push(c.phone) %>
-      <div class="client-card text-center">
+      <div class="client-card ">
         <div class="c_img">
           <img src="/images/team.svg" class="img-fluid" alt="user img" />
         </div>

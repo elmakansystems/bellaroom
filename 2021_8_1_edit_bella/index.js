@@ -74,7 +74,7 @@ app.use(
   isAdmin,
   require("./routes/settings")
 );
-app.use("/clients/", isLogged, isActive, isBoth, require("./routes/clients"));
+app.use('/clients/', isLogged, isActive, isBoth, require('./routes/clients'))
 app.use("/invoices/", isLogged, isActive, require("./routes/invoices"));
 app.use("/receipt/", isLogged, isActive, require("./routes/receipt"));
 app.use("/orders/", isLogged, isActive, require("./routes/custom-order"));
